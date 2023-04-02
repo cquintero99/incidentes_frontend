@@ -247,7 +247,7 @@
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <h1>Incidentes</h1>
+                            <h1>Reportes Activos</h1>
                         </div>
                     </form>
                     <!-- Topbar Navbar -->
@@ -431,97 +431,68 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Reportes Activos</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
-                    </div>
+                   
 
                     <!-- Content Row -->
                     <div class="row">
                         <div class="container text-center">
                             <div class="row align-items-center">
-                                <div class="col">
-                                    <nav class="navbar navbar-expand navbar-light bg-light mb-4 ">
-                                
-                                        <a class="navbar-brand" href="#">Aplicar Filtro :</a>
-                                        <ul class="navbar-nav ml-auto">
-                                            <li class="nav-item dropdown">
-                                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-                                                    role="button" data-toggle="dropdown" aria-haspopup="true"
-                                                    aria-expanded="false">
-                                                    Prioridad
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-right animated--grow-in"
-                                                    aria-labelledby="navbarDropdown">
-                                                    <a class="dropdown-item" href="#">Alta</a>
-                                                    <a class="dropdown-item" href="#">Media</a>
-                                                    <a class="dropdown-item" href="#">Baja</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" href="#">Todas</a>
-                                                </div>
-                                            </li>
-                                            <li class="nav-item dropdown">
-                                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-                                                    role="button" data-toggle="dropdown" aria-haspopup="true"
-                                                    aria-expanded="false">
-                                                    Categoria
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-right animated--grow-in"
-                                                    aria-labelledby="navbarDropdown">
-                                                    <a class="dropdown-item" href="#">Accidente</a>
-                                                    <a class="dropdown-item" href="#">Maltrato</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" href="#">Todas las Categorias</a>
-                                                </div>
-                                            </li>
-                                            
-                                        
-                                        </ul>
-                                    </nav>
-                                </div>
-                                <div class="col">
-                                        <form
-                                            class=" mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                                            <div class="input-group">
-                                                <input type="text" class="form-control bg-light border-1 small"
-                                                    placeholder="Cedula" aria-label="Search"
-                                                    aria-describedby="basic-addon2">
-                                                <div class="input-group-append">
-                                                    <button class="btn btn-primary" type="button">
-                                                        <i class="fas fa-search fa-sm"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                </div>
-                                <div class="col">
-                                        <form
-                                            class=" mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                                            <div class="input-group">
-                                                <input type="date" class="form-control bg-light border-1 small"
-                                                    placeholder="Fecha" aria-label="Search"
-                                                    aria-describedby="basic-addon2">
-                                                <div class="input-group-append">
-                                                    <button class="btn btn-primary" type="button">
-                                                        <i class="fas fa-search fa-sm"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                </div>
-                               
-                               
+                              <div class="col">
+                                <nav class="navbar navbar-expand navbar-light bg-light mb-4">
+                                  <a class="navbar-brand" href="#"> Filtros :</a>
+                                  <ul class="navbar-nav ml-auto">
+                                    
+              
+                                    
+                                    
+                                  </ul>
+                                </nav>
+                              </div>
+                              <div class="col">
+                                <select class="form-select">
+                                  <option selected>Categoria</option>
+                                  <option value="1">Accidente</option>
+                                  <option value="2">Enfermedad</option>
+                                  <option value="3">Violencia</option>
+                                </select>
+                              </div>
+                              <div class="col">
+                                <select class="form-select">
+                                  <option selected>Prioridad</option>
+                                  <option value="1">ALTA</option>
+                                  <option value="2">MEDIA</option>
+                                  <option value="3">BAJA</option>
+                                </select>
+                              </div>
+                              <div class="col">
+                                <form class="mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                                  <div class="input-group">
+                                    <input type="text" class="form-control bg-light border-1 small" placeholder="Cedula Usuario"
+                                      aria-label="Search" aria-describedby="basic-addon2" />
+                                    <div class="input-group-append">
+                                      <button class="btn btn-primary" type="button">
+                                        <i class="fas fa-search fa-sm"></i>
+                                      </button>
+                                    </div>
+                                  </div>
+                                </form>
+                              </div>
+                              <div class="col">
+                                <form class="mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                                  <div class="input-group">
+                                    <input type="date" class="form-control bg-light border-1 small" placeholder="Fecha"
+                                      aria-label="Search" aria-describedby="basic-addon2" />
+                                    <div class="input-group-append">
+                                      <button class="btn btn-primary" type="button">
+                                        <i class="fas fa-search fa-sm"></i>
+                                      </button>
+                                    </div>
+                                  </div>
+                                </form>
+                              </div>
                             </div>
-                        </div>
-                        <div class="container text-center p-3 ">
-                            <!--<div class="overflow-scroll">-->
-
-                           
-                           <!-- </div>-->
-                        </div>
-
+                          </div>
+                       
 
 
 
@@ -544,11 +515,11 @@
                                                 <div class="col">Estado</div>
                                                 <div class="col">
                                                     <div class="my-2"></div>
-                                                    <a href="#" class="btn btn-info btn-icon-split">
+                                                    <a href="#" class="btn btn-primary btn-icon-split">
                                                         <span class="icon text-white-50">
                                                             <i class="fas fa-info-circle"></i>
                                                         </span>
-                                                        <span class="text">Actualizar</span>
+                                                        <span class="text" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">Actualizar</span>
                                                     </a>
                                                 </div>
                                             </div>
@@ -571,12 +542,12 @@
                                                 <div class="col">Estado</div>
                                                 <div class="col">
                                                     <div class="my-2"></div>
-                                                    <a href="#" class="btn btn-info btn-icon-split">
+                                                    <a href="#" class="btn btn-primary btn-icon-split">
                                                         <span class="icon text-white-50">
                                                             <i class="fas fa-info-circle"></i>
                                                         </span>
                                                         <span class="text" data-bs-toggle="modal"
-                                                            data-bs-target="#staticBackdrop">Actualizar </span>
+                                                            data-bs-target="#staticBackdrop2">Actualizar </span>
                                                     </a>
                                                 </div>
                                             </div>
@@ -592,13 +563,19 @@
                                             <div class="row align-items-center">
                                                 <div class="col">Nombre Usuario</div>
                                                 <div class="col">Titulo reporte</div>
+
+                                                <div class="col">Prioridad</div>
+                                                <div class="col">Categoria</div>
+
+                                                <div class="col">Estado</div>
                                                 <div class="col">
                                                     <div class="my-2"></div>
-                                                    <a href="#" class="btn btn-info btn-icon-split">
+                                                    <a href="#" class="btn btn-primary btn-icon-split">
                                                         <span class="icon text-white-50">
                                                             <i class="fas fa-info-circle"></i>
                                                         </span>
-                                                        <span class="text">Ver Detalles</span>
+                                                        <span class="text" data-bs-toggle="modal"
+                                                            data-bs-target="#staticBackdrop2">Actualizar </span>
                                                     </a>
                                                 </div>
                                             </div>
@@ -614,14 +591,19 @@
                                             <div class="row align-items-center">
                                                 <div class="col">Nombre Usuario</div>
                                                 <div class="col">Titulo reporte</div>
+
+                                                <div class="col">Prioridad</div>
                                                 <div class="col">Categoria</div>
+
+                                                <div class="col">Estado</div>
                                                 <div class="col">
                                                     <div class="my-2"></div>
-                                                    <a href="#" class="btn btn-info btn-icon-split">
+                                                    <a href="#" class="btn btn-primary btn-icon-split">
                                                         <span class="icon text-white-50">
                                                             <i class="fas fa-info-circle"></i>
                                                         </span>
-                                                        <span class="text">Actualizar Categoria</span>
+                                                        <span class="text" data-bs-toggle="modal"
+                                                            data-bs-target="#staticBackdrop2">Actualizar </span>
                                                     </a>
                                                 </div>
                                             </div>
@@ -637,13 +619,19 @@
                                             <div class="row align-items-center">
                                                 <div class="col">Nombre Usuario</div>
                                                 <div class="col">Titulo reporte</div>
+
+                                                <div class="col">Prioridad</div>
+                                                <div class="col">Categoria</div>
+
+                                                <div class="col">Estado</div>
                                                 <div class="col">
                                                     <div class="my-2"></div>
-                                                    <a href="#" class="btn btn-info btn-icon-split">
+                                                    <a href="#" class="btn btn-primary btn-icon-split">
                                                         <span class="icon text-white-50">
                                                             <i class="fas fa-info-circle"></i>
                                                         </span>
-                                                        <span class="text">Ver Detalles</span>
+                                                        <span class="text" data-bs-toggle="modal"
+                                                            data-bs-target="#staticBackdrop2">Actualizar </span>
                                                     </a>
                                                 </div>
                                             </div>
@@ -659,13 +647,19 @@
                                             <div class="row align-items-center">
                                                 <div class="col">Nombre Usuario</div>
                                                 <div class="col">Titulo reporte</div>
+
+                                                <div class="col">Prioridad</div>
+                                                <div class="col">Categoria</div>
+
+                                                <div class="col">Estado</div>
                                                 <div class="col">
                                                     <div class="my-2"></div>
-                                                    <a href="#" class="btn btn-info btn-icon-split">
+                                                    <a href="#" class="btn btn-primary btn-icon-split">
                                                         <span class="icon text-white-50">
                                                             <i class="fas fa-info-circle"></i>
                                                         </span>
-                                                        <span class="text">Ver Detalles</span>
+                                                        <span class="text" data-bs-toggle="modal"
+                                                            data-bs-target="#staticBackdrop2">Actualizar </span>
                                                     </a>
                                                 </div>
                                             </div>
@@ -679,6 +673,110 @@
                     <!-- /.container-fluid -->
 
                 </div>
+                <!-- Button trigger modal -->
+>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">PANEL ACTUALIZAR INCIDENTE</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="container text-center border border-bottom-primary  border-top p-3">
+                    <div class="row align-items-center">
+                      <div class="col text-black">Actualizar el  Estado del incidente</div>
+                      <div class="col">
+                          <select class="form-select form-select mb-3" aria-label=".form-select-lg example">
+                              <option selected>Seleccione el Estado</option>
+                              <option value="1">DENEGADO</option>
+                              <option value="2">PROCESO</option>
+                              <option value="3">RESUELTO</option>
+                            </select>
+                      </div>
+                    </div>
+                  </div>
+                <div class="col-lg-6">
+                  <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                      <h6 class="m-0 font-weight-bold text-primary">
+                        INFORMACION DEL USUARIO
+                      </h6>
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                      <p>Nombre:</p>
+                      <p>Cedula:</p>
+                      <p>Correo:</p>
+                    </div>
+                  </div>
+                  <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                      <h6 class="m-0 font-weight-bold text-primary">
+                        ESTADOS DEL INCIDENTE
+                      </h6>
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                      <p>Prioridad:</p>
+                      <p>Estado Actual:</p>
+                      <p>Fecha Aprobacion:</p>
+                      <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i
+                        class="fas fa-download fa-sm text-white-50"></i> Generar Reporte PDF</a>
+                    </div>
+                  </div>
+                  
+                </div>
+
+                <div class="col-lg-6">
+                  <!-- Dropdown Card Example -->
+                  <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                      <h6 class="m-0 font-weight-bold text-primary">
+                        INFORMACION DEL INCIDENTE
+                      </h6>
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                      <p>Caregoria:</p>
+                      <p>Titulo:</p>
+                      <p>Descripcion:</p>
+                      Dropdown menus can be placed in the card header in
+                      order to extend the functionality of a basic card. In
+                      this dropdown card example, the Font Awesome vertical
+                      ellipsis icon in the card header can be clicked on in
+                      order to toggle a dropdown menu.
+                     
+                      <p>Evidencias:</p>
+                      <p>Fecha Registro:</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <hr />
+             
+             
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          
+                <div class="my-2"></div>
+                <a href="#" class="btn btn-success btn-icon-split">
+                  <span class="icon text-white-50">
+                    <i class="fas fa-check"></i>
+                  </span>
+                  <span class="text">Actualizar</span>
+                </a>
+        </div>
+      </div>
+    </div>
+  </div>
                 <!-- End of Main Content -->
 
                 <!-- Footer -->
