@@ -36,13 +36,10 @@
       </a>
 
       <!-- Divider -->
-      <hr class="sidebar-divider my-0" />
-
-      <!-- Nav Item - Dashboard -->
-      <li class="nav-item">
-        <a class="nav-link" href="index.html">
+      <li class="nav-item active">
+        <a class="nav-link text-center" href="index.html">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
+          <span>ADMIN</span></a>
       </li>
 
       <!-- Divider -->
@@ -66,9 +63,14 @@
           <span>Reportes Activos</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="reporte.html">
+        <a class="nav-link" href="reporte-finalizado.html">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Reportes Finalizados</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="reporte-rechazado.html">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Reportes Rechazados</span></a>
       </li>
 
       <hr class="sidebar-divider" />
@@ -404,21 +406,21 @@
           <!-- Button trigger modal -->
 
           <!-- Page Heading -->
-          
+
 
           <!-- Content Row -->
           <div class="row">
-            
+
             <div class="container text-center">
               <div class="row align-items-center">
                 <div class="col">
                   <nav class="navbar navbar-expand navbar-light bg-light mb-4">
                     <a class="navbar-brand" href="#">Filtrar Incidente :</a>
                     <ul class="navbar-nav ml-auto">
-                      
 
-                      
-                      
+
+
+
                     </ul>
                   </nav>
                 </div>
@@ -458,18 +460,32 @@
                 </div>
               </div>
             </div>
-            <nav aria-label="breadcrumb">
-              <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Incidente</a></li>
-                <li class="breadcrumb-item"><a href="#">Categoria</a></li>
-                <li class="breadcrumb-item " aria-current="page"><a href="#">Documento</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Fecha</li>
+
+
+            <div class="container text-center">
+              <div class="row align-items-center">
+                <div class="col-sm-8">
+                  <nav aria-label="breadcrumb bg-light">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item"><a href="#">Incidente</a></li>
+                      <li class="breadcrumb-item"><a href="#">Categoria</a></li>
+                      <li class="breadcrumb-item " aria-current="page"><a href="#">Documento</a></li>
+                      <li class="breadcrumb-item active" aria-current="page">Fecha</li>
+      
+                      
+                    </ol>
+      
+      
+                  </nav>
+                </div>
+                <div class="col-sm-4">
+                  <button class="btn btn-icon-split">Limpiar Filtros</button>
+                  <button class="btn btn-close"></button>
+                </div>
                 
-                <button class="btn btn-close" ></button>
-              </ol>
-              
-             
-            </nav>
+              </div>
+            </div>
+            
             <!-- Border Left Utilities -->
             <div class="col-lg-12">
               <div class="card mb-4 py-3 border-left-secondary">
@@ -486,8 +502,7 @@
                             <span class="icon text-white-50">
                               <i class="fas fa-info-circle"></i>
                             </span>
-                            <span class="text" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Ver
-                              Detalles</span>
+                            <span class="text" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Evaluar Incidente</span>
                           </a>
                         </div>
                       </div>
@@ -510,8 +525,7 @@
                             <span class="icon text-white-50">
                               <i class="fas fa-info-circle"></i>
                             </span>
-                            <span class="text" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Ver
-                              Detalles</span>
+                            <span class="text" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Evaluar Incidente</span>
                           </a>
                         </div>
                       </div>
@@ -534,7 +548,7 @@
                             <span class="icon text-white-50">
                               <i class="fas fa-info-circle"></i>
                             </span>
-                            <span class="text">Ver Detalles</span>
+                            <span class="text">Evaluar Incidente</span>
                           </a>
                         </div>
                       </div>
@@ -557,7 +571,7 @@
                             <span class="icon text-white-50">
                               <i class="fas fa-info-circle"></i>
                             </span>
-                            <span class="text">Ver Detalles</span>
+                            <span class="text">Evaluar Incidente</span>
                           </a>
                         </div>
                       </div>
@@ -580,7 +594,7 @@
                             <span class="icon text-white-50">
                               <i class="fas fa-info-circle"></i>
                             </span>
-                            <span class="text">Ver Detalles</span>
+                            <span class="text">Evaluar Incidente</span>
                           </a>
                         </div>
                       </div>
@@ -603,7 +617,7 @@
                             <span class="icon text-white-50">
                               <i class="fas fa-info-circle"></i>
                             </span>
-                            <span class="text">Ver Detalles</span>
+                            <span class="text">Evaluar Incidente</span>
                           </a>
                         </div>
                       </div>
@@ -627,8 +641,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-               
-              
+
+
                 <div class="row">
                   <div class="col-lg-6">
                     <div class="card shadow mb-4">
@@ -670,26 +684,26 @@
                     </div>
                   </div>
                 </div>
-               <br>
-               <div class="row ">
-                <div class="col-lg-12">
-                <div class=" container text-center border border-bottom-primary  border-top ">
-                    <div class="row align-items-center p-3">
-                      <div class="col text-black">Indica la Prioridad Para este Indicente</div>
-                      <div class="col">
-                        <select class="form-select form-select mb-3" aria-label=".form-select-lg example">
-                          <option selected>Seleccione la Prioridad</option>
-                          <option value="1">ALTA</option>
-                          <option value="2">MEDIA</option>
-                          <option value="3">BAJA</option>
-                        </select>
+                <br>
+                <div class="row ">
+                  <div class="col-lg-12">
+                    <div class=" container text-center border border-bottom-primary  border-top ">
+                      <div class="row align-items-center p-3">
+                        <div class="col text-black">Indica la Prioridad Para este Indicente</div>
+                        <div class="col">
+                          <select class="form-select form-select mb-3" aria-label=".form-select-lg example">
+                            <option selected>Seleccione la Prioridad</option>
+                            <option value="1">ALTA</option>
+                            <option value="2">MEDIA</option>
+                            <option value="3">BAJA</option>
+                          </select>
+                        </div>
                       </div>
                     </div>
                   </div>
+
                 </div>
-                
-            </div>
-                
+
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
