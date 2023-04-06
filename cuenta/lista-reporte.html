@@ -33,13 +33,13 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-gradient-danger sidebar sidebar-dark accordion" id="accordionSidebar">
             <!-- Sidebar - Brand -->
             <a class="p-1 align-items-center justify-content-center" href="./usuario.html">
-               
-                <img class="sidebar-card-illustration mb-2 img-fluid"  src="../img/DAFACI.svg" alt="..." />
+
+                <img class="sidebar-card-illustration mb-2 img-fluid" src="../img/DAFACI.svg" alt="..." />
             </a>
-            
+
             <!-- Divider -->
             <hr class="sidebar-divider" />
 
@@ -95,7 +95,7 @@
             <div class="sidebar-card d-none d-lg-flex">
                 <img class="sidebar-card-illustration mb-2" src="../img/DAFACI.svg" alt="..." />
                 <p class="text-center mb-2">
-                    <strong></strong> 
+                    <strong></strong>
                 </p>
             </div>
         </ul>
@@ -127,16 +127,17 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown  no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle text-gray-800" href="#" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle text-gray-800" href="#" aria-haspopup="true"
+                                aria-expanded="false">
                                 Lista Reportes
                             </a>
                             <!-- Dropdown - Messages -->
-                            
+
                         </li>
 
-                       
 
-                        
+
+
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -158,7 +159,7 @@
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Contiguracion
                                 </a>
-                                
+
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -173,18 +174,20 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
+                    <!-- Button trigger modal -->
 
+                    <!-- Page Heading -->
 
 
                     <!-- Content Row -->
                     <div class="row">
-
+                        
 
                         <div class="container text-center">
                             <div class="row align-items-center">
                                 <div class="col">
                                     <nav class="navbar navbar-expand navbar-light bg-light mb-4">
-                                        <a class="navbar-brand" href="#"> Filtros :</a>
+                                        <a class="navbar-brand" href="#">Filtrar Incidente :</a>
                                         <ul class="navbar-nav ml-auto">
 
 
@@ -218,7 +221,7 @@
                                         <option value="3">BAJA</option>
                                     </select>
                                 </div>
-
+                                
                                 <div class="col">
                                     <form class="mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                                         <div class="input-group">
@@ -237,7 +240,6 @@
                         </div>
 
 
-                        <!-- Content Row -->
                         <div class="container text-center">
                             <div class="row align-items-center">
                                 <div class="col-sm-8">
@@ -245,7 +247,8 @@
                                         <ol class="breadcrumb">
                                             <li class="breadcrumb-item"><a href="#">Incidente</a></li>
                                             <li class="breadcrumb-item"><a href="#">Estado</a></li>
-                                            <li class="breadcrumb-item"><a href="#">Categoria</a></li>
+                                            <li class="breadcrumb-item " aria-current="page"><a href="#">Categoria</a>
+                                            </li>
                                             <li class="breadcrumb-item " aria-current="page"><a href="#">Prioridad</a>
                                             </li>
                                             <li class="breadcrumb-item active" aria-current="page">Fecha</li>
@@ -264,297 +267,345 @@
                             </div>
                         </div>
 
-
-                        <!-- Content Row -->
-                        <div class="row">
-                            <!-- Content Row -->
-                            <div class="col-lg-12">
-                                <div class="card mb-4 py-3 border-left-secondary">
+                        <!-- Border Left Utilities -->
+                        <div class="col-lg-12">
+                            <div class="card mb-4 py-3 border-left-success">
+                                <div class="card-body">
                                     <div class="card-body">
-                                        <div class="card-body">
-                                            <div class="container text-center">
-                                                <div class="row align-items-center">
-                                                    <div class="col">Nombre Usuario</div>
-                                                    <div class="col">Titulo reporte</div>
-                                                    <div class="col">Prioridad</div>
-                                                    <div class="col">Categoria</div>
-                                                    <div class="col">Estado</div>
-                                                    <div class="col">
-                                                        <div class="my-2"></div>
-                                                        <a href="#" class="btn btn-info btn-icon-split">
-                                                            <span class="icon text-white-50">
-                                                                <i class="fas fa-info-circle"></i>
-                                                            </span>
-                                                            <span class="text" data-bs-toggle="modal"
-                                                                data-bs-target="#staticBackdrop3">Detalles</span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                        <div class="container text-center">
+                                            <div class="row align-items-center">
+                                                <div class="col">Nombre Usuario</div>
+                                                <div class="col">Titulo reporte</div>
 
-                                <div class="card mb-4 py-3 border-left-success">
-                                    <div class="card-body">
-                                        <div class="card-body">
-                                            <div class="container text-center">
-                                                <div class="row align-items-center">
-                                                    <div class="col">Nombre Usuario</div>
-                                                    <div class="col">Titulo reporte</div>
+                                                <div class="col">Prioridad</div>
+                                                <div class="col">Categoria</div>
 
-                                                    <div class="col">Prioridad</div>
-                                                    <div class="col">Categoria</div>
-
-                                                    <div class="col">Estado</div>
-                                                    <div class="col">
-                                                        <div class="my-2"></div>
-                                                        <a href="#" class="btn btn-info btn-icon-split">
-                                                            <span class="icon text-white-50">
-                                                                <i class="fas fa-info-circle"></i>
-                                                            </span>
-                                                            <span class="text" data-bs-toggle="modal"
-                                                                data-bs-target="#staticBackdrop3">Detalles </span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                        </div>
-                        <!-- /.container-fluid -->
-
-                    </div>
-                    <!-- End of Main Content -->
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false"
-                        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-xl">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">PANEL INCIDENTE
-                                    </h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-
-                                    <div class="row">
-
-                                        <div class="col-lg-6">
-
-                                            <div class="card shadow mb-4">
-                                                <!-- Card Header - Dropdown -->
-                                                <div
-                                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                                    <h6 class="m-0 font-weight-bold text-primary">
-                                                        INFORMACION DEL USUARIO
-                                                    </h6>
-                                                </div>
-                                                <!-- Card Body -->
-                                                <div class="card-body">
-                                                    <p>Nombre:</p>
-                                                    <p>Cedula:</p>
-                                                    <p>Correo:</p>
-                                                </div>
-                                            </div>
-                                            <div class="card shadow mb-4">
-                                                <!-- Card Header - Dropdown -->
-                                                <div
-                                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                                    <h6 class="m-0 font-weight-bold text-primary">
-                                                        ESTADOS DEL INCIDENTE
-                                                    </h6>
-                                                </div>
-                                                <!-- Card Body -->
-                                                <div class="card-body">
-                                                    <p>Prioridad:</p>
-                                                    <p>Estado Actual:</p>
-                                                    <p>Fecha Revision:</p>
+                                                <div class="col">Estado</div>
+                                                <div class="col">
                                                     <div class="my-2"></div>
-                                                    <a href="#" class="btn btn-danger btn-icon-split">
+                                                    <a href="#" class="btn btn-info btn-icon-split">
                                                         <span class="icon text-white-50">
-                                                            <i class="fas fa-download fa-sm text-white-50"></i>
+                                                            <i class="fas fa-info-circle"></i>
                                                         </span>
-                                                        <span class="text">Generar Reporte PDF</span>
+                                                        <span class="text" data-bs-toggle="modal"
+                                                            data-bs-target="#staticBackdrop3">Detalles </span>
                                                     </a>
                                                 </div>
                                             </div>
-
-
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
 
-                                        <div class="col-lg-6">
-                                            <!-- Dropdown Card Example -->
-                                            <div class="card shadow mb-4">
-                                                <!-- Card Header - Dropdown -->
-                                                <div
-                                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                                    <h6 class="m-0 font-weight-bold text-primary">
-                                                        INFORMACION DEL INCIDENTE
-                                                    </h6>
-                                                </div>
-                                                <!-- Card Body -->
-                                                <div class="card-body">
-                                                    <p>Caregoria:</p>
-                                                    <p>Titulo:</p>
-                                                    <p>Descripcion:</p>
-                                                    Dropdown menus can be placed in the card header in
-                                                    order to extend the functionality of a basic card. In
-                                                    this dropdown card example, the Font Awesome vertical
-                                                    ellipsis icon in the card header can be clicked on in
-                                                    order to toggle a dropdown menu.
+                            <div class="card mb-4 py-3 border-left-danger">
+                                <div class="card-body">
+                                    <div class="card-body">
+                                        <div class="container text-center">
+                                            <div class="row align-items-center">
+                                                <div class="col">Nombre Usuario</div>
+                                                <div class="col">Titulo reporte</div>
 
-                                                    <p>Evidencias:</p>
-                                                    <p>Fecha Registro:</p>
+                                                <div class="col">Prioridad</div>
+                                                <div class="col">Categoria</div>
+
+                                                <div class="col">Estado</div>
+                                                <div class="col">
+                                                    <div class="my-2"></div>
+                                                    <a href="#" class="btn btn-info btn-icon-split">
+                                                        <span class="icon text-white-50">
+                                                            <i class="fas fa-info-circle"></i>
+                                                        </span>
+                                                        <span class="text" data-bs-toggle="modal"
+                                                            data-bs-target="#staticBackdrop3">Detalles </span>
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
-
-
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Close</button>
+                            </div>
 
+                            <div class="card mb-4 py-3 border-left-info">
+                                <div class="card-body">
+                                    <div class="card-body">
+                                        <div class="container text-center">
+                                            <div class="row align-items-center">
+                                                <div class="col">Nombre Usuario</div>
+                                                <div class="col">Titulo reporte</div>
+
+                                                <div class="col">Prioridad</div>
+                                                <div class="col">Categoria</div>
+
+                                                <div class="col">Estado</div>
+                                                <div class="col">
+                                                    <div class="my-2"></div>
+                                                    <a href="#" class="btn btn-info btn-icon-split">
+                                                        <span class="icon text-white-50">
+                                                            <i class="fas fa-info-circle"></i>
+                                                        </span>
+                                                        <span class="text" data-bs-toggle="modal"
+                                                            data-bs-target="#staticBackdrop3">Detalles </span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+                            <div class="card mb-4 py-3 border-left-warning">
+                                <div class="card-body">
+                                    <div class="card-body">
+                                        <div class="container text-center">
+                                            <div class="row align-items-center">
+                                                <div class="col">Nombre Usuario</div>
+                                                <div class="col">Titulo reporte</div>
+
+                                                <div class="col">Prioridad</div>
+                                                <div class="col">Categoria</div>
+
+                                                <div class="col">Estado</div>
+                                                <div class="col">
+                                                    <div class="my-2"></div>
+                                                    <a href="#" class="btn btn-info btn-icon-split">
+                                                        <span class="icon text-white-50">
+                                                            <i class="fas fa-info-circle"></i>
+                                                        </span>
+                                                        <span class="text" data-bs-toggle="modal"
+                                                            data-bs-target="#staticBackdrop3">Detalles </span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Footer -->
-                    <footer class="text-center text-lg-start bg-white text-muted">
-                        <!-- Section: Social media -->
-                        <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-                            <!-- Left -->
-                            <div class="me-5 d-none d-lg-block">
-                                <span>Get connected with us on social networks:</span>
-                            </div>
-                            <!-- Left -->
-
-                            <!-- Right -->
-                            <div>
-                                <a href="" class="me-4 text-reset">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                                <a href="" class="me-4 text-reset">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                                <a href="" class="me-4 text-reset">
-                                    <i class="fab fa-google"></i>
-                                </a>
-                                <a href="" class="me-4 text-reset">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                                <a href="" class="me-4 text-reset">
-                                    <i class="fab fa-linkedin"></i>
-                                </a>
-                                <a href="" class="me-4 text-reset">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                            </div>
-                            <!-- Right -->
-                        </section>
-                        <!-- Section: Social media -->
-
-                        <!-- Section: Links  -->
-                        <section class="">
-                            <div class="container text-center text-md-start mt-5">
-                                <!-- Grid row -->
-                                <div class="row mt-3">
-                                    <!-- Grid column -->
-                                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                                        <!-- Content -->
-                                        <h6 class="text-uppercase fw-bold mb-4">
-                                            <i class="fas fa-gem me-3"></i>Company name
-                                        </h6>
-                                        <p>
-                                            Here you can use rows and columns to organize your footer content. Lorem
-                                            ipsum
-                                            dolor sit amet, consectetur adipisicing elit.
-                                        </p>
-                                    </div>
-                                    <!-- Grid column -->
-
-                                    <!-- Grid column -->
-                                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-                                        <!-- Links -->
-                                        <h6 class="text-uppercase fw-bold mb-4">
-                                            Products
-                                        </h6>
-                                        <p>
-                                            <a href="#!" class="text-reset">Angular</a>
-                                        </p>
-                                        <p>
-                                            <a href="#!" class="text-reset">React</a>
-                                        </p>
-                                        <p>
-                                            <a href="#!" class="text-reset">Vue</a>
-                                        </p>
-                                        <p>
-                                            <a href="#!" class="text-reset">Laravel</a>
-                                        </p>
-                                    </div>
-                                    <!-- Grid column -->
-
-                                    <!-- Grid column -->
-                                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                                        <!-- Links -->
-                                        <h6 class="text-uppercase fw-bold mb-4">
-                                            Useful links
-                                        </h6>
-                                        <p>
-                                            <a href="#!" class="text-reset">Pricing</a>
-                                        </p>
-                                        <p>
-                                            <a href="#!" class="text-reset">Settings</a>
-                                        </p>
-                                        <p>
-                                            <a href="#!" class="text-reset">Orders</a>
-                                        </p>
-                                        <p>
-                                            <a href="#!" class="text-reset">Help</a>
-                                        </p>
-                                    </div>
-                                    <!-- Grid column -->
-
-                                    <!-- Grid column -->
-                                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-                                        <!-- Links -->
-                                        <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-                                        <p><i class="fas fa-home me-3"></i> New York, NY 10012, US</p>
-                                        <p>
-                                            <i class="fas fa-envelope me-3"></i>
-                                            info@example.com
-                                        </p>
-                                        <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
-                                        <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
-                                    </div>
-                                    <!-- Grid column -->
-                                </div>
-                                <!-- Grid row -->
-                            </div>
-                        </section>
-                        <!-- Section: Links  -->
-
-                        <!-- Copyright -->
-                        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-                            © 2023 Copyright:
-                            <a class="text-reset fw-bold" href="#">DAFACI.com</a>
-                        </div>
-                        <!-- Copyright -->
-                    </footer>
-                    <!-- End of Footer -->
-
                 </div>
                 <!-- End of Content Wrapper -->
+                <!-- Modal -->
+                <div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">PANEL INCIDENTE FINALIZADO
+                                </h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+
+                                <div class="row">
+
+                                    <div class="col-lg-6">
+
+                                        <div class="card shadow mb-4">
+                                            <!-- Card Header - Dropdown -->
+                                            <div
+                                                class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                                <h6 class="m-0 font-weight-bold text-primary">
+                                                    INFORMACION DEL USUARIO
+                                                </h6>
+                                            </div>
+                                            <!-- Card Body -->
+                                            <div class="card-body">
+                                                <p>Nombre:</p>
+                                                <p>Cedula:</p>
+                                                <p>Correo:</p>
+                                            </div>
+                                        </div>
+                                        <div class="card shadow mb-4">
+                                            <!-- Card Header - Dropdown -->
+                                            <div
+                                                class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                                <h6 class="m-0 font-weight-bold text-primary">
+                                                    ESTADOS DEL INCIDENTE
+                                                </h6>
+                                            </div>
+                                            <!-- Card Body -->
+                                            <div class="card-body">
+                                                <p>Prioridad:</p>
+                                                <p>Estado Actual:</p>
+                                                <p>Fecha Aprobacion:</p>
+                                                <div class="my-2"></div>
+                                                <a href="#" class="btn btn-danger btn-icon-split">
+                                                    <span class="icon text-white-50">
+                                                        <i class="fas fa-download fa-sm text-white-50"></i>
+                                                    </span>
+                                                    <span class="text">Generar Reporte PDF</span>
+                                                </a>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <!-- Dropdown Card Example -->
+                                        <div class="card shadow mb-4">
+                                            <!-- Card Header - Dropdown -->
+                                            <div
+                                                class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                                <h6 class="m-0 font-weight-bold text-primary">
+                                                    INFORMACION DEL INCIDENTE
+                                                </h6>
+                                            </div>
+                                            <!-- Card Body -->
+                                            <div class="card-body">
+                                                <p>Caregoria:</p>
+                                                <p>Titulo:</p>
+                                                <p>Descripcion:</p>
+                                                Dropdown menus can be placed in the card header in
+                                                order to extend the functionality of a basic card. In
+                                                this dropdown card example, the Font Awesome vertical
+                                                ellipsis icon in the card header can be clicked on in
+                                                order to toggle a dropdown menu.
+
+                                                <p>Evidencias:</p>
+                                                <p>Fecha Registro:</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Footer -->
+                <footer class="text-center text-lg-start bg-white text-muted ">
+                    <!-- Section: Social media -->
+                    <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+                        <!-- Left -->
+                        <div class="me-5 d-none d-lg-block">
+                            <span>Get connected with us on social networks:</span>
+                        </div>
+                        <!-- Left -->
+
+                        <!-- Right -->
+                        <div>
+                            <a href="" class="me-4 text-reset">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="" class="me-4 text-reset">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="" class="me-4 text-reset">
+                                <i class="fab fa-google"></i>
+                            </a>
+                            <a href="" class="me-4 text-reset">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="" class="me-4 text-reset">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="" class="me-4 text-reset">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                        <!-- Right -->
+                    </section>
+                    <!-- Section: Social media -->
+
+                    <!-- Section: Links  -->
+                    <section class="">
+                        <div class="container text-center text-md-start mt-5">
+                            <!-- Grid row -->
+                            <div class="row mt-3">
+                                <!-- Grid column -->
+                                <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                                    <!-- Content -->
+                                    <h6 class="text-uppercase fw-bold mb-4">
+                                        <i class="fas fa-gem me-3"></i>Company name
+                                    </h6>
+                                    <p>
+                                        Here you can use rows and columns to organize your footer content. Lorem ipsum
+                                        dolor sit amet, consectetur adipisicing elit.
+                                    </p>
+                                </div>
+                                <!-- Grid column -->
+
+                                <!-- Grid column -->
+                                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                                    <!-- Links -->
+                                    <h6 class="text-uppercase fw-bold mb-4">
+                                        Products
+                                    </h6>
+                                    <p>
+                                        <a href="#!" class="text-reset">Angular</a>
+                                    </p>
+                                    <p>
+                                        <a href="#!" class="text-reset">React</a>
+                                    </p>
+                                    <p>
+                                        <a href="#!" class="text-reset">Vue</a>
+                                    </p>
+                                    <p>
+                                        <a href="#!" class="text-reset">Laravel</a>
+                                    </p>
+                                </div>
+                                <!-- Grid column -->
+
+                                <!-- Grid column -->
+                                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                                    <!-- Links -->
+                                    <h6 class="text-uppercase fw-bold mb-4">
+                                        Useful links
+                                    </h6>
+                                    <p>
+                                        <a href="#!" class="text-reset">Pricing</a>
+                                    </p>
+                                    <p>
+                                        <a href="#!" class="text-reset">Settings</a>
+                                    </p>
+                                    <p>
+                                        <a href="#!" class="text-reset">Orders</a>
+                                    </p>
+                                    <p>
+                                        <a href="#!" class="text-reset">Help</a>
+                                    </p>
+                                </div>
+                                <!-- Grid column -->
+
+                                <!-- Grid column -->
+                                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                                    <!-- Links -->
+                                    <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+                                    <p><i class="fas fa-home me-3"></i> New York, NY 10012, US</p>
+                                    <p>
+                                        <i class="fas fa-envelope me-3"></i>
+                                        info@example.com
+                                    </p>
+                                    <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
+                                    <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
+                                </div>
+                                <!-- Grid column -->
+                            </div>
+                            <!-- Grid row -->
+                        </div>
+                    </section>
+                    <!-- Section: Links  -->
+
+                    <!-- Copyright -->
+                    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+                        © 2023 Copyright:
+                        <a class="text-reset fw-bold" href="#">DAFACI.com</a>
+                    </div>
+                    <!-- Copyright -->
+                </footer>
+                <!-- End of Footer -->
 
             </div>
             <!-- End of Page Wrapper -->
