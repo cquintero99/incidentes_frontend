@@ -449,9 +449,9 @@
                 
 
                 <!-- Modal -->
-                <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false"
+                <div class="modal fade" id="staticBackdrop2"  data-bs-backdrop="static" data-bs-keyboard="false"
                     tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-xl">
+                    <div class="modal-dialog modal-xl  ">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5" id="staticBackdropLabel">PANEL ACTUALIZAR INCIDENTE</h1>
@@ -459,10 +459,11 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-
                                 <div class="row">
 
-                                    <div class="col-lg-6">
+                                    
+            
+                                    <div class="col-lg-4">
 
                                         <div class="card shadow mb-4">
                                             <!-- Card Header - Dropdown -->
@@ -505,7 +506,7 @@
 
                                     </div>
 
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-4">
                                         <!-- Dropdown Card Example -->
                                         <div class="card shadow mb-4">
                                             <!-- Card Header - Dropdown -->
@@ -531,65 +532,59 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <br>
-                                <div class="row ">
-                                    <div class="col-lg-12">
+                                    <!-- First Column -->
+                                    <div class="col-lg-4">
+            
                                         <div class="card shadow mb-4">
                                             <!-- Card Header - Dropdown -->
                                             <div
                                                 class="card-header py-3 align-items-center ">
                                                 <h5 class=" font-weight-bold text-primary text-center">
-                                                    Actualizar el Estado del incidente
+                                                    Actualizar Estado del incidente
                                                 </h5>
                                             </div>
                                             <!-- Card Body -->
-                                            <div class="card-body">
-                                                <div class=" container text-center border border-bottom-primary  border-top ">
-                                                    <div class="row align-items-center p-3">
-                                                        <div class="col">
-                                                            
-                                                            <select class="form-select form-select mb-3 "
-                                                                aria-label=".form-select-lg example">
-                                                                <option selected>Seleccione el Estado</option>
-                                                                <option value="1">DENEGADO</option>
-                                                                <option value="2">PROCESO</option>
-                                                                <option value="3">RESUELTO</option>
-                                                            </select>
-                                                          
-                                                        </div>
-                                                        <div class="col">
-                                                          
-                                                            <div class="my-2"></div>
-                                                            <a href="#" class="btn btn-success btn-icon-split">
-                                                                <span class="icon text-white-50">
-                                                                    <i class="fas fa-check"></i>
-                                                                </span>
-                                                                <span class="text">Actualizar</span>
-                                                            </a>
-                                                        </div>
+                                            <div class="card-body border border-bottom-success">
+                                                    <div class="row  ">
+                                                        <p>Seleccione el nuevo estado del reporte:</p>
+                                                        <select class="form-select form-select mb-3 "
+                                                            aria-label=".form-select-lg example">
+                                                            <option selected> Estados</option>
+                                                            <option value="1">DENEGADO</option>
+                                                            <option value="2">PROCESO</option>
+                                                            <option value="3">RESUELTO</option>
+                                                        </select>
+                                                      
                                                     </div>
-                                                </div>
+                                                    <div class="row">
+                                                      <div class="col text-center">
+                                                        <div class="my-2"></div>
+                                                        <a href="#" class="btn btn-success btn-icon-split">
+                                                            <span class="icon text-white-50">
+                                                                <i class="fas fa-check"></i>
+                                                            </span>
+                                                            <span class="text">Actualizar</span>
+                                                        </a>
+                                                      </div>
+                                                       
+                                                    </div>
+                                                
+                                                
                                                
                                             </div>
                                         </div>
-                                       
+            
                                     </div>
-
+            
                                 </div>
+                                
 
 
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 
-                                <div class="my-2"></div>
-                                <a href="#" class="btn btn-success btn-icon-split">
-                                    <span class="icon text-white-50">
-                                        <i class="fas fa-check"></i>
-                                    </span>
-                                    <span class="text">Actualizar</span>
-                                </a>
+                                
                             </div>
                         </div>
                     </div>
@@ -733,7 +728,7 @@
         <!-- Logout Modal-->
         <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog " role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
