@@ -74,7 +74,11 @@ function login(){
                             localStorage.setItem("data", JSON.stringify(parseJwt(token)))
                     
                            cargarModuloRol()
-                    
+                           //Tiempo real del token
+                           let exp=JSON.parse(localStorage.getItem("data")).exp
+                           //Tiempo prueba 4 horas 14400
+                           borrarLocalStorageYRedirigirDespuesDeTiempo(14400); // 3600 Tiempo de expiración de una hora (3600 segundos)
+
                           } else {
                             //ocultarSpinner()
                             body = `<div class="alert alert-danger" role="alert">
@@ -171,6 +175,41 @@ function cargarModuloRol() {
   
     return JSON.parse(jsonPayload);
   }
+  function borrarLocalStorageYRedirigirDespuesDeTiempo(tiempoExpiracion) {
+    // Establecer el tiempo de expiración en milisegundos
+    var tiempoExpiracionMilisegundos = tiempoExpiracion * 1000;
+    
+    // Obtener el tiempo actual en milisegundos
+    var tiempoActual = new Date().getTime();
+    
+    // Obtener el tiempo de expiración sumando el tiempo actual y el tiempo de expiración en milisegundos
+    var tiempoExpiracionTotal = tiempoActual + tiempoExpiracionMilisegundos;
+    
+    // Guardar el tiempo de expiración en el localStorage
+    localStorage.setItem("tiempoExpiracion", tiempoExpiracionTotal);
+    
+    // Verificar el tiempo de expiración en intervalos regulares
+    var verificarExpiracion = setInterval(function() {
+      // Obtener el tiempo actual en milisegundos
+      var tiempoActual = new Date().getTime();
+      
+      // Obtener el tiempo de expiración del localStorage
+      var tiempoExpiracionGuardado = localStorage.getItem("tiempoExpiracion");
+      
+      // Verificar si el tiempo de expiración ha pasado
+      if (tiempoActual >= tiempoExpiracionGuardado) {
+        // Borrar todos los elementos del localStorage
+        localStorage.clear();
+        
+        // Redirigir al usuario al archivo index.html
+        window.location.href = "index.html";
+        
+        // Limpiar el intervalo de verificación
+        clearInterval(verificarExpiracion);
+      }
+    }, 1000); // Intervalo de verificación cada segundo (puedes ajustar el valor según tus necesidades)
+  }
+  
   function mostrarSpinner() {
     document.getElementById("sppiner").innerHTML = `<div id="spinner-container" class="d-flex justify-content-center align-items-center ">
       <div class="spinner-border text-danger" role="status">
