@@ -19,6 +19,7 @@ async function emailRegistrado(usuario){
     return result;
 }
 
+
 async function iniciarSecion(usuario){
     const result=await fetch(urlBassic+"/user/login",{
         method:'POST',
@@ -32,6 +33,8 @@ async function iniciarSecion(usuario){
     })
     return result;
 }
+
+//Inicio sesion automatico para los usuarios nuevos
 try {
   let yes=localStorage.getItem("activarUser")
   if(yes=="yes"){
@@ -55,6 +58,15 @@ try {
 } catch (error) {
   
 }
+//Inicio sesion si presiona enter
+input=document.getElementById("exampleInputPassword")
+input.addEventListener('keyup', function(event) {
+  // Verificar si la tecla presionada es Enter (código 13)
+  if (event.keyCode === 13 || event.which === 13) {
+    // Mostrar un alert
+    login()
+  }
+})
 function login(){
     mostrarSpinner()
     //LIMPIO LAS ALERT
@@ -74,7 +86,7 @@ function login(){
     if (validateEmail()) {
         //Se valida la contraseña
         if(password===""){
-            passwordError.textContent = "Por favor, ingrese su correo contraseña.";
+            passwordError.textContent = "Por favor, ingrese su  contraseña.";
             ocultarSpinner()
         }else{
             emailRegistrado(user)
