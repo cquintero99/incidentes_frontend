@@ -54,24 +54,36 @@
                             <div id="alert">
 
                             </div>
-                            <form class="user" id="formRegister">
+                             <!-- Spinner -->
+                             <div id="sppiner">
+                                   
+                             </div>
+                            <form class="user text-black" id="formRegister">
                               <div class="form-group row">
                                   <div class="col-sm-6 mb-3 mb-sm-0">
-                                      <input type="text" class="form-control form-control-user" id="nombre" placeholder="Nombre">
+                                    <label for="exampleFormControlInput1" class="form-label">Nombre</label>
+                                     <input type="text" class="form-control " id="nombre" placeholder="Nombre">
                                       <small id="nombreError" class="form-text text-danger"></small>
                                   </div>
                                   <div class="col-sm-6">
-                                      <input type="text" class="form-control form-control-user" id="apellido" placeholder="Apellido">
+                                    <label for="exampleFormControlInput1" class="form-label">Apellido</label>
+                                   <input type="text" class="form-control " id="apellido" placeholder="Apellido">
                                       <small id="apellidoError" class="form-text text-danger"></small>
                                   </div>
                               </div>
                               <div class="form-group row">
                                   <div class="col-sm-6 mb-3 mb-sm-0">
-                                      <input type="number" class="form-control form-control-user" id="cedula" placeholder="Cedula">
-                                      <small id="cedulaError" class="form-text text-danger"></small>
+                                    
+                                    <label for="exampleFormControlInput1" class="form-label">Fecha de nacimiento</label>
+                                    <input type="date" class="form-control " id="fechaNacimiento"
+                                    placeholder="Fecha de nacimiento">
+                                <small id="fechaNacimientoError" class="form-text text-danger"></small>
+                            
+                                 
                                   </div>
                                   <div class="col-sm-6">
-                                      <select class="form-select rounded-pill form-select-lg mb-3" aria-label="Default select example"
+                                    <label for="exampleFormControlInput1" class="form-label">Genero</label>
+                                      <select class="form-select   mb-3" aria-label="Default select example"
                                           id="genero">
                                           <option selected>Genero</option>
                                           <option value="1">Hombre</option>
@@ -83,28 +95,48 @@
                               </div>
                               <div class="form-group row">
                                   <div class="col-sm-6 mb-3 mb-sm-0">
-                                      <label class="rounded-pill mt-3" for="">Fecha de nacimiento</label>
-                                  </div>
+                                    <label for="exampleFormControlInput1" class="form-label">Cedula</label>
+                                    <input type="number" class="form-control " id="cedula" placeholder="Cedula">
+                                    <small id="cedulaError" class="form-text text-danger"></small>
+                                </div>
                                   <div class="col-sm-6">
-                                      <input type="date" class="form-control form-control-user" id="fechaNacimiento"
-                                          placeholder="Fecha de nacimiento">
-                                      <small id="fechaNacimientoError" class="form-text text-danger"></small>
+                                    <label for="exampleFormControlInput1" class="form-label">Email</label>
+                                    <input type="email" class="form-control " id="email" placeholder="example@gmail.com">
+                                    <small id="emailError" class="form-text text-danger"></small>
                                   </div>
                               </div>
                               <div class="form-group">
-                                  <input type="email" class="form-control form-control-user" id="email" placeholder="Email">
-                                  <small id="emailError" class="form-text text-danger"></small>
+                               
                               </div>
                               <div class="form-group row">
-                                  <div class="col-sm-6 mb-3 mb-sm-0">
-                                      <input type="password" class="form-control form-control-user" id="pass1" placeholder="Contraseña">
-                                      <small id="pass1Error" class="form-text text-danger"></small>
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                  <label for="exampleFormControlInput1" class="form-label">Contraseña</label>
+                                  <div class="input-group">
+                                    <input type="password" class="form-control" id="pass1" placeholder="Contraseña">
+                                    <button class="btn btn-outline-secondary" type="button" onclick="togglePasswordVisibility('pass1')">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                        <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                                        <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                                      </svg>
+                                    </button>
                                   </div>
-                                  <div class="col-sm-6">
-                                      <input type="password" class="form-control form-control-user" id="pass2"
-                                          placeholder="Repetir Contraseña">
-                                      <small id="pass2Error" class="form-text text-danger"></small>
+                                  <small id="pass1Error" class="form-text text-danger"></small>
+                                </div>
+                                
+                                <div class="col-sm-6">
+                                  <label for="exampleFormControlInput1" class="form-label">Repetir Contraseña</label>
+                                  <div class="input-group">
+                                    <input type="password" class="form-control" id="pass2" placeholder="Repetir Contraseña">
+                                    <button class="btn btn-outline-secondary" type="button" onclick="togglePasswordVisibility('pass2')">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                        <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                                        <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                                      </svg>
+                                    </button>
                                   </div>
+                                  <small id="pass2Error" class="form-text text-danger"></small>
+                                </div>
+                                
                               </div>
                               <a href="#" onclick="registrarCuenta()" id="btnRegistrarCuenta" class="btn btn-primary btn-user btn-block">
                                   Registrar Cuenta
@@ -254,10 +286,11 @@
 
     <!-- Core plugin JavaScript-->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
     <script src="js/login/register.js"></script>
+    <script src="js/login/login.js"></script>
 
 </body>
 

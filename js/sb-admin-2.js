@@ -1,3 +1,18 @@
+
+try {
+  const btnSalir=document.getElementById("btnSalir")
+btnSalir.addEventListener('click',()=>{
+    
+    localStorage.clear()
+    window.location.href="../index.html"
+  })
+} catch (error) {
+  
+}
+function salir(){
+  alert("salir")
+}
+
 (function($) {
   "use strict"; // Start of use strict
 

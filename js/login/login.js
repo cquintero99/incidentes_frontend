@@ -32,6 +32,29 @@ async function iniciarSecion(usuario){
     })
     return result;
 }
+try {
+  let yes=localStorage.getItem("activarUser")
+  if(yes=="yes"){
+    Swal.fire({
+      icon: 'success',
+      title: 'USUARIO REGISTRADO',
+      text: 'Felicidades ya puedes iniciar sesion!',
+      footer: '<a href="">DAFACI.com</a>'
+  })
+    
+    let email = JSON.parse(localStorage.getItem("newUsuario")).email
+    document.getElementById("exampleInputEmail").value = email
+    //Obtengo la contraseña
+    let pass = JSON.parse(localStorage.getItem("newUsuario")).pass1
+    document.getElementById("exampleInputPassword").value = pass
+    localStorage.setItem("activarUser","")
+    localStorage.setItem("newUsuario","")
+    login()
+  }
+ 
+} catch (error) {
+  
+}
 function login(){
     mostrarSpinner()
     //LIMPIO LAS ALERT
@@ -84,6 +107,7 @@ function login(){
                             body = `<div class="alert alert-danger" role="alert">
                              Contraseña  incorrecta
                           </div>`;
+                          passwordError.textContent = " Contraseña incorrecta";
                             alertLogin.innerHTML = body;
                     
                             setTimeout(() => {
@@ -116,7 +140,7 @@ function login(){
 
     }else{
         if(password===""){
-            passwordError.textContent = "Por favor, ingrese su  contraseña.";
+            passwordError.textContent = " ingrese su  contraseña.";
         }
         ocultarSpinner()
     }
@@ -132,13 +156,13 @@ function validateEmail() {
     let email = emailInput.value.trim();
 
     if (email === "") {
-        emailError.textContent = "Por favor, ingrese su correo electrónico.";
+        emailError.textContent = "Ingrese su correo electrónico.";
         return false;
     }
 
     let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(email)) {
-        emailError.textContent = "Por favor, ingrese un correo electrónico válido.";
+        emailError.textContent = "Ingrese un correo electrónico válido.";
         return false;
     }
 
@@ -175,9 +199,8 @@ function cargarModuloRol() {
   
     return JSON.parse(jsonPayload);
   }
-  function borrarLocalStorageYRedirigirDespuesDeTiempo(tiempoExpiracion) {
+  function borrarLocalStorageYRedirigirDespuesDeTiempo(tiempoExpiracionMilisegundos) {
     // Establecer el tiempo de expiración en milisegundos
-    var tiempoExpiracionMilisegundos = tiempoExpiracion * 1000;
     
     // Obtener el tiempo actual en milisegundos
     var tiempoActual = new Date().getTime();

@@ -1,28 +1,53 @@
 //URL BACKEND
-const urlBassic = "http://localhost:8080"
 
 const btnRegistrarCuenta = document.getElementById("btnRegistrarCuenta")
-async function emailRegistrado(usuario){
-    const result=await fetch(urlBassic+"/usuario/email/register",{
-        method:'POST',
-        body:JSON.stringify(usuario),
-        headers:{
-            "Content-type":"application/json"
+async function emailRegistrado(usuario) {
+    const result = await fetch(urlBassic + "/usuario/email/register", {
+        method: 'POST',
+        body: JSON.stringify(usuario),
+        headers: {
+            "Content-type": "application/json"
         }
     })
     return result;
 }
+async function saveUsuario(usuario) {
+    const result = await fetch(urlBassic + "/usuario/save", {
+        method: 'POST',
+        body: JSON.stringify(usuario),
+        headers: {
+            "Content-type": "application/json",
+            'Access-Control-Allow-Headers': 'Authorization',
+            'Cache-Control': 'no-store'
+        },
+        cache: 'no-store'
+    })
+    return result
+}
+async function saveIntentoRegistro(intento) {
+    const result = await fetch(urlBassic + "/intento/registro/save", {
+        method: 'POST',
+        body: JSON.stringify(intento),
+        headers: {
+            "Content-type": "application/json",
+            'Access-Control-Allow-Headers': 'Authorization',
+            'Cache-Control': 'no-store'
+        },
+        cache: 'no-store'
+    })
+    return result
+}
 async function sendEmailCodio(usuario) {
-   
+
     const result = await fetch(urlBassic + "/mail/new", {
         method: 'POST',
         body: JSON.stringify(usuario),
-        headers:{
-            "Content-type":"application/json",
+        headers: {
+            "Content-type": "application/json",
             'Access-Control-Allow-Headers': 'Authorization',
             'Cache-Control': 'no-store'
-          },
-          cache: 'no-store'
+        },
+        cache: 'no-store'
     })
     return result
 }
@@ -61,8 +86,8 @@ function registrarCuenta() {
     if (cedula === "") {
         document.getElementById("cedulaError").textContent = "Por favor, ingresa tu cedula";
         errores = true;
-    } else if (cedula.length !== 8) {
-        document.getElementById("cedulaError").textContent = "La cédula debe tener 8 o mas dígitos";
+    } else if (cedula.length < 8 || cedula.length > 10) {
+        document.getElementById("cedulaError").textContent = "La cédula debe tener 8 o 10 dígitos";
         errores = true;
     } else {
         document.getElementById("cedulaError").textContent = "";
@@ -129,7 +154,7 @@ function registrarCuenta() {
                     localStorage.setItem("newUsuario", JSON.stringify(usuario))
 
                     enviarCodigoEmail(usuario)
-                }else{
+                } else {
                     document.getElementById("alert") = `<div class="alert alert-danger" role="alert">
                     Email ya esta registrado
                  </div>`;
@@ -145,37 +170,57 @@ function registrarCuenta() {
     }
     //console.log(usuario)
 }
+
 const formRegister = document.getElementById("formRegister")
 function enviarCodigoEmail(usuario) {
+    mostrarSpinner()
     sendEmailCodio(usuario)
-    .then(response=>response.json())
-    .then(data=>{
-        console.log(data)
-        formCodigo()
-    })
-    .catch(err=>{
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            formCodigo()
+        })
+        .catch(err => {
+            ocultarSpinner()
+            alert(err)
+        })
+        .finally(final => {
+            ocultarSpinner()
+        })
 
-    })
-    .finally(final=>{
-
-    })
-    
 }
+function togglePasswordVisibility(fieldId) {
+    const field = document.getElementById(fieldId);
+    const fieldType = field.getAttribute('type');
+
+    if (fieldType === 'password') {
+        field.setAttribute('type', 'text');
+    } else {
+        field.setAttribute('type', 'password');
+    }
+}
+
 function formCodigo() {
+    let email=JSON.parse(localStorage.getItem("newUsuario")).email
     formRegister.innerHTML = `
 <div class="form-group row">
     <div class="col-sm-6 mb-3 mb-sm-0">
+    <label class="rounded-pill mt-3" for="">Se envio un codigo de 6 digitos a tu email : ${email}</label>
+    <hr>
         <label class="rounded-pill mt-3" for="">Ingresa el Codigo</label>
+    </div>
+
+    <div id="numeroIntentos">
     </div>
     <div class="col-sm-6">
         <input type="number" class="form-control form-control-user"  id="codigo"
             placeholder="Codigo">
-        <small id="fechaNacimientoError" class="form-text text-danger"></small>
+        <small id="codigoIntento" class="form-text text-danger"></small>
     </div>
 </div>
 
 
-<a href="#" onclick="validarCodigo()" id="" class="btn btn-primary btn-user btn-block">
+<a href="#" onclick="validarCodigo()" id="validarBtn" class="btn btn-primary btn-user btn-block">
     Validar Codigo
 </a>
 <hr>`
@@ -183,9 +228,122 @@ function formCodigo() {
 }
 
 function validarCodigo() {
-    alert("validar codigo")
+    mostrarSpinner()
+    //alert("validar codigo")
+    const numeroIntentos = document.getElementById("numeroIntentos")
+    let codigo = document.getElementById("codigo").value
+    let email = JSON.parse(localStorage.getItem("newUsuario")).email
+    const codigoIntento = document.getElementById("codigoIntento")
+    const intento = {
+        codigo
+        , email
+    }
+    try {
+        let n = sessionStorage.getItem("num")
+        console.log(n)
+        if (n == null) {
+            sessionStorage.setItem("num", 1)
+            n = 1
+
+        }
+
+        if (n <= 3) {
+
+            numeroIntentos.innerHTML = `<div class="alert alert-primary" role="alert">
+             Numero Intento ${n}
+           </div>`
+            sessionStorage.setItem("num", Number(n) + 1)
+            if(n==3){
+                document.getElementById("validarBtn").remove()
+            sessionStorage.clear()
+            }
+        } else if(n>3) {
+            document.getElementById("validarBtn").remove()
+            sessionStorage.clear()
+        }
+
+    } catch (error) {
+        alert("err")
+
+    }
+    saveIntentoRegistro(intento)
+        .then(res => res.json())
+        .then(data => {
+
+
+
+            console.log(data)
+
+
+
+
+
+            if (data == true) {
+                registrarUsuario()
+
+            } else {
+                codigoIntento.textContent = "Codigo Incorrecto"
+            }
+        })
+        .catch(err => {
+            ocultarSpinner()
+            alert(err)
+        })
+        .finally(final => {
+            ocultarSpinner()
+
+        })
+
+
+
 }
+function registrarUsuario() {
+    mostrarSpinner()
+    const newUsuario = JSON.parse(localStorage.getItem("newUsuario"))
+    const usuario = {
+        nombre: newUsuario.nombre,
+
+        apellido: newUsuario.apellido,
+        cedula: newUsuario.cedula,
+        fechaNacimiento: newUsuario.fechaNacimiento,
+        email: newUsuario.email,
+        genero: newUsuario.genero,
+        password: newUsuario.pass1,
+    }
+
+    saveUsuario(usuario)
+        .then(res => res.json())
+        .then(data => {
+            
+        localStorage.setItem("activarUser","yes")
+        setTimeout(()=>{
+            window.location.href = "index.html"
+        },50)
+           
+        })
+        .catch(err => {
+            ocultarSpinner()
+            alert(err)
+
+        })
+        .finally(final => {
+            ocultarSpinner()
+        })
+
+}
+
 function validarEmail(email) {
     var re = /\S+@\S+\.\S+/;
     return re.test(email);
+}
+function mostrarSpinner() {
+    document.getElementById("sppiner").innerHTML = `<div id="spinner-container" class="d-flex justify-content-center align-items-center ">
+      <div class="spinner-border text-danger" role="status">
+        <span class="sr-only">Cargando...</span>
+      </div>
+    </div>`
+}
+
+function ocultarSpinner() {
+    document.getElementById("sppiner").innerHTML = ""
 }
