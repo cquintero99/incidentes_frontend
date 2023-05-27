@@ -128,7 +128,7 @@ function login(){
                           }
                     })
                     .catch(err=>{
-
+                      ocultarSpinner()
                     })
                     .finally(final=>{
                         ocultarSpinner()
@@ -143,6 +143,7 @@ function login(){
             })
             .catch(err=>{
                 console.log(err)
+                ocultarSpinner()
             })
             .finally(final=>{
                 
@@ -192,7 +193,7 @@ function cargarModuloRol() {
         admin = true
   
       } else if (roles[i].nombre == "ROLE_USER" && admin === false) {
-        window.location.href = "./cuenta/usuario.html";
+        window.location.href = "./cuenta/index.html";
       }
     }
   

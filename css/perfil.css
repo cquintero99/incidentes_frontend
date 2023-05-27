@@ -222,7 +222,7 @@
 }
 .timeline-sm .timeline-sm-item .timeline-sm-date {
     position: absolute;
-    left: -104px;
+    right: 40px;
 }
 @media (max-width: 420px) {
     .timeline-sm {

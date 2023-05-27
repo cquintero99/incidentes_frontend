@@ -204,7 +204,7 @@ function formCodigo() {
     let email=JSON.parse(localStorage.getItem("newUsuario")).email
     formRegister.innerHTML = `
 <div class="form-group row">
-    <div class="col-sm-6 mb-3 mb-sm-0">
+    <div class="col-sm-12 mb-3 mb-sm-0">
     <label class="rounded-pill mt-3" for="">Se envio un codigo de 6 digitos a tu email : ${email}</label>
     <hr>
         <label class="rounded-pill mt-3" for="">Ingresa el Codigo</label>
@@ -212,7 +212,7 @@ function formCodigo() {
 
     <div id="numeroIntentos">
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-12">
         <input type="number" class="form-control form-control-user"  id="codigo"
             placeholder="Codigo">
         <small id="codigoIntento" class="form-text text-danger"></small>
