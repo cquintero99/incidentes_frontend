@@ -30,7 +30,47 @@ async function listaIncidentes() {
     });
     return result;
 }
+/**
+ * Obtiene la lista de estados desde el servidor.
+ * @returns {Promise<Response>} Promesa que resuelve con la respuesta de la solicitud.
+ */
+async function listaEstados() {
+    let token = localStorage.getItem("token");
+    const result = await fetch(urlBasic + "/estado", {
+        method: 'GET',
+        headers: {
+            "Authorization": "Bearer " + token,
+            "Content-type": "application/json"
+        }
+    });
+    return result;
+}
 
+/**
+ * Carga las opciones de estados en un elemento select del formulario.
+ */
+function cargarEstados() {
+    listaEstados()
+        .then(response => response.json())
+        .then(prioridades => {
+            // Elemento select
+            const selectPrioridad = document.getElementById('estados');
+
+            // Agregar opciones al select
+            prioridades.forEach(prioridad => {
+                const option = document.createElement('option');
+                option.value = prioridad.id;
+                option.innerHTML = `${prioridad.nombre} `;
+                selectPrioridad.appendChild(option);
+            });
+        })
+        .catch(err => {
+            console.log(err);
+        })
+        .finally(final => {
+            // Código a ejecutar después de la carga de las estados
+        });
+}
 /**
  * Carga las opciones de prioridad en un elemento select del formulario.
  */
@@ -61,71 +101,14 @@ function cargarPrioridades() {
  * Muestra la lista de incidentes del usuario en el documento HTML.
  */
 function verIncidentes() {
- 
+    vaciarSelect()
     //Busco la lista de incidentes del usuario
     listaIncidentes()
         .then(response => response.json())
         .then(data => {
-            if(data.length>0){
-                document.getElementById("noHayIncidentes").innerHTML=""
-            }
             //Guardo la lista de incidentes en la session 
             sessionStorage.setItem("incidentesU", JSON.stringify(data))
-            let body = ""
-            //Recorro la lista de incidentes y los muestro del mas reciente al mas antiguo
-            for (let i = data.length - 1; i >= 0; i--) {
-                //Muestro los datos de cada incidente que el usuario registro
-                let fechaR = data[i].fechaRegistro
-                const fecha = new Date(fechaR);
-                const options = { year: 'numeric', month: 'long', day: 'numeric' };
-                const fechaFormateada = fecha.toLocaleDateString('es-ES', options);
-                body += `<div class="card mb-4 py-3 border-left-warning">
-            <div class="card-body">
-                <div class="card-body">
-                    <div class="container text-center">
-                        <div class="row align-items-center">
-                           
-                            <div class="col-xl">
-                                <h3 class="text-uppercase fw-bold fs-6">Título </h3>
-                                <p class="fs-6">${data[i].titulo}</p>
-                            </div>
-                            <div class="col-xl">
-                                <h3 class="text-uppercase fw-bold fs-6">Descripcion </h3>
-                                <p class="fs-6">${data[i].descripcion}</p>
-                            </div>
-                            <div class="col-xl">
-                                <h3 class="text-uppercase fw-bold fs-6">Prioridad</h3>
-                                <p class="fs-6">${data[i].prioridadId.nombre}</p>
-                            </div>
-                            <div class="col-xl">
-                                <h3 class="text-uppercase fw-bold fs-6">Categoría</h3>
-                                <p class="fs-6">${data[i].categoriaId.nombre}</p>
-                            </div>
-                            <div class="col-xl">
-                                <h3 class="text-uppercase fw-bold fs-6">Registro</h3>
-                                <p class="fs-6">${fechaFormateada}</p>
-                            </div>
-                            <div class="col-xl">
-                                <div class="my-2"></div>
-                                <a href="#" class="btn btn-info btn-icon-split" onclick="datosIncidente('${data[i].id}')">
-                                    <span class="icon text-white-50">
-                                        <i class="fas fa-info-circle"></i>
-                                    </span>
-                                    <span class="text" data-bs-toggle="modal" data-bs-target="#staticBackdrop3">Detalles</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        `
-
-            }
-            //agrego la lista el documento html
-
-            document.getElementById("listaIncidentes").innerHTML = body
+            mostrarListadoIncidentes(data)
         })
         .catch(err => {
             console.log(err)
@@ -133,14 +116,90 @@ function verIncidentes() {
         .finally(final => {
 
         })
-           //Cargo las categorias en el select filtrar categoria
-    
-        cargarCategorias()
-        cargarPrioridades()
+    //Cargo las categorias en el select filtrar categoria
+
+    cargarCategorias()
+    cargarPrioridades()
+    cargarEstados()
 
 
 }
+function mostrarListadoIncidentes(data) {
+    if (data.length > 0) {
+        document.getElementById("noHayIncidentes").innerHTML = ""
+    }else{
+        
+        document.getElementById("noHayIncidentes").innerHTML = `<h1>No hay Reportes</h1>
+        <br>
+        <p>El usuario no tiene registrado ningun Incidente</p>
+        <hr>`
 
+    }
+
+    let body = ""
+    //Recorro la lista de incidentes y los muestro del mas reciente al mas antiguo
+    for (let i = data.length - 1; i >= 0; i--) {
+        //Muestro los datos de cada incidente que el usuario registro
+        let nEstado = data[i].estados.length
+        let ultimoEstado = data[i].estados[nEstado - 1].nombre
+        let fechaR = data[i].fechaRegistro
+        const fecha = new Date(fechaR);
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        const fechaFormateada = fecha.toLocaleDateString('es-ES', options);
+        body += `
+        <div class="card mb-4 py-3 border-left-warning">
+    <div class="card-body">
+    <div class="card-header text-center">
+    <h3 class="text-uppercase fw-bold fs-6 ">Título : ${data[i].titulo} </h3>
+    </div>
+        <div class="card-body">
+            <div class="container text-center">
+            <div class="row align-items-center">
+                    
+                    <div class="col-xl-6 ">
+                        <h3 class="text-uppercase fw-bold fs-6">Categoría</h3>
+                        <p class="fs-6">${data[i].categoriaId.nombre}</p>
+                    </div>
+                    
+                    <div class="col-xl-2 ">
+                       
+                        <h3 class="text-uppercase fw-bold fs-6 ">Estado </h3>
+                        
+                        <p class="fs-6">${ultimoEstado}</p>
+                    </div>
+                   
+                    <div class="col-xl-2 ">
+                        <h3 class="text-uppercase fw-bold fs-6 ">Prioridad</h3>
+                        <p class="fs-6">${data[i].prioridadId.nombre}</p>
+                    </div>
+                    <div class="col-xl-2">
+                        <div class="my-2"></div>
+                        <a href="#" class="btn btn-info btn-icon-split" onclick="datosIncidente('${data[i].id}')">
+                            <span class="icon text-white-50">
+                                <i class="fas fa-info-circle"></i>
+                            </span>
+                            <span class="text" data-bs-toggle="modal" data-bs-target="#staticBackdrop3">Informacion</span>
+                        </a>
+                    </div>
+                </div>
+               
+            </div>
+            
+        </div>
+        <div class="card-footer text-center">
+            <h3 class="text-uppercase fw-bold fs-6">Fecha Registro ${fechaFormateada}</h3>
+                    
+             </div>
+    </div>
+</div>
+
+`
+
+    }
+    //agrego la lista el documento html
+
+    document.getElementById("listaIncidentes").innerHTML = body
+}
 /**
  * Carga los datos del incidente seleccionado en el modal.
  * @param {string} id - ID del incidente seleccionado.
@@ -167,8 +226,24 @@ function datosIncidente(id) {
             document.getElementById('descripcionI').textContent = incidentes[i].descripcion;
             document.getElementById('lugarI').textContent = incidentes[i].lugar;
             document.getElementById('fechaIncidenteI').textContent = fechaFormateada;
+
+            const estadosIncidente = document.getElementById("estadosIncidente")
+            let body = ""
+            for (let j = incidentes[i].estados.length - 1; j >= 0; j--) {
+                let fechaEstado = incidentes[i].fechaIncidente;
+                const fecha = new Date(fechaEstado);
+                const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                const fechaFormateada = fecha.toLocaleDateString('es-ES', options);
+                body += `<li class="timeline-sm-item ">
+                <h5 class="mt-0 mb-1 fw-bold">${incidentes[i].estados[j].nombre} </h5>
+                        <span class=" ">${fechaFormateada}</span>
+                    </li>`
+
+            }
+            estadosIncidente.innerHTML = body;
         }
     }
+
 }
 
 /**

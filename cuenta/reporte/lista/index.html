@@ -177,59 +177,53 @@
                     <!-- Page Heading -->
 
 
+
+
+
                     <!-- Content Row -->
                     <div class="row">
 
 
                         <div class="container text-center">
                             <div class="row align-items-center">
-                                <div class="col">
-                                    <nav class="navbar navbar-expand navbar-light bg-light mb-4">
-                                        <a class="navbar-brand" href="#">Filtrar Incidente :</a>
-                                        <ul class="navbar-nav ml-auto">
-
-
-
-
-                                        </ul>
-                                    </nav>
-                                </div>
-                                <div class="col">
-                                    <select class="form-select">
-                                        <option selected>Estado</option>
-                                        <option value="1">Aprobado</option>
-                                        <option value="2">Proceso</option>
-                                        <option value="3">Finalizado</option>
-                                        <option value="3">Rechazado</option>
-                                    </select>
-                                </div>
-                                <div class="col">
-                                    <select class="form-select" id="categoria">
-                                        <option selected>Categoria</option>
-                                    </select>
-                                </div>
-                                <div class="col">
-                                    <select class="form-select" id="selectPrioridad">
-                                        <option selected>Prioridad</option>
-                                    </select>
-                                </div>
-
-                                <div class="col">
-                                    <form class="mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                                        <div class="input-group">
-                                            <input type="date" class="form-control bg-light border-1 small"
-                                                placeholder="Fecha" aria-label="Search"
-                                                aria-describedby="basic-addon2" />
-                                            <div class="input-group-append">
-                                                <button class="btn btn-primary" type="button">
-                                                    <i class="fas fa-search fa-sm"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
+                              <div class="col">
+                                <nav class="navbar navbar-expand navbar-light bg-light mb-4">
+                                  <a class="navbar-brand" href="#">Filtrar Incidente :</a>
+                                  <ul class="navbar-nav ml-auto">
+                                  </ul>
+                                </nav>
+                              </div>
+                          
+                              <div class="col">
+                                <label for="categoria" class="form-label fw-bold text-black">Categoría</label>
+                                <select class="form-select" id="categoria">
+                                  <option selected>Categoría</option>
+                                </select>
+                              </div>
+                          
+                              <div class="col">
+                                <label for="estados" class="form-label fw-bold text-black">Estado</label>
+                                <select class="form-select" id="estados">
+                                  <option selected>Estado</option>
+                                </select>
+                              </div>
+                          
+                              <div class="col">
+                                <label for="selectPrioridad" class="form-label fw-bold text-black">Prioridad</label>
+                                <select class="form-select" id="selectPrioridad">
+                                  <option selected>Prioridad</option>
+                                </select>
+                              </div>
+                          
+                              <div class="col">
+                                    <label for="fechaFiltro" class="form-label fw-bold text-black">Fecha</label>
+                                    <input type="date" class="form-control bg-light border-1 small" id="fechaFiltro" placeholder="Fecha"
+                                      aria-label="Search" aria-describedby="basic-addon2" />
+                                  
+                              </div>
                             </div>
-                        </div>
+                          </div>
+                          
 
 
                         <div class="container text-center">
@@ -238,12 +232,15 @@
                                     <nav aria-label="breadcrumb bg-light">
                                         <ol class="breadcrumb">
                                             <li class="breadcrumb-item"><a href="#">Incidente</a></li>
-                                            <li class="breadcrumb-item"><a href="#">Estado</a></li>
-                                            <li class="breadcrumb-item " aria-current="page"><a href="#">Categoria</a>
+
+                                            <li class="breadcrumb-item " aria-current="page"><a href="#"
+                                                    id="menuFiltroCategoria">Categoria</a>
                                             </li>
-                                            <li class="breadcrumb-item " aria-current="page"><a href="#">Prioridad</a>
+                                            <li class="breadcrumb-item"><a href="#" id="menuFiltroEstado">Estado</a></li>
+                                            <li class="breadcrumb-item " aria-current="page"><a href="#"
+                                                    id="menuFiltroPrioridad">Prioridad</a>
                                             </li>
-                                            <li class="breadcrumb-item active" aria-current="page">Fecha</li>
+                                            <li class="breadcrumb-item " aria-current="page" ><a href="#" id="menuFiltroFecha">Fecha</a></li>
 
 
                                         </ol>
@@ -251,7 +248,7 @@
 
                                     </nav>
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-4" onclick="limpiarFiltros()">
                                     <button class="btn btn-icon-split">Limpiar Filtros</button>
                                     <button class="btn btn-close"></button>
                                 </div>
@@ -265,7 +262,7 @@
                         <div class="text-center p-5 mt-3" id="noHayIncidentes">
                             <h1>No hay Reportes</h1>
                             <br>
-                            <p>El usuario no tiene  registrado ningun Incidente</p>
+                            <p>El usuario no tiene registrado ningun Incidente</p>
                             <hr>
                         </div>
 
@@ -410,9 +407,9 @@
 
             </footer>
             <!-- End of Footer -->
-            <div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false"
+            <div class="modal fade " id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false"
                 tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog modal-xl modal-dialog-scrollable  modal-fullscreen-xxl-down">
+                <div class="modal-dialog modal-xl modal-dialog-scrollable  modal-fullscreen">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h1 class="modal-title fs-5 text-uppercase fw-bold" id="staticBackdropLabel">PANEL
@@ -424,7 +421,7 @@
 
                             <div class="row">
 
-                                <div class="col-lg-6">
+                                <div class="col-lg-4">
 
                                     <div class="card shadow mb-4">
                                         <!-- Card Header - Dropdown -->
@@ -460,24 +457,13 @@
                                         </div>
                                         <!-- Card Body -->
                                         <div class="card-body">
-                                            <ul class="list-unstyled timeline-sm  ">
-                                                <li class="timeline-sm-item ">
-                                                    <span class="timeline-sm-date ">2015 - 19</span>
-                                                    <h5 class="mt-0 mb-1">Resuelto </h5>
-                                                </li>
-                                                <li class="timeline-sm-item">
-                                                    <span class="timeline-sm-date">2012 - 15</span>
-                                                    <h5 class="mt-0 mb-1">Aprobado</h5>
-                                                </li>
-                                                <li class="timeline-sm-item">
-                                                    <span class="timeline-sm-date">2010 - 12</span>
-                                                    <h5 class="mt-0 mb-1">Registrado</h5>
-                                                </li>
+                                            <ul class="list-unstyled timeline-sm  " id="estadosIncidente">
+
                                             </ul>
                                             <hr>
                                             <div class="my-2"></div>
-                                            
-                                            
+
+
 
                                         </div>
                                     </div>
@@ -485,7 +471,7 @@
 
                                 </div>
 
-                                <div class="col-lg-6">
+                                <div class="col-lg-8">
                                     <!-- Dropdown Card Example -->
                                     <div class="card shadow mb-4">
                                         <!-- Card Header - Dropdown -->
@@ -526,7 +512,7 @@
                                                     Incidente:</label>
                                                 <p id="fechaIncidenteI"></p>
                                             </div>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -599,8 +585,9 @@
         <script src="../../../js/demo/chart-pie-demo.js"></script>
         <script src="../../../js/usuario/ListaReporte.js"></script>
         <script src="../../../js/usuario/reporteNuevo.js"></script>
-        
-    <script src="../../../js/funcionesGlobales.js"></script>
+
+        <script src="../../../js/funcionesGlobales.js"></script>
+        <script src="../../../js/usuario/filtros.js"></script>
 
 
 </body>

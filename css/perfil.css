@@ -1,3 +1,12 @@
+.d-table {
+    display: table;
+  }
+  
+  .d-table-cell {
+    display: table-cell;
+    vertical-align: middle;
+  }
+  
 .card-box {
     background-color: #fff;
     background-clip: border-box;

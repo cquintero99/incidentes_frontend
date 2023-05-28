@@ -65,60 +65,71 @@ function cargarCategorias() {
  * Crea un nuevo reporte de incidente.
  */
 function newReporte() {
-    // Obtener los valores de los campos
-    mostrarSpinner();
+    // Obtener los valores de los 
+    Swal.fire({
+        title: 'Enviar Reporte?',
+        text: "Verifica que toda la informacion este correcta, ya  no podras hacer ninguna modificacion ! ",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Enviar'
+      }).then((result) => {
+        mostrarSpinner();
 
-    if (validarDatos()) {
-        let categoria = document.getElementById('categoria').value;
-        let titulo = document.getElementById('titulo').value;
-        let descripcion = document.getElementById('descripcion').value;
-        let fecha = document.getElementById('fecha').value;
-        let lugar = document.getElementById('lugar').value;
-        let evidencia = document.getElementById('evidencia').value;
-        let usuarioId = JSON.parse(localStorage.getItem("data")).id;
-
-        const reporte = {
-            categoriaId: {
-                id: categoria
-            },
-            titulo,
-            descripcion,
-            usuarioId,
-            fechaIncidente: fecha,
-            lugar,
-            evidencia: ""
-        };
-
-        console.log(reporte);
-
-        saveIncidente(reporte)
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                Swal.fire(
-                    'Reporte Creado!',
-                    'El reporte se envió con éxito!',
-                    'success'
-                );
-
-                // Limpiar los campos después de enviar el reporte
-                document.getElementById('categoria').value = "";
-                document.getElementById('titulo').value = "";
-                document.getElementById('descripcion').value = "";
-                document.getElementById('fecha').value = "";
-                document.getElementById('lugar').value = "";
-                document.getElementById('evidencia').value = "";
-            })
-            .catch(err => {
-                console.log(err);
-                ocultarSpinner();
-            })
-            .finally(final => {
-                ocultarSpinner();
-            });
-    } else {
-        ocultarSpinner();
-    }
+        if (validarDatos()) {
+            let categoria = document.getElementById('categoria').value;
+            let titulo = document.getElementById('titulo').value;
+            let descripcion = document.getElementById('descripcion').value;
+            let fecha = document.getElementById('fecha').value;
+            let lugar = document.getElementById('lugar').value;
+            let evidencia = document.getElementById('evidencia').value;
+            let usuarioId = JSON.parse(localStorage.getItem("data")).id;
+    
+            const reporte = {
+                categoriaId: {
+                    id: categoria
+                },
+                titulo,
+                descripcion,
+                usuarioId,
+                fechaIncidente: fecha,
+                lugar,
+                evidencia: ""
+            };
+    
+            console.log(reporte);
+    
+            saveIncidente(reporte)
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    Swal.fire(
+                        'Reporte Creado!',
+                        'El reporte se envió con éxito!',
+                        'success'
+                    );
+    
+                    // Limpiar los campos después de enviar el reporte
+                    document.getElementById('categoria').value = "";
+                    document.getElementById('titulo').value = "";
+                    document.getElementById('descripcion').value = "";
+                    document.getElementById('fecha').value = "";
+                    document.getElementById('lugar').value = "";
+                    document.getElementById('evidencia').value = "";
+                })
+                .catch(err => {
+                    console.log(err);
+                    ocultarSpinner();
+                })
+                .finally(final => {
+                    ocultarSpinner();
+                });
+        } else {
+            ocultarSpinner();
+        }
+      })
+   
 }
 
 /**

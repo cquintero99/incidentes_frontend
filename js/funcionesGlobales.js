@@ -46,3 +46,17 @@ function ocultarSpinner() {
 function salir() {
   alert("salir");
 }
+
+function cargarDatosPerfil(){
+  const persona=JSON.parse(localStorage.getItem("data"))
+  console.log(persona)
+  let fechaR = persona.fechaNacimiento
+        const fecha = new Date(fechaR);
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        const fechaFormateada = fecha.toLocaleDateString('es-ES', options);
+  document.getElementById("nombres").textContent=persona.nombre+" "+persona.apellido
+  document.getElementById("cedula").textContent=persona.cedula
+  document.getElementById("email").textContent=persona.sub
+  document.getElementById("genero").textContent=persona.genero
+  document.getElementById("fechaNacimiento").textContent=fechaFormateada
+}
