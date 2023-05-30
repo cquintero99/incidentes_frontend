@@ -1,3 +1,6 @@
+//CONEXION CON EL BACKEND 
+const urlBasic = "http://localhost:8080"
+
 /**
  * Actualiza el nombre del usuario en el elemento HTML correspondiente.
  */

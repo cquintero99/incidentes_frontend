@@ -1,20 +1,5 @@
-const urlBasic = "http://localhost:8080"
 
-/**
- * Obtiene la lista de categorías del backend.
- * @returns {Promise} - Promesa que resuelve con la respuesta de la solicitud.
- */
-async function listaCategoria() {
-    let token = localStorage.getItem("token");
-    const result = await fetch(urlBasic + "/categoria/lista", {
-        method: 'GET',
-        headers: {
-            "Authorization": "Bearer " + token,
-            "Content-type": "application/json"
-        }
-    });
-    return result;
-}
+
 
 /**
  * Guarda un incidente en el backend.
@@ -34,30 +19,7 @@ async function saveIncidente(incidente) {
     return result;
 }
 
-/**
- * Carga las categorías en un elemento select del HTML.
- */
-function cargarCategorias() {
-    listaCategoria()
-        .then(response => response.json())
-        .then(categorias => {
-            const selectCategoria = document.getElementById('categoria');
 
-            // Agregar opciones al select
-            categorias.forEach(categoria => {
-                const option = document.createElement('option');
-                option.value = categoria.id;
-                option.innerHTML = `${categoria.nombre} `;
-                selectCategoria.appendChild(option);
-            });
-        })
-        .catch(err => {
-            console.log(err);
-        })
-        .finally(final => {
-            // Código a ejecutar después de cargar las categorías, si es necesario
-        });
-}
 
 
 
@@ -66,6 +28,7 @@ function cargarCategorias() {
  */
 function newReporte() {
     // Obtener los valores de los 
+    if (validarDatos()) {
     Swal.fire({
         title: 'Enviar Reporte?',
         text: "Verifica que toda la informacion este correcta, ya  no podras hacer ninguna modificacion ! ",
@@ -77,7 +40,7 @@ function newReporte() {
       }).then((result) => {
         mostrarSpinner();
 
-        if (validarDatos()) {
+        
             let categoria = document.getElementById('categoria').value;
             let titulo = document.getElementById('titulo').value;
             let descripcion = document.getElementById('descripcion').value;
@@ -125,10 +88,11 @@ function newReporte() {
                 .finally(final => {
                     ocultarSpinner();
                 });
-        } else {
-            ocultarSpinner();
-        }
+        
       })
+    } else {
+        ocultarSpinner();
+    }
    
 }
 

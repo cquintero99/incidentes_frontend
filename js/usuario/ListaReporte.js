@@ -13,7 +13,21 @@ async function listaPrioridad() {
     });
     return result;
 }
-
+/**
+ * Obtiene la lista de categorías del backend.
+ * @returns {Promise} - Promesa que resuelve con la respuesta de la solicitud.
+ */
+async function listaCategoria() {
+    let token = localStorage.getItem("token");
+    const result = await fetch(urlBasic + "/categoria/lista", {
+        method: 'GET',
+        headers: {
+            "Authorization": "Bearer " + token,
+            "Content-type": "application/json"
+        }
+    });
+    return result;
+}
 /**
  * Obtiene la lista de incidentes asociados al usuario actual desde el servidor.
  * @returns {Promise<Response>} Promesa que resuelve con la respuesta de la solicitud.
@@ -45,7 +59,30 @@ async function listaEstados() {
     });
     return result;
 }
+/**
+ * Carga las categorías en un elemento select del HTML.
+ */
+function cargarCategorias() {
+    listaCategoria()
+        .then(response => response.json())
+        .then(categorias => {
+            const selectCategoria = document.getElementById('categoria');
 
+            // Agregar opciones al select
+            categorias.forEach(categoria => {
+                const option = document.createElement('option');
+                option.value = categoria.id;
+                option.innerHTML = `${categoria.nombre} `;
+                selectCategoria.appendChild(option);
+            });
+        })
+        .catch(err => {
+            console.log(err);
+        })
+        .finally(final => {
+            // Código a ejecutar después de cargar las categorías, si es necesario
+        });
+}
 /**
  * Carga las opciones de estados en un elemento select del formulario.
  */
@@ -205,14 +242,20 @@ function mostrarListadoIncidentes(data) {
  * @param {string} id - ID del incidente seleccionado.
  */
 function datosIncidente(id) {
-    datosDelUsuario();
-
+    //RESOLVER PARA MOSTRAR CUANDO ES USUARIO Y CUANDO ES ADMIN
+   // 
+    if(verificarURLAdmin()){
+       
+    }else{
+        datosDelUsuario()
+    }
     // Obtengo la lista de incidentes del usuario
     const incidentes = JSON.parse(sessionStorage.getItem('incidentesU'));
 
     for (let i = 0; i < incidentes.length; i++) {
         // Busco el incidente por ID
         if (incidentes[i].id == id) {
+            sessionStorage.setItem("incidenteId",id)
             // Cargo los datos del incidente en el modal
             let fechaI = incidentes[i].fechaIncidente;
             const fecha = new Date(fechaI);
@@ -256,3 +299,14 @@ function datosDelUsuario() {
     document.getElementById('cedula').textContent = usuario.cedula;
     document.getElementById('email').textContent = usuario.sub;
 }
+function verificarURLAdmin() {
+    var url = window.location.href;
+    var partesURL = url.split("/");
+    var ruta = partesURL[partesURL.length - 1]; // Obtener la última parte de la URL
+   
+    if (url.includes("admin")) {
+      return true;
+    } else {
+      return false;
+    }
+  }
