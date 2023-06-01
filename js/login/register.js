@@ -1,6 +1,7 @@
 //URL BACKEND
 
 const btnRegistrarCuenta = document.getElementById("btnRegistrarCuenta")
+
 async function emailRegistrado(usuario) {
     const result = await fetch(urlBassic + "/usuario/email/register", {
         method: 'POST',
@@ -144,12 +145,13 @@ function registrarCuenta() {
             fechaNacimiento,
             genero,
             email,
-            pass1,
-            pass2
+             pass1
         }
+        console.log(usuario)
         emailRegistrado(usuario)
             .then(response => response.json())
             .then(data => {
+                console.log(data)
                 if (data == false) {
                     localStorage.setItem("newUsuario", JSON.stringify(usuario))
 
@@ -161,7 +163,7 @@ function registrarCuenta() {
                 }
             })
             .catch(err => {
-
+                console.log(err)
             })
             .finally(final => {
 
@@ -174,6 +176,8 @@ function registrarCuenta() {
 const formRegister = document.getElementById("formRegister")
 function enviarCodigoEmail(usuario) {
     mostrarSpinner()
+    
+    console.log(usuario)
     sendEmailCodio(usuario)
         .then(response => response.json())
         .then(data => {
@@ -181,6 +185,7 @@ function enviarCodigoEmail(usuario) {
             formCodigo()
         })
         .catch(err => {
+            console.log(err)
             ocultarSpinner()
             alert(err)
         })
