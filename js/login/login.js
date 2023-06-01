@@ -1,5 +1,5 @@
 //URL BACKEND
-const urlBassic="http://localhost:8080"
+const urlBassic="https://incidentesbackend-production.up.railway.app"
 //
 //ALERT LOGIN
 const alertLogin=document.getElementById("alertLogin")

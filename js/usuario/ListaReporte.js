@@ -236,6 +236,7 @@ function mostrarListadoIncidentes(data) {
     //agrego la lista el documento html
 
     document.getElementById("listaIncidentes").innerHTML = body
+    
 }
 /**
  * Carga los datos del incidente seleccionado en el modal.
