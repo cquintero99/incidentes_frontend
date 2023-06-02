@@ -138,6 +138,7 @@ function cargarPrioridades() {
  * Muestra la lista de incidentes del usuario en el documento HTML.
  */
 function verIncidentes() {
+    mostrarSpinner()
     vaciarSelect()
     //Busco la lista de incidentes del usuario
     listaIncidentes()
@@ -149,9 +150,10 @@ function verIncidentes() {
         })
         .catch(err => {
             console.log(err)
+            ocultarSpinner()
         })
         .finally(final => {
-
+            ocultarSpinner()
         })
     //Cargo las categorias en el select filtrar categoria
 

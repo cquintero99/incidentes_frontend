@@ -63,3 +63,41 @@ function cargarDatosPerfil(){
   document.getElementById("genero").textContent=persona.genero
   document.getElementById("fechaNacimiento").textContent=fechaFormateada
 }
+
+
+async function descargarPDF(id){
+  
+  let token=localStorage.getItem("token")
+    const result=await fetch(urlBasic+"/generar/pdf/"+id,{
+      headers:{
+        "Authorization":"Bearer "+token
+      }
+    })
+    return result;
+  
+}
+ function generarPDF(){
+    mostrarSpinner()
+    let id=sessionStorage.getItem("incidenteId")
+    descargarPDF(id)
+    .then(res=>res.blob())
+    .then(blob=>{
+      console.log("descarga"+blob)
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'incidente'+id+'.pdf';
+      document.body.appendChild(a);
+      a.click();
+      
+    })
+    .catch(err=>{
+      console.log(err)
+      ocultarSpinner()
+    })
+    .finally(final=>{
+      ocultarSpinner()
+    })
+    
+
+}

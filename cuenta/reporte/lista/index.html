@@ -25,6 +25,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="../../../css/perfil.css">
     <!-- Custom styles for this template-->
+    <link rel="stylesheet" href="../../../css/style.css">
     <link href="../../../css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
@@ -182,7 +183,9 @@
 
                     <!-- Content Row -->
                     <div class="row">
+                        <div id="sppiner">
 
+                        </div>
 
                         <div class="container text-center">
                             <div class="row align-items-center">
@@ -418,7 +421,10 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
+                             <!-- Spinner -->
+                             <div id="sppiner">
 
+                             </div>
                             <div class="row">
 
                                 <div class="col-lg-4">
@@ -523,7 +529,7 @@
 
                         </div>
                         <div class="modal-footer">
-                            <a href="#" class="btn btn-danger btn-icon-split justify-content-center">
+                            <a href="#" class="btn btn-danger btn-icon-split justify-content-center" onclick="generarPDF()">
                                 <span class="icon text-white-50">
                                     <i class="fas fa-download fa-sm text-white-50"></i>
                                 </span>
