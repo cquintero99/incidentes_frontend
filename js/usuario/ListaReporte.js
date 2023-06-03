@@ -14,6 +14,21 @@ async function listaPrioridad() {
     return result;
 }
 /**
+ * Obtiene la lista de prioridades desde el servidor.
+ * @returns {Promise<Response>} Promesa que resuelve con la respuesta de la solicitud.
+ */
+async function usuarioId(id) {
+    let token = localStorage.getItem("token");
+    const result = await fetch(urlBasic + "/usuario/" + id, {
+        method: 'GET',
+        headers: {
+            "Authorization": "Bearer " + token,
+            "Content-type": "application/json"
+        }
+    });
+    return result;
+}
+/**
  * Obtiene la lista de categorías del backend.
  * @returns {Promise} - Promesa que resuelve con la respuesta de la solicitud.
  */
@@ -57,6 +72,22 @@ async function listaEstados() {
             "Content-type": "application/json"
         }
     });
+    return result;
+}
+/**
+ * Obtiene la lista de estados desde el servidor.
+ * @returns {Promise<Response>} Promesa que resuelve con la respuesta de la solicitud.
+ */
+async function incidenteListaDeEstados(id) {
+    let token = localStorage.getItem("token")
+
+    const result = await fetch(urlBasic + "/incidente/estado/" + id + "/lista", {
+        headers: {
+            "Content-type": "application/json",
+            "Authorization": "Bearer " + token
+        }
+
+    })
     return result;
 }
 /**
@@ -166,8 +197,8 @@ function verIncidentes() {
 function mostrarListadoIncidentes(data) {
     if (data.length > 0) {
         document.getElementById("noHayIncidentes").innerHTML = ""
-    }else{
-        
+    } else {
+
         document.getElementById("noHayIncidentes").innerHTML = `<h1>No hay Reportes</h1>
         <br>
         <p>El usuario no tiene registrado ningun Incidente</p>
@@ -238,27 +269,30 @@ function mostrarListadoIncidentes(data) {
     //agrego la lista el documento html
 
     document.getElementById("listaIncidentes").innerHTML = body
-    
+
 }
 /**
  * Carga los datos del incidente seleccionado en el modal.
  * @param {string} id - ID del incidente seleccionado.
  */
+
 function datosIncidente(id) {
-    //RESOLVER PARA MOSTRAR CUANDO ES USUARIO Y CUANDO ES ADMIN
-   // 
-    if(verificarURLAdmin()){
-       
-    }else{
-        datosDelUsuario()
-    }
+
     // Obtengo la lista de incidentes del usuario
     const incidentes = JSON.parse(sessionStorage.getItem('incidentesU'));
 
     for (let i = 0; i < incidentes.length; i++) {
         // Busco el incidente por ID
         if (incidentes[i].id == id) {
-            sessionStorage.setItem("incidenteId",id)
+            //RESOLVER PARA MOSTRAR CUANDO ES USUARIO Y CUANDO ES ADMIN
+            // 
+            if (verificarURLAdmin()) {
+                datosUsuarioAdmin(incidentes[i].usuarioId)
+            } else {
+                datosDelUsuario()
+            }
+
+            sessionStorage.setItem("incidenteId", id)
             // Cargo los datos del incidente en el modal
             let fechaI = incidentes[i].fechaIncidente;
             const fecha = new Date(fechaI);
@@ -276,20 +310,71 @@ function datosIncidente(id) {
             const estadosIncidente = document.getElementById("estadosIncidente")
             let body = ""
             for (let j = incidentes[i].estados.length - 1; j >= 0; j--) {
-                let fechaEstado = incidentes[i].fechaIncidente;
-                const fecha = new Date(fechaEstado);
-                const options = { year: 'numeric', month: 'long', day: 'numeric' };
-                const fechaFormateada = fecha.toLocaleDateString('es-ES', options);
+
                 body += `<li class="timeline-sm-item ">
                 <h5 class="mt-0 mb-1 fw-bold">${incidentes[i].estados[j].nombre} </h5>
-                        <span class=" ">${fechaFormateada}</span>
+                <p class=" " id="fecha${incidentes[i].estados[j].id}"></p>
+                        <span class=" ">${incidentes[i].estados[j].descripcion}</span>
                     </li>`
 
             }
             estadosIncidente.innerHTML = body;
+            fechaDeLosEstado()
         }
     }
 
+}
+
+function fechaDeLosEstado(){
+     // Obtener el incidenteId de la sesión
+     let id = sessionStorage.getItem("incidenteId");
+
+     // Obtener la lista de estados del incidente específico
+     incidenteListaDeEstados(id)
+         .then(res => res.json())
+         .then(data => {
+             
+
+             // Procesar los datos de los estados del incidente
+             for (let i = 0; i < data.length; i++) {
+                 console.log("Id Estado: " + data[i].estadoId);
+
+                 // Obtener la fecha del registro y ajustarla a la zona horaria de Colombia (UTC-5)
+                 let fecha = new Date(data[i].fechaRegistro);
+                 let diferenciaHoraria = 300; // Diferencia horaria en minutos (5 horas * 60 minutos)
+
+                 // Ajustar la fecha sumando la diferencia horaria
+                 fecha.setMinutes(fecha.getMinutes() + diferenciaHoraria);
+
+                 // Obtener la fecha local de Colombia
+                 let fechaColombia = fecha.toLocaleDateString('es-CO', { timeZone: 'America/Bogota' });
+
+                 // Actualizar el elemento HTML correspondiente con la fecha en formato local de Colombia
+                 document.getElementById("fecha" + data[i].estadoId).innerHTML = fechaColombia;
+             }
+         })
+         .catch(err => {
+             console.log(err);
+         })
+         .finally(final => {
+             // Realizar acciones finales después de completar la obtención y procesamiento de datos
+         });
+}
+
+function datosUsuarioAdmin(id) {
+    usuarioId(id)
+        .then(response => response.json())
+        .then(usuario => {
+            document.getElementById('nombre').textContent = usuario.nombre + " " + usuario.apellido;
+            document.getElementById('cedula').textContent = usuario.cedula;
+            document.getElementById('email').textContent = usuario.email;
+        })
+        .catch(err => {
+            console.log(err)
+        })
+        .finally(final => {
+
+        })
 }
 
 /**
@@ -302,14 +387,15 @@ function datosDelUsuario() {
     document.getElementById('cedula').textContent = usuario.cedula;
     document.getElementById('email').textContent = usuario.sub;
 }
+
 function verificarURLAdmin() {
     var url = window.location.href;
     var partesURL = url.split("/");
     var ruta = partesURL[partesURL.length - 1]; // Obtener la última parte de la URL
-   
+
     if (url.includes("admin")) {
-      return true;
+        return true;
     } else {
-      return false;
+        return false;
     }
-  }
+}

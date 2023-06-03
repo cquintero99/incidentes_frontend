@@ -12,6 +12,8 @@
 
     <!-- Custom fonts for this template-->
     <link rel="shortcut icon" href="../img/DAFACI_LOGO.svg">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous" />
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -28,10 +30,10 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
             <!-- Sidebar - Brand -->
             <a class="p-1 align-items-center justify-content-center" href="index.html">
-               
-                <img class="sidebar-card-illustration mb-2 img-fluid"  src="../img/DAFACI.svg" alt="..." />
+
+                <img class="sidebar-card-illustration mb-2 img-fluid" src="../img/DAFACI.svg" alt="..." />
             </a>
-            
+
             <!-- Divider -->
             <hr class="sidebar-divider" />
 
@@ -41,8 +43,8 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>ADMIN</span></a>
             </li>
-            
-            
+
+
 
 
 
@@ -72,11 +74,11 @@
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Lista Reportes</span></a>
             </li>
-            
 
-        
 
-      
+
+
+
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block" />
@@ -118,14 +120,14 @@
                         <li class="nav-item dropdown no-arrow d-sm-none">
                             <a class="nav-link dropdown-toggle text-gray-800" href="#" id="searchDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                               Incidentes
+                                Incidentes
                             </a>
-                           
+
                         </li>
 
-                      
 
-                        
+
+
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -133,22 +135,22 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="nombreInicio"></span>
                                 <img class="img-profile rounded-circle" src="../img/undraw_profile.svg" />
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="../cuenta/perfil/index.html">
+                                <a class="dropdown-item" href="./perfil/index.html">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Perfil
                                 </a>
-                                
+
                                 <a class="dropdown-item" href="../cuenta/usuario.html">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Cambiar rol
                                 </a>
-                                
+
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -165,7 +167,7 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Panel Administrador</h1>
-                       
+
                     </div>
 
                     <!-- Content Row -->
@@ -174,16 +176,17 @@
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-info shadow h-100 py-2">
                                 <div class="card-body">
-                                    <div class="row no-gutters align-items-center" >
-                                        
+                                    <div class="row no-gutters align-items-center">
+
                                         <div class="col mr-2">
                                             <div class=" h5  font-weight-bold text-info text-uppercase mb-1">
-                                                <a class="text-info"  href="./reporte/nuevo/index.html">Reportes Nuevos</a>
+                                                <a class="text-info" href="./reporte/nuevo/index.html">Reportes
+                                                    Nuevos</a>
                                             </div>
-                                            
+
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fa fa-envelope fa-2x text-info"   aria-hidden="true"></i>
+                                            <i class="fa fa-envelope fa-2x text-info" aria-hidden="true"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -197,12 +200,13 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="h5 font-weight-bold text-primary text-uppercase ">
-                                                <a href="./reporte/activo/index.html">Reportes Activos</a> </div>
+                                                <a href="./reporte/activo/index.html">Reportes Activos</a>
+                                            </div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fa fa-envelope-open fa-2x text-primary" aria-hidden="true"></i>
 
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -215,9 +219,11 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                           
+
                                             <div class="h5 mb-0 font-weight-bold text-success text-uppercase mb-1">
-                                                <a class="text-success" href="./reporte/finalizado/index.html">Reportes Finalizados</a></div>
+                                                <a class="text-success" href="./reporte/finalizado/index.html">Reportes
+                                                    Finalizados</a>
+                                            </div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-check fa-2x text-success"></i>
@@ -227,7 +233,7 @@
                             </div>
                         </div>
 
-                        
+
 
                         <!-- Pending Requests Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
@@ -236,11 +242,13 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="h5 font-weight-bold text-danger text-uppercase mb-1">
-                                                <a class="text-danger"  href="./reporte/finalizado/index.html">Reportes Rechazados</a></div>
+                                                <a class="text-danger" href="./reporte/finalizado/index.html">Reportes
+                                                    Rechazados</a>
+                                            </div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fa fa-times fa-2x text-danger" aria-hidden="true"></i>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -329,7 +337,7 @@
                         </div>
                     </div>
 
-                    
+
 
                 </div>
                 <!-- /.container-fluid -->
@@ -337,127 +345,137 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
-<footer class="text-center text-lg-start bg-white text-muted">
-    <!-- Section: Social media -->
-    <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-      <!-- Left -->
-      <div class="me-5 d-none d-lg-block">
-        <span>Get connected with us on social networks:</span>
-      </div>
-      <!-- Left -->
-  
-      <!-- Right -->
-      <div>
-        <a href="" class="me-4 text-reset">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="" class="me-4 text-reset">
-          <i class="fab fa-twitter"></i>
-        </a>
-        <a href="" class="me-4 text-reset">
-          <i class="fab fa-google"></i>
-        </a>
-        <a href="" class="me-4 text-reset">
-          <i class="fab fa-instagram"></i>
-        </a>
-        <a href="" class="me-4 text-reset">
-          <i class="fab fa-linkedin"></i>
-        </a>
-        <a href="" class="me-4 text-reset">
-          <i class="fab fa-github"></i>
-        </a>
-      </div>
-      <!-- Right -->
-    </section>
-    <!-- Section: Social media -->
-  
-    <!-- Section: Links  -->
-    <section class="">
-      <div class="container text-center text-md-start mt-5">
-        <!-- Grid row -->
-        <div class="row mt-3">
-          <!-- Grid column -->
-          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-            <!-- Content -->
-            <h6 class="text-uppercase fw-bold mb-4">
-              <i class="fas fa-gem me-3"></i>Company name
-            </h6>
-            <p>
-              Here you can use rows and columns to organize your footer content. Lorem ipsum
-              dolor sit amet, consectetur adipisicing elit.
-            </p>
-          </div>
-          <!-- Grid column -->
-  
-          <!-- Grid column -->
-          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-            <!-- Links -->
-            <h6 class="text-uppercase fw-bold mb-4">
-              Products
-            </h6>
-            <p>
-              <a href="#!" class="text-reset">Angular</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">React</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">Vue</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">Laravel</a>
-            </p>
-          </div>
-          <!-- Grid column -->
-  
-          <!-- Grid column -->
-          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-            <!-- Links -->
-            <h6 class="text-uppercase fw-bold mb-4">
-              Useful links
-            </h6>
-            <p>
-              <a href="#!" class="text-reset">Pricing</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">Settings</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">Orders</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">Help</a>
-            </p>
-          </div>
-          <!-- Grid column -->
-  
-          <!-- Grid column -->
-          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-            <!-- Links -->
-            <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-            <p><i class="fas fa-home me-3"></i> New York, NY 10012, US</p>
-            <p>
-              <i class="fas fa-envelope me-3"></i>
-              info@example.com
-            </p>
-            <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
-            <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
-          </div>
-          <!-- Grid column -->
-        </div>
-        <!-- Grid row -->
-      </div>
-    </section>
-    <!-- Section: Links  -->
-  
-    <!-- Copyright -->
-    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-      © 2023 Copyright:
-      <a class="text-reset fw-bold" href="#">DAFACI.com</a>
-    </div>
-    <!-- Copyright -->
-  </footer>
-  <!-- Footer -->
+            <!-- Footer -->
+            <footer class="text-center text-lg-start bg-white text-muted">
+                <!-- Section: Social media -->
+                <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+                    <!-- Left -->
+                    <div class="me-5 d-none d-lg-block">
+                        <span>Software Reporte de Incidente:</span>
+                    </div>
+                    <!-- Left -->
+
+                    <!-- Right -->
+                    <div>
+                        <a href="" class="me-4 text-reset">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="" class="me-4 text-reset">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="" class="me-4 text-reset">
+                            <i class="fab fa-google"></i>
+                        </a>
+                        <a href="" class="me-4 text-reset">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="" class="me-4 text-reset">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="" class="me-4 text-reset">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                    <!-- Right -->
+                </section>
+                <!-- Section: Social media -->
+
+                <!-- Section: Links  -->
+                <section class="">
+                    <div class="container text-center text-md-start mt-5">
+                        <!-- Grid row -->
+                        <div class="row mt-3">
+                            <!-- Grid column -->
+                            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                                <!-- Content -->
+                                <h6 class="text-uppercase fw-bold mb-4">
+                                    <i class="fas fa-gem me-3"></i>DAFACI
+                                </h6>
+                                <p>
+                                    Este Proyecto es un Sotfware Web para Reporte de Incidentes
+                                 
+
+                                </p>
+                                <p>
+                                    Materia: Analisis y Diseño
+
+                                </p>
+                                <p>
+                                   Arquitectura: 2 capas Frontend y Backend
+
+                                </p>
+                            </div>
+                            <!-- Grid column -->
+
+                            <!-- Grid column -->
+                            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                                <!-- Links -->
+                                <h6 class="text-uppercase fw-bold mb-4">
+                                    Frontend
+                                </h6>
+                                <p>
+                                    <a href="#!" class="text-reset">HTML5</a>
+                                </p>
+                                <p>
+                                    <a href="#!" class="text-reset">CSS</a>
+                                </p>
+                                <p>
+                                    <a href="#!" class="text-reset">Javascript</a>
+                                </p>
+                                <p>
+                                    <a href="#!" class="text-reset">Bootstrap</a>
+                                </p>
+                            </div>
+                            <!-- Grid column -->
+
+                            <!-- Grid column -->
+                            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                                <!-- Links -->
+                                <h6 class="text-uppercase fw-bold mb-4">
+                                    Backend
+                                </h6>
+                                <p>
+                                    <a href="#!" class="text-reset">Java</a>
+                                </p>
+                                <p>
+                                    <a href="#!" class="text-reset">Spring boot</a>
+                                </p>
+                                <p>
+                                    <a href="#!" class="text-reset">JWT</a>
+                                </p>
+                                <p>
+                                    <a href="#!" class="text-reset">MYSQL</a>
+                                </p>
+                            </div>
+                            <!-- Grid column -->
+
+                            <!-- Grid column -->
+                            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                                <!-- Links -->
+                                <h6 class="text-uppercase fw-bold mb-4">Contacto</h6>
+                                <p><i class="fas fa-home me-3"></i> Cucuta,Norte de Santander, CO</p>
+                                <p>
+                                    <i class="fas fa-envelope me-3"></i>
+                                    dafaci@gmail.com
+                                </p>
+                                <p><i class="fas fa-phone me-3"></i> + 57 315 7078 522</p>
+                            </div>
+                            <!-- Grid column -->
+                        </div>
+                        <!-- Grid row -->
+                    </div>
+                </section>
+                <!-- Section: Links  -->
+
+                <!-- Copyright -->
+                <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+                    © 2023 Copyright:
+                    <a class="text-reset fw-bold" href="#">DAFACI.com</a>
+                </div>
+                <!-- Copyright -->
+
+            </footer>
+            <!-- Footer -->
             <!-- End of Footer -->
         </div>
         <!-- End of Content Wrapper -->
@@ -481,18 +499,19 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    Selecione "Cerrar" si quieres salir de esta  session.
+                    Selecione "Cerrar" si quieres salir de esta session.
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">
                         Cancelar
                     </button>
-                    <a class="btn btn-primary" id="btnSalir"  href="#">Cerrar</a>
+                    <a class="btn btn-primary" id="btnSalir" href="#">Cerrar</a>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Bootstrap core JavaScript-->
     <!-- Bootstrap core JavaScript-->
     <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -501,15 +520,16 @@
     <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="../js/sb-admin-2.js"></script>
     <script src="../js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
+    <script src="../vendor/chart.js/Chart.min.js"></script>
     <script src="../vendor/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
     <script src="../js/demo/chart-area-demo.js"></script>
     <script src="../js/demo/chart-pie-demo.js"></script>
+    <script src="../js/funcionesGlobales.js"></script>
 </body>
 
 </html>

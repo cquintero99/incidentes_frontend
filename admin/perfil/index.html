@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>DAFACI Reporte de Incidentes</title>
+
+    <!-- Custom fonts for this template-->
+    <link rel="shortcut icon" href="../../img/DAFACI_LOGO.svg">
+    <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet" />
+
+    <!-- Custom styles for this template-->
+    <link href="../../css/sb-admin-2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/perfil.css">
+</head>
+
+<body id="page-top" onload="cargarDatosPerfil()">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+            <!-- Sidebar - Brand -->
+            <a class="p-1 align-items-center justify-content-center" href="../index.html">
+
+                <img class="sidebar-card-illustration mb-2 img-fluid" src="../../img/DAFACI.svg" alt="..." />
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider" />
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link text-center" href="../index.html">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>ADMIN</span></a>
+            </li>
+
+
+
+
+
+            <!-- Divider -->
+            <hr class="sidebar-divider" />
+
+            <!-- Heading -->
+            <div class="sidebar-heading">Buzon de Reportes</div>
+            <li class="nav-item">
+                <a class="nav-link" href="../reporte/nuevo/index.html">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Reportes Nuevos</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider" />
+
+            <!-- Heading -->
+            <div class="sidebar-heading">Estado Reporte</div>
+            <li class="nav-item">
+                <a class="nav-link" href="../reporte/activo/index.html">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Reportes Activos</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../reporte/finalizado/index.html">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Lista Reportes</span></a>
+            </li>
+
+
+
+
+
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block" />
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+            <!-- Sidebar Message -->
+            <div class="sidebar-card d-none d-lg-flex">
+                <img class="sidebar-card-illustration mb-2" src="../../img/DAFACI.svg" alt="..." />
+            </div>
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Main Content -->
+            <div id="content">
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Topbar Search -->
+
+                    <form
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <h1>Informacion Perfil </h1>
+                        </div>
+                    </form>
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle text-gray-800" href="#" id="searchDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Incidentes
+                            </a>
+
+                        </li>
+
+
+
+
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <img class="img-profile rounded-circle" src="../../img/undraw_profile.svg" />
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="./index.html">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Perfil
+                                </a>
+
+                                <a class="dropdown-item" href="../../cuenta/usuario.html">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Cambiar rol
+                                </a>
+
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Cerrar Sesion
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-3 col-xl-3">
+
+                            </div>
+                            <div class="col-lg-6 col-xl-6">
+                                <div class="card-box text-center">
+
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                                        class="rounded-circle avatar-xl img-thumbnail" alt="profile-image">
+                                    <hr>
+                                    <div class="text-center mt-3">
+                                        <p class="text-muted mb-2 font-13"><strong>Nombre's </strong></p>
+                                        <span class="ml-2" id="nombres"></span>
+                                        <hr>
+
+                                        <p class="text-muted mb-2 font-13"><strong>Cedula </strong></p>
+                                        <span class="ml-2" id="cedula"></span>
+                                        <hr>
+                                        <p class="text-muted mb-2 font-13"><strong>Fecha de nacimiento </strong></p>
+                                        <span class="ml-2" id="fechaNacimiento"></span>
+                                        <hr>
+                                        <p class="text-muted mb-2 font-13"><strong>Genero </strong></p>
+                                        <span class="ml-2" id="genero"></span>
+                                        <hr>
+                                        <p class="text-muted mb-2 font-13"><strong>Email </strong></p>
+                                        <span class="ml-2" id="email"></span>
+                                        <hr>
+
+                                    </div>
+
+                                    <ul class="social-list list-inline mt-3 mb-0">
+                                        <li class="list-inline-item">
+                                            <a href="javascript: void(0);"
+                                                class="social-list-item border-purple text-purple"><i
+                                                    class="fab fa-facebook"></i></a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="javascript: void(0);"
+                                                class="social-list-item border-danger text-danger"><i
+                                                    class="fab fa-google"></i></a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="javascript: void(0);"
+                                                class="social-list-item border-info text-info"><i
+                                                    class="fab fa-twitter"></i></a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="javascript: void(0);"
+                                                class="social-list-item border-secondary text-secondary"><i
+                                                    class="fab fa-github"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-xl-3">
+
+                            </div>
+                            <!-- end col-->
+
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="text-center text-lg-start bg-white text-muted">
+                <!-- Section: Social media -->
+                <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+                    <!-- Left -->
+                    <div class="me-5 d-none d-lg-block">
+                        <span>Software Reporte de Incidente:</span>
+                    </div>
+                    <!-- Left -->
+
+                    <!-- Right -->
+                    <div>
+                        <a href="" class="me-4 text-reset">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="" class="me-4 text-reset">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="" class="me-4 text-reset">
+                            <i class="fab fa-google"></i>
+                        </a>
+                        <a href="" class="me-4 text-reset">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="" class="me-4 text-reset">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="" class="me-4 text-reset">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                    <!-- Right -->
+                </section>
+                <!-- Section: Social media -->
+
+                <!-- Section: Links  -->
+                <section class="">
+                    <div class="container text-center text-md-start mt-5">
+                        <!-- Grid row -->
+                        <div class="row mt-3">
+                            <!-- Grid column -->
+                            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                                <!-- Content -->
+                                <h6 class="text-uppercase fw-bold mb-4">
+                                    <i class="fas fa-gem me-3"></i>DAFACI
+                                </h6>
+                                <p>
+                                    Este Proyecto es un Sotfware Web para Reporte de Incidentes
+                                 
+
+                                </p>
+                                <p>
+                                    Materia: Analisis y Diseño
+
+                                </p>
+                                <p>
+                                   Arquitectura: 2 capas Frontend y Backend
+
+                                </p>
+                            </div>
+                            <!-- Grid column -->
+
+                            <!-- Grid column -->
+                            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                                <!-- Links -->
+                                <h6 class="text-uppercase fw-bold mb-4">
+                                    Frontend
+                                </h6>
+                                <p>
+                                    <a href="#!" class="text-reset">HTML5</a>
+                                </p>
+                                <p>
+                                    <a href="#!" class="text-reset">CSS</a>
+                                </p>
+                                <p>
+                                    <a href="#!" class="text-reset">Javascript</a>
+                                </p>
+                                <p>
+                                    <a href="#!" class="text-reset">Bootstrap</a>
+                                </p>
+                            </div>
+                            <!-- Grid column -->
+
+                            <!-- Grid column -->
+                            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                                <!-- Links -->
+                                <h6 class="text-uppercase fw-bold mb-4">
+                                    Backend
+                                </h6>
+                                <p>
+                                    <a href="#!" class="text-reset">Java</a>
+                                </p>
+                                <p>
+                                    <a href="#!" class="text-reset">Spring boot</a>
+                                </p>
+                                <p>
+                                    <a href="#!" class="text-reset">JWT</a>
+                                </p>
+                                <p>
+                                    <a href="#!" class="text-reset">MYSQL</a>
+                                </p>
+                            </div>
+                            <!-- Grid column -->
+
+                            <!-- Grid column -->
+                            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                                <!-- Links -->
+                                <h6 class="text-uppercase fw-bold mb-4">Contacto</h6>
+                                <p><i class="fas fa-home me-3"></i> Cucuta,Norte de Santander, CO</p>
+                                <p>
+                                    <i class="fas fa-envelope me-3"></i>
+                                    dafaci@gmail.com
+                                </p>
+                                <p><i class="fas fa-phone me-3"></i> + 57 315 7078 522</p>
+                            </div>
+                            <!-- Grid column -->
+                        </div>
+                        <!-- Grid row -->
+                    </div>
+                </section>
+                <!-- Section: Links  -->
+
+                <!-- Copyright -->
+                <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+                    © 2023 Copyright:
+                    <a class="text-reset fw-bold" href="#">DAFACI.com</a>
+                </div>
+                <!-- Copyright -->
+
+            </footer>
+            <!-- Footer -->
+            <!-- End of Footer -->
+        </div>
+        <!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Cerrar Sesion?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Selecione "Cerrar" si quieres salir de esta session.
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">
+                        Cancelar
+                    </button>
+                    <a class="btn btn-primary" id="btnSalir" href="#">Cerrar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="../../vendor/jquery/jquery.min.js"></script>
+    <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="../../js/sb-admin-2.js"></script>
+    <script src="../../js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="../../vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="../../js/demo/chart-area-demo.js"></script>
+    <script src="../../js/demo/chart-pie-demo.js"></script>
+    <script src="../../js/funcionesGlobales.js"></script>
+</body>
+
+</html>

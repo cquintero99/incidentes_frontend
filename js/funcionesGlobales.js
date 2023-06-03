@@ -30,7 +30,7 @@ try {
 */
 function mostrarSpinner() {
   document.getElementById("sppiner").innerHTML = `<div id="spinner-container" class="d-flex justify-content-center align-items-center ">
-      <div class="spinner-border text-danger" role="status">
+      <div class="spinner-border text-primary" role="status">
           <span class="sr-only">Cargando...</span>
       </div>
   </div>`;
