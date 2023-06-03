@@ -49,6 +49,9 @@ async function incidenteListaDeEstados(id) {
     return result;
 }
 function limpiarFiltroActivos(){
+    selectElement.innerHTML=` <option selected>Categoría</option>`
+    selectEstados.innerHTML=` <option selected>Estados</option>`
+    selectPrioridad.innerHTML=` <option selected>Prioridad</option>`
     verListaIncidentesActivos()
 }
 function verListaIncidentesActivos() {
