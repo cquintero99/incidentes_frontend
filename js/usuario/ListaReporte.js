@@ -213,9 +213,21 @@ function mostrarListadoIncidentes(data) {
         let nEstado = data[i].estados.length
         let ultimoEstado = data[i].estados[nEstado - 1].nombre
         let fechaR = data[i].fechaRegistro
-        const fecha = new Date(fechaR);
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        const fechaFormateada = fecha.toLocaleDateString('es-ES', options);
+        // Obtener la fecha del registro y ajustarla a la zona horaria de Colombia (UTC-5)
+        let fecha = new Date(fechaR);
+        let diferenciaHoraria = 300; // Diferencia horaria en minutos (5 horas * 60 minutos)
+
+        // Ajustar la fecha sumando la diferencia horaria
+        fecha.setMinutes(fecha.getMinutes() + diferenciaHoraria);
+        // Obtener el día, el mes y el año de la fecha
+        let dia = fecha.getDate();
+        let mes = fecha.toLocaleString('es-CO', { month: 'long' });
+        let anio = fecha.getFullYear();
+
+        // Crear la cadena de texto con el formato deseado
+        let fechaColombia = `${dia} de ${mes} del ${anio}`;
+        // Obtener la fecha local de Colombia
+
         body += `
         <div class="card mb-4 py-3 border-left-warning">
     <div class="card-body">
@@ -257,7 +269,7 @@ function mostrarListadoIncidentes(data) {
             
         </div>
         <div class="card-footer text-center">
-            <h3 class="text-uppercase fw-bold fs-6">Fecha Registro ${fechaFormateada}</h3>
+            <h3 class="text-uppercase fw-bold fs-6">Fecha Registro ${fechaColombia}</h3>
                     
              </div>
     </div>
@@ -295,9 +307,19 @@ function datosIncidente(id) {
             sessionStorage.setItem("incidenteId", id)
             // Cargo los datos del incidente en el modal
             let fechaI = incidentes[i].fechaIncidente;
-            const fecha = new Date(fechaI);
-            const options = { year: 'numeric', month: 'long', day: 'numeric' };
-            const fechaFormateada = fecha.toLocaleDateString('es-ES', options);
+            // Obtener la fecha del registro y ajustarla a la zona horaria de Colombia (UTC-5)
+            let fecha = new Date(fechaI);
+            let diferenciaHoraria = 300; // Diferencia horaria en minutos (5 horas * 60 minutos)
+
+            // Ajustar la fecha sumando la diferencia horaria
+            fecha.setMinutes(fecha.getMinutes() + diferenciaHoraria);
+            // Obtener el día, el mes y el año de la fecha
+            let dia = fecha.getDate();
+            let mes = fecha.toLocaleString('es-CO', { month: 'long' });
+            let anio = fecha.getFullYear();
+
+            // Crear la cadena de texto con el formato deseado
+            let fechaColombia = `${dia} de ${mes} del ${anio}`;
 
             document.getElementById('categoriaI').textContent = incidentes[i].categoriaId.nombre;
             document.getElementById('prioridad').textContent = incidentes[i].prioridadId.nombre;
@@ -305,7 +327,7 @@ function datosIncidente(id) {
             document.getElementById('tituloI').textContent = incidentes[i].titulo;
             document.getElementById('descripcionI').textContent = incidentes[i].descripcion;
             document.getElementById('lugarI').textContent = incidentes[i].lugar;
-            document.getElementById('fechaIncidenteI').textContent = fechaFormateada;
+            document.getElementById('fechaIncidenteI').textContent = fechaColombia;
 
             const estadosIncidente = document.getElementById("estadosIncidente")
             let body = ""
@@ -325,40 +347,40 @@ function datosIncidente(id) {
 
 }
 
-function fechaDeLosEstado(){
-     // Obtener el incidenteId de la sesión
-     let id = sessionStorage.getItem("incidenteId");
+function fechaDeLosEstado() {
+    // Obtener el incidenteId de la sesión
+    let id = sessionStorage.getItem("incidenteId");
 
-     // Obtener la lista de estados del incidente específico
-     incidenteListaDeEstados(id)
-         .then(res => res.json())
-         .then(data => {
-             
+    // Obtener la lista de estados del incidente específico
+    incidenteListaDeEstados(id)
+        .then(res => res.json())
+        .then(data => {
 
-             // Procesar los datos de los estados del incidente
-             for (let i = 0; i < data.length; i++) {
-                 console.log("Id Estado: " + data[i].estadoId);
 
-                 // Obtener la fecha del registro y ajustarla a la zona horaria de Colombia (UTC-5)
-                 let fecha = new Date(data[i].fechaRegistro);
-                 let diferenciaHoraria = 300; // Diferencia horaria en minutos (5 horas * 60 minutos)
+            // Procesar los datos de los estados del incidente
+            for (let i = 0; i < data.length; i++) {
+                console.log("Id Estado: " + data[i].estadoId);
 
-                 // Ajustar la fecha sumando la diferencia horaria
-                 fecha.setMinutes(fecha.getMinutes() + diferenciaHoraria);
+                // Obtener la fecha del registro y ajustarla a la zona horaria de Colombia (UTC-5)
+                let fecha = new Date(data[i].fechaRegistro);
+                let diferenciaHoraria = 300; // Diferencia horaria en minutos (5 horas * 60 minutos)
 
-                 // Obtener la fecha local de Colombia
-                 let fechaColombia = fecha.toLocaleDateString('es-CO', { timeZone: 'America/Bogota' });
+                // Ajustar la fecha sumando la diferencia horaria
+                fecha.setMinutes(fecha.getMinutes() + diferenciaHoraria);
 
-                 // Actualizar el elemento HTML correspondiente con la fecha en formato local de Colombia
-                 document.getElementById("fecha" + data[i].estadoId).innerHTML = fechaColombia;
-             }
-         })
-         .catch(err => {
-             console.log(err);
-         })
-         .finally(final => {
-             // Realizar acciones finales después de completar la obtención y procesamiento de datos
-         });
+                // Obtener la fecha local de Colombia
+                let fechaColombia = fecha.toLocaleDateString('es-CO', { timeZone: 'America/Bogota' });
+
+                // Actualizar el elemento HTML correspondiente con la fecha en formato local de Colombia
+                document.getElementById("fecha" + data[i].estadoId).innerHTML = fechaColombia;
+            }
+        })
+        .catch(err => {
+            console.log(err);
+        })
+        .finally(final => {
+            // Realizar acciones finales después de completar la obtención y procesamiento de datos
+        });
 }
 
 function datosUsuarioAdmin(id) {

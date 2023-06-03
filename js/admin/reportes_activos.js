@@ -48,6 +48,9 @@ async function incidenteListaDeEstados(id) {
     })
     return result;
 }
+function limpiarFiltroActivos(){
+    verListaIncidentesActivos()
+}
 function verListaIncidentesActivos() {
     mostrarSpinner()
     listaIncidentesEstadoActivo()
@@ -66,6 +69,9 @@ function verListaIncidentesActivos() {
             ocultarSpinner()
 
         })
+    cargarCategorias()
+    cargarPrioridades()
+    cargarEstados()
 
 }
 function actualizarEstado() {
@@ -148,6 +154,7 @@ try {
  */
 function estadosIncidentesActivos() {
     // Vaciar el contenido del elemento select
+    let selectEstados=document.getElementById("estadosActivos")
     selectEstados.innerHTML = "";
 
     // Obtener la lista de estados

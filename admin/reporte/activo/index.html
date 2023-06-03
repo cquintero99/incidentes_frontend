@@ -198,49 +198,32 @@
                                     </nav>
                                 </div>
                                 <div class="col">
-                                    <select class="form-select">
-                                        <option selected>Categoria</option>
-                                        <option value="1">Accidente</option>
-                                        <option value="2">Enfermedad</option>
-                                        <option value="3">Violencia</option>
+                                    <label for="categoria" class="form-label fw-bold text-black">Categoría</label>
+                                    <select class="form-select" id="categoria">
+                                      <option selected>Categoría</option>
                                     </select>
-                                </div>
-                                <div class="col">
-                                    <select class="form-select">
-                                        <option selected>Prioridad</option>
-                                        <option value="1">ALTA</option>
-                                        <option value="2">MEDIA</option>
-                                        <option value="3">BAJA</option>
+                                  </div>
+                              
+                                  <div class="col">
+                                    <label for="estados" class="form-label fw-bold text-black">Estado</label>
+                                    <select class="form-select" id="estados">
+                                      <option selected>Estado</option>
                                     </select>
-                                </div>
-                                <div class="col">
-                                    <form class="mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control bg-light border-1 small"
-                                                placeholder="Cedula Usuario" aria-label="Search"
-                                                aria-describedby="basic-addon2" />
-                                            <div class="input-group-append">
-                                                <button class="btn btn-primary" type="button">
-                                                    <i class="fas fa-search fa-sm"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="col">
-                                    <form class="mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                                        <div class="input-group">
-                                            <input type="date" class="form-control bg-light border-1 small"
-                                                placeholder="Fecha" aria-label="Search"
-                                                aria-describedby="basic-addon2" />
-                                            <div class="input-group-append">
-                                                <button class="btn btn-primary" type="button">
-                                                    <i class="fas fa-search fa-sm"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
+                                  </div>
+                              
+                                  <div class="col">
+                                    <label for="selectPrioridad" class="form-label fw-bold text-black">Prioridad</label>
+                                    <select class="form-select" id="selectPrioridad">
+                                      <option selected>Prioridad</option>
+                                    </select>
+                                  </div>
+                              
+                                  <div class="col">
+                                        <label for="fechaFiltro" class="form-label fw-bold text-black">Fecha</label>
+                                        <input type="date" class="form-control bg-light border-1 small" id="fechaFiltro" placeholder="Fecha"
+                                          aria-label="Search" aria-describedby="basic-addon2" />
+                                      
+                                  </div>
                             </div>
                         </div>
                         <div class="container text-center">
@@ -249,10 +232,15 @@
                                     <nav aria-label="breadcrumb bg-light">
                                         <ol class="breadcrumb">
                                             <li class="breadcrumb-item"><a href="#">Incidente</a></li>
-                                            <li class="breadcrumb-item"><a href="#">Categoria</a></li>
-                                            <li class="breadcrumb-item " aria-current="page"><a href="#">Documento</a>
+
+                                            <li class="breadcrumb-item " aria-current="page"><a href="#"
+                                                    id="menuFiltroCategoria">Categoria</a>
                                             </li>
-                                            <li class="breadcrumb-item active" aria-current="page">Fecha</li>
+                                            <li class="breadcrumb-item"><a href="#" id="menuFiltroEstado">Estado</a></li>
+                                            <li class="breadcrumb-item " aria-current="page"><a href="#"
+                                                    id="menuFiltroPrioridad">Prioridad</a>
+                                            </li>
+                                            <li class="breadcrumb-item " aria-current="page" ><a href="#" id="menuFiltroFecha">Fecha</a></li>
 
 
                                         </ol>
@@ -260,7 +248,7 @@
 
                                     </nav>
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-4" onclick="limpiarFiltroActivos()">
                                     <button class="btn btn-icon-split">Limpiar Filtros</button>
                                     <button class="btn btn-close"></button>
                                 </div>
@@ -395,7 +383,7 @@
                                                 <div class="row  ">
                                                     <p>Seleccione el nuevo estado del reporte:</p>
                                                     <select class="form-select form-select mb-3 " 
-                                                        aria-label=".form-select-lg example " id="estados">
+                                                        aria-label=".form-select-lg example " id="estadosActivos">
                                                         <option selected> Estados</option>
                                                     </select>
                                                     <p id="errorMensaje" class="text-center" style="color: red;"></p>
