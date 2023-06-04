@@ -120,15 +120,19 @@ try {
 }
 
 
+/**
+ * Función para limpiar los filtros.
+ * Restaura los valores de los filtros y vuelve a mostrar todos los incidentes.
+ */
 function limpiarFiltros(){
-    menuFiltroCategoria.textContent="Categoria"
-    menuFiltroEstado.textContent="Estado"
-    menuFiltroPrioridad.textContent="Prioridad"
-    menuFiltroFecha.textContent="Fecha"
-    selectElement.value=""
-    selectPrioridad.value=""
-    fechaFiltro.value=""
-    selectEstados.value=""
+    menuFiltroCategoria.textContent = "Categoría";
+    menuFiltroEstado.textContent = "Estado";
+    menuFiltroPrioridad.textContent = "Prioridad";
+    menuFiltroFecha.textContent = "Fecha";
+    selectElement.value = "";
+    selectPrioridad.value = "";
+    fechaFiltro.value = "";
+    selectEstados.value = "";
 
-    verIncidentes()
+    verIncidentes(); // Vuelve a mostrar todos los incidentes
 }

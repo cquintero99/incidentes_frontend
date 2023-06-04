@@ -78,28 +78,38 @@ function cargarPrioridadesEvaluar() {
         });
 }
 
+/**
+ * Función para ver los incidentes activos.
+ * Realiza una serie de acciones para obtener y mostrar los incidentes activos.
+ */
 function verIncidentesActivos() {
-    mostrarSpinner()
+    mostrarSpinner(); // Muestra el spinner de carga
+
+    // Obtiene la lista de incidentes con estado "Reportado"
     listaIncidentesEstadoReportado()
         .then(response => response.json())
         .then(data => {
+            // Filtra la lista de incidentes para obtener solo los reportados
             const newLista = data.filter(item => item.estados.some(e => e.nombre === "Reportado"));
-            //Guardo la lista de incidentes en la session 
-            sessionStorage.setItem("incidentesU", JSON.stringify(data))
-            mostrarListadoIncidentes(newLista)
+            
+            // Guarda la lista de incidentes en la sesión
+            sessionStorage.setItem("incidentesU", JSON.stringify(data));
+            
+            // Muestra el listado de incidentes filtrado
+            mostrarListadoIncidentes(newLista);
         })
         .catch(err => {
-            console.log(err)
-            ocultarSpinner()
+            console.log(err);
+            ocultarSpinner(); // Oculta el spinner de carga en caso de error
         })
         .finally(final => {
-            ocultarSpinner()
+            ocultarSpinner(); // Oculta el spinner de carga al finalizar, tanto si hay éxito como si hay error
+        });
 
-        })
-        cargarCategorias()
-        cargarPrioridadesEvaluar()
-        
+    cargarCategorias(); // Carga las categorías
+    cargarPrioridadesEvaluar(); // Carga las prioridades para evaluar
 }
+
 
 function evaluarIncidente(estado) {
     let selectElement = document.getElementById("selectPrioridad");
@@ -157,8 +167,9 @@ function evaluarIncidente(estado) {
 
 function limpiarFiltrosNuevos(){
     menuFiltroCategoria.textContent="Categoria"
-    selectElement.value=""
+    
     menuFiltroFecha.textContent="Fecha"
     fechaFiltro.value=""
+    selectElement.innerHTML = ` <option selected>Categoría</option>`
     verIncidentesActivos()
 }

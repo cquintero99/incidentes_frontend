@@ -386,6 +386,11 @@ function fechaDeLosEstado() {
         });
 }
 
+/**
+ * Obtiene los datos del usuario administrador según el ID proporcionado.
+ * Realiza una serie de acciones para mostrar los datos del usuario en el documento HTML.
+ * @param {string} id - El ID del usuario administrador.
+ */
 function datosUsuarioAdmin(id) {
     usuarioId(id)
         .then(response => response.json())
@@ -395,11 +400,11 @@ function datosUsuarioAdmin(id) {
             document.getElementById('email').textContent = usuario.email;
         })
         .catch(err => {
-            console.log(err)
+            console.log(err);
         })
         .finally(final => {
 
-        })
+        });
 }
 
 /**
@@ -413,6 +418,10 @@ function datosDelUsuario() {
     document.getElementById('email').textContent = usuario.sub;
 }
 
+/**
+ * Verifica si la URL actual contiene la ruta "admin".
+ * @returns {boolean} - Devuelve true si la URL contiene "admin", de lo contrario devuelve false.
+ */
 function verificarURLAdmin() {
     var url = window.location.href;
     var partesURL = url.split("/");

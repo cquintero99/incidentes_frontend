@@ -48,46 +48,65 @@ async function incidenteListaDeEstados(id) {
     })
     return result;
 }
-function limpiarFiltroActivos(){
-    selectElement.innerHTML=` <option selected>Categoría</option>`
-    selectEstados.innerHTML=` <option selected>Estados</option>`
-    selectPrioridad.innerHTML=` <option selected>Prioridad</option>`
+function limpiarFiltroActivos() {
+    selectElement.innerHTML = ` <option selected>Categoría</option>`
+    selectEstados.innerHTML = ` <option selected>Estados</option>`
+    selectPrioridad.innerHTML = ` <option selected>Prioridad</option>`
+    fechaFiltro.value=""
+    menuFiltroCategoria.textContent="Categoria"
+    menuFiltroEstado.textContent="Estado"
+    menuFiltroPrioridad.textContent="Prioridad"
+    menuFiltroFecha.textContent="Fecha"
     verListaIncidentesActivos()
 }
+/**
+ * Función para ver la lista de incidentes activos.
+ * Realiza una serie de acciones para obtener y mostrar los incidentes activos.
+ */
 function verListaIncidentesActivos() {
-    mostrarSpinner()
+    mostrarSpinner(); // Muestra el spinner de carga
+
+    // Obtiene la lista de incidentes con estado "Activo"
     listaIncidentesEstadoActivo()
         .then(response => response.json())
         .then(data => {
+            // Filtra la lista de incidentes para obtener solo los reportados
             const newLista = data.filter(item => item.estados.some(e => e.nombre === "Reportado"));
-            //Guardo la lista de incidentes en la session 
-            sessionStorage.setItem("incidentesU", JSON.stringify(data))
-            mostrarListadoIncidentes(newLista)
+
+            // Guarda la lista de incidentes en la sesión
+            sessionStorage.setItem("incidentesU", JSON.stringify(data));
+
+            // Muestra el listado de incidentes filtrado
+            mostrarListadoIncidentes(newLista);
         })
         .catch(err => {
-            ocultarSpinner()
-            console.log(err)
+            console.log(err);
+            ocultarSpinner(); // Oculta el spinner de carga en caso de error
         })
         .finally(final => {
-            ocultarSpinner()
+            ocultarSpinner(); // Oculta el spinner de carga al finalizar, tanto si hay éxito como si hay error
+        });
 
-        })
-    cargarCategorias()
-    cargarPrioridades()
-    cargarEstados()
-
+    cargarCategorias(); // Carga las categorías
+    cargarPrioridades(); // Carga las prioridades
+    cargarEstados(); // Carga los estados
 }
-function actualizarEstado() {
 
-    let incidenteId = sessionStorage.getItem("incidenteId")
-    let selectElement = document.getElementById("estadosActivos");
-    let selectedOption = selectElement.value;
-    let errorElement = document.getElementById("errorMensaje");
-    errorElement.textContent = ""
-    if (selectedOption != "Estados") {
+/**
+ * Función para actualizar el estado de un incidente.
+ * Realiza una serie de acciones para guardar el nuevo estado seleccionado y actualizar el incidente.
+ */
+function actualizarEstado() {
+    let incidenteId = sessionStorage.getItem("incidenteId"); // Obtiene el ID del incidente almacenado en la sesión
+    let selectElement = document.getElementById("estadosActivos"); // Obtiene el elemento select de los estados
+    let selectedOption = selectElement.value; // Obtiene la opción seleccionada
+    let errorElement = document.getElementById("errorMensaje"); // Obtiene el elemento para mostrar mensajes de error
+    errorElement.textContent = ""; // Limpia cualquier mensaje de error previo
+
+    if (selectedOption != "Estados") { // Verifica si se ha seleccionado un estado válido
         Swal.fire({
             title: 'Actualizar Estado?',
-            text: "Quieres actualizar el estado del incidente!",
+            text: "¿Quieres actualizar el estado del incidente?",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -97,7 +116,7 @@ function actualizarEstado() {
             const incidenteEstado = {
                 incidenteId,
                 estadoId: selectedOption
-            }
+            };
             saveNewEstadoActivo(incidenteEstado)
                 .then(response => response.json())
                 .then(data => {
@@ -106,26 +125,25 @@ function actualizarEstado() {
                     modalInstance.hide();
                     if (result.isConfirmed) {
                         Swal.fire(
-                            'Actualizado!',
-                            'El estado del incidente se actualizo.',
+                            '¡Actualizado!',
+                            'El estado del incidente se ha actualizado.',
                             'success'
-                        )
+                        );
                     }
                 })
                 .catch(err => {
-                    console.log(err)
+                    console.log(err);
                 })
                 .finally(final => {
-                    verListaIncidentesActivos()
-                })
+                    verListaIncidentesActivos();
+                });
 
-        })
-
-
+        });
     } else {
-        errorElement.textContent = "Por favor, seleccione un estado"
+        errorElement.textContent = "Por favor, seleccione un estado";
     }
 }
+
 
 try {
     const selectEstados = document.getElementById('estados');
@@ -157,7 +175,7 @@ try {
  */
 function estadosIncidentesActivos() {
     // Vaciar el contenido del elemento select
-    let selectEstados=document.getElementById("estadosActivos")
+    let selectEstados = document.getElementById("estadosActivos")
     selectEstados.innerHTML = "";
 
     // Obtener la lista de estados
@@ -178,7 +196,7 @@ function estadosIncidentesActivos() {
                 .then(data => {
                     // Recorrer la lista de estados disponibles
                     for (let i = 0; i < estados.length; i++) {
-                        
+
                         // Buscar si el estado está registrado en la lista de estados del incidente
                         let estadoId2 = data.find(function (obj) {
                             return obj.estadoId === estados[i].id;
@@ -198,7 +216,7 @@ function estadosIncidentesActivos() {
                     }
 
                     // Procesar los datos de los estados del incidente
-                    
+
                 })
                 .catch(err => {
                     console.log(err);
