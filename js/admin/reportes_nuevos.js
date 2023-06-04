@@ -79,7 +79,7 @@ function cargarPrioridadesEvaluar() {
 }
 
 function verIncidentesActivos() {
-    
+    mostrarSpinner()
     listaIncidentesEstadoReportado()
         .then(response => response.json())
         .then(data => {
@@ -90,9 +90,10 @@ function verIncidentesActivos() {
         })
         .catch(err => {
             console.log(err)
+            ocultarSpinner()
         })
         .finally(final => {
-
+            ocultarSpinner()
 
         })
         cargarCategorias()

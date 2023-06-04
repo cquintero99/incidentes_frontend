@@ -80,7 +80,7 @@ function verListaIncidentesActivos() {
 function actualizarEstado() {
 
     let incidenteId = sessionStorage.getItem("incidenteId")
-    let selectElement = document.getElementById("estados");
+    let selectElement = document.getElementById("estadosActivos");
     let selectedOption = selectElement.value;
     let errorElement = document.getElementById("errorMensaje");
     errorElement.textContent = ""
@@ -113,7 +113,7 @@ function actualizarEstado() {
                     }
                 })
                 .catch(err => {
-
+                    console.log(err)
                 })
                 .finally(final => {
                     verListaIncidentesActivos()

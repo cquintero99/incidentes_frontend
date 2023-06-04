@@ -232,6 +232,7 @@ function mostrarListadoIncidentes(data) {
         <div class="card mb-4 py-3 border-left-warning">
     <div class="card-body">
     <div class="card-header text-center">
+    
     <h3 class="text-uppercase fw-bold fs-6 ">Título : ${data[i].titulo} </h3>
     </div>
         <div class="card-body">
@@ -240,19 +241,19 @@ function mostrarListadoIncidentes(data) {
                     
                     <div class="col-xl-6 ">
                         <h3 class="text-uppercase fw-bold fs-6">Categoría</h3>
-                        <p class="fs-6">${data[i].categoriaId.nombre}</p>
+                        <p class="fs-6 border">${data[i].categoriaId.nombre}</p>
                     </div>
                     
                     <div class="col-xl-2 ">
                        
                         <h3 class="text-uppercase fw-bold fs-6 ">Estado </h3>
                         
-                        <p class="fs-6">${ultimoEstado}</p>
+                        <p class="fs-6 fw-bold border  text-uppercase">${ultimoEstado}</p>
                     </div>
                    
                     <div class="col-xl-2 ">
                         <h3 class="text-uppercase fw-bold fs-6 ">Prioridad</h3>
-                        <p class="fs-6">${data[i].prioridadId.nombre}</p>
+                        <p class="fs-6 border">${data[i].prioridadId.nombre}</p>
                     </div>
                     <div class="col-xl-2">
                         <div class="my-2"></div>
@@ -269,7 +270,9 @@ function mostrarListadoIncidentes(data) {
             
         </div>
         <div class="card-footer text-center">
-            <h3 class="text-uppercase fw-bold fs-6">Fecha Registro ${fechaColombia}</h3>
+              <p>Fecha Registro</p>
+            <h3 class="text-uppercase fw-bold fs-6"> ${fechaColombia}</h3>
+            
                     
              </div>
     </div>
