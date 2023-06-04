@@ -53,15 +53,13 @@ function verIncidentesCerrados() {
  * Restaura los valores de los filtros y vuelve a mostrar los incidentes cerrados.
  */
 function limpiarFiltrosCerrados(){
-    menuFiltroCategoria.textContent = "Categoria"; // Restaura el texto del menú de filtro de categoría
-    selectElement.value = ""; // Restaura el valor del elemento select
-    menuFiltroFecha.textContent = "Fecha"; // Restaura el texto del menú de filtro de fecha
-    fechaFiltro.value = ""; // Restaura el valor del campo de fecha
-  
+    selectElement.innerHTML = ` <option selected>Categoría</option>`
+    selectEstados.innerHTML = ` <option selected>Estados</option>`
+    selectPrioridad.innerHTML = ` <option selected>Prioridad</option>`
+    fechaFiltro.value=""
+    menuFiltroCategoria.textContent="Categoria"
     menuFiltroEstado.textContent="Estado"
     menuFiltroPrioridad.textContent="Prioridad"
-   
-    selectPrioridad.value=""
-    selectEstados.value=""
+    menuFiltroFecha.textContent="Fecha"
     verIncidentesCerrados(); // Vuelve a mostrar los incidentes cerrados
 }

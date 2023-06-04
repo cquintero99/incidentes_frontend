@@ -24,6 +24,16 @@ try {
 } catch (error) {
   // Manejo de errores (si corresponde)
 }
+try {
+  const token=localStorage.getItem("token")
+  if(!token){
+    window.location.href = "../index.html";
+  }
+  
+} catch (error) {
+  
+}
+
 
 /**
 * Muestra el spinner de carga en el documento HTML.
