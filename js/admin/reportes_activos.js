@@ -48,6 +48,10 @@ async function incidenteListaDeEstados(id) {
     })
     return result;
 }
+/**
+ * Función para limpiar los filtros de los incidentes cerrados.
+ * Restaura los valores de los filtros y vuelve a mostrar los incidentes cerrados.
+ */
 function limpiarFiltroActivos() {
     selectElement.innerHTML = ` <option selected>Categoría</option>`
     selectEstados.innerHTML = ` <option selected>Estados</option>`

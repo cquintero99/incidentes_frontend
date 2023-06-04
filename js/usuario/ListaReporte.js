@@ -231,7 +231,7 @@ function mostrarListadoIncidentes(data) {
         body += `
         <div class="card mb-4 py-3 border-left-warning">
     <div class="card-body">
-    <div class="card-header text-center">
+    <div class="card-header  text-center" style="background-color:aliceblue;">
     
     <h3 class="text-uppercase fw-bold fs-6 ">Título : ${data[i].titulo} </h3>
     </div>
@@ -269,9 +269,9 @@ function mostrarListadoIncidentes(data) {
             </div>
             
         </div>
-        <div class="card-footer text-center">
-              <p>Fecha Registro</p>
-            <h3 class="text-uppercase fw-bold fs-6"> ${fechaColombia}</h3>
+        <div class="card-footer  text-center" style="background-color:aliceblue;">
+             
+            <h3 class="text-uppercase text-muted fw-bold fs-6"> ${fechaColombia}</h3>
             
                     
              </div>
