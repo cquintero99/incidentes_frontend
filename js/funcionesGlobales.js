@@ -64,7 +64,7 @@ function salir() {
 
 function cargarDatosPerfil(){
   const persona=JSON.parse(localStorage.getItem("data"))
-  console.log(persona)
+  
   let fechaR = persona.fechaNacimiento
         const fecha = new Date(fechaR);
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -118,16 +118,15 @@ function cargarDescripcion(){
     listaCategoria()
     .then(response=>response.json())
     .then(data=>{
-      console.log(data)
       let body=""
       for (let i = 0; i < data.length; i++) {
         body+=` <li class="list-group-item d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto">
-          <div class="fw-bold text-center">${data[i].nombre} </div>
-          <hr>
+          <div class="fw-bold  text-primary">${data[i].nombre} </div>
+          
           ${data[i].descripcion}
         </div>
-        <span class="badge border border-info rounded-pill">ID :${data[i].id}</span>
+        <span class="badge border border-info rounded-pill text-primary">ID :${data[i].id}</span>
       </li>
       `
         
@@ -143,16 +142,16 @@ function cargarDescripcion(){
     listaEstados()
     .then(response=>response.json())
     .then(data=>{
-      console.log(data)
       let body2=""
       for (let i = 0; i < data.length; i++) {
         body2+=` <li class="list-group-item d-flex justify-content-center align-items-start">
         <div class="ms-2 me-auto">
-          <div class="fw-bold text-center">${data[i].nombre} </div>
-          <hr>
+          <div class="fw-bold  text-primary">${data[i].nombre} 
+          </div>
+         
           ${data[i].descripcion}
         </div>
-        <span class="badge border border-info rounded-pill">ID :${data[i].id}</span>
+        <span class="badge border border-info rounded-pill text-primary">ID :${data[i].id}</span>
       </li>
       `
         

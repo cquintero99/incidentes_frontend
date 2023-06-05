@@ -43,7 +43,7 @@ function generarGraficoDona(labels, data, backgroundColor, hoverBackgroundColor,
 try {
   function verTableRedonda(){
     let incidentes = JSON.parse(sessionStorage.getItem("lista"))
-  console.log(incidentes)
+ 
 
   // Crear un objeto para almacenar la cuenta de categorías
   var categoriasCount = {};
@@ -85,11 +85,7 @@ try {
     data[data.length - 1] += diferencia;
   }
 
-  console.log(labels);
-  console.log(data);
   // Ejemplo de uso:
-//var labels = ["Reportado", "Aprobado", "Investiga", "Directo", "Referencia", "Casa"];
-//var data = [10, 20, 10, 10, 20, 30];
 var backgroundColor = ['#4e73df', '#1cc88a', '#36b9cc', '#f6c23e', '#e74a3b', '#858796', '#4e73df', '#1cc88a', '#36b9cc', '#f6c23e'];
 var hoverBackgroundColor = ['#2e59d9', '#17a673', '#2c9faf', '#dda20a', '#b5352b', '#6e7d8e', '#2e59d9', '#17a673', '#2c9faf', '#dda20a'];
 

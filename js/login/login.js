@@ -18,6 +18,17 @@ async function emailRegistrado(usuario) {
   })
   return result;
 }
+async function usuarioModuloRegistrado(usuario) {
+  let modulo = localStorage.getItem("modulo")
+  const result = await fetch(urlBassic + "/rol/usuario/" + modulo, {
+    method: 'POST',
+    body: JSON.stringify(usuario),
+    headers: {
+      "Content-type": "application/json"
+    }
+  })
+  return result;
+}
 
 
 async function iniciarSecion(usuario) {
@@ -33,6 +44,8 @@ async function iniciarSecion(usuario) {
   })
   return result;
 }
+
+
 
 //Inicio sesion automatico para los usuarios nuevos
 try {
@@ -71,6 +84,15 @@ try {
 } catch (error) {
 
 }
+
+function user() {
+  localStorage.setItem("modulo", "usuario")
+}
+function admin() {
+
+  localStorage.setItem("modulo", "admin")
+}
+
 function login() {
   mostrarSpinner()
   //LIMPIO LAS ALERT
@@ -96,47 +118,65 @@ function login() {
       emailRegistrado(user)
         .then(response => response.json())
         .then(data => {
-          console.log(data)
           if (data == true) {
-            iniciarSecion(user)
-              .then(res => res)
-              .then(JWT => {
-                console.log(JWT)
-                if (JWT.status === 200 && JWT.headers.has('Authorization')) {
-                  const bearerToken = JWT.headers.get('Authorization');
-                  const token = bearerToken.replace('Bearer ', '');
+            usuarioModuloRegistrado(user)
+              .then(respon => respon.json())
+              .then(modulo => {
+                if (modulo == true) {
+                  iniciarSecion(user)
+                    .then(res => res)
+                    .then(JWT => {
+                      if (JWT.status === 200 && JWT.headers.has('Authorization')) {
+                        const bearerToken = JWT.headers.get('Authorization');
+                        const token = bearerToken.replace('Bearer ', '');
 
 
 
 
-                  localStorage.setItem('token', token);
-                  localStorage.setItem("data", JSON.stringify(parseJwt(token)))
+                        localStorage.setItem('token', token);
+                        localStorage.setItem("data", JSON.stringify(parseJwt(token)))
 
-                  cargarModuloRol()
-                  //Tiempo real del token
-                  let exp = JSON.parse(localStorage.getItem("data")).exp
-                  //Tiempo prueba 4 horas 14400
-                  borrarLocalStorageYRedirigirDespuesDeTiempo(14400); // 3600 Tiempo de expiración de una hora (3600 segundos)
+                        cargarModuloRol()
+                        //Tiempo real del token
+                        let exp = JSON.parse(localStorage.getItem("data")).exp
+                        //Tiempo prueba 4 horas 14400
+                        borrarLocalStorageYRedirigirDespuesDeTiempo(14400); // 3600 Tiempo de expiración de una hora (3600 segundos)
 
+                      } else {
+                        //ocultarSpinner()
+                        body = `<div class="alert alert-danger" role="alert">
+                               Contraseña  incorrecta
+                            </div>`;
+                        passwordError.textContent = " Contraseña incorrecta";
+                        alertLogin.innerHTML = body;
+
+                        setTimeout(() => {
+                          alertLogin.innerHTML = "";
+                        }, 5000);
+                      }
+                    })
+                    .catch(err => {
+                      ocultarSpinner()
+                    })
+                    .finally(final => {
+                      ocultarSpinner()
+                    })
                 } else {
-                  //ocultarSpinner()
-                  body = `<div class="alert alert-danger" role="alert">
-                             Contraseña  incorrecta
-                          </div>`;
-                  passwordError.textContent = " Contraseña incorrecta";
-                  alertLogin.innerHTML = body;
+                  alertLogin.innerHTML = `<div class="alert alert-warning" role="alert">
+                    <a href="#" class="alert-link">Usuario no Autorizado</a>
+                  </div>`
+                  ocultarSpinner()
 
-                  setTimeout(() => {
-                    alertLogin.innerHTML = "";
-                  }, 5000);
                 }
               })
               .catch(err => {
+                console.log(err)
                 ocultarSpinner()
               })
               .finally(final => {
-                ocultarSpinner()
+
               })
+
 
           } else {
             alertLogin.innerHTML = `<div class="alert alert-warning" role="alert">
@@ -186,20 +226,37 @@ function validateEmail() {
   emailError.textContent = ""; // Borrar el mensaje de error si el correo es válido
   return true;
 }
+
 function cargarModuloRol() {
+  try {
 
-  const roles = JSON.parse(localStorage.getItem("data")).roles
-  const admin = false
+    let modulo = localStorage.getItem("modulo")
+    const roles = JSON.parse(localStorage.getItem("data")).roles
 
-  for (let i = 0; i < roles.length; i++) {
-    if (roles[i].nombre == "ROLE_ADMIN") {
-      window.location.href = "./admin/index.html";
-      admin = true
+    if (modulo == "admin") {
+      for (let i = 0; i < roles.length; i++) {
+        if (roles[i].nombre == "ROLE_ADMIN") {
+          window.location.href = "./admin/index.html";
 
-    } else if (roles[i].nombre == "ROLE_USER" && admin === false) {
-      window.location.href = "./cuenta/index.html";
+
+        }
+      }
+    } else {
+      for (let i = 0; i < roles.length; i++) {
+        if (roles[i].nombre == "ROLE_USER") {
+          window.location.href = "./cuenta/index.html";
+        }
+      }
+
     }
+
+
+
+
+  } catch (error) {
+
   }
+
 
 
 
