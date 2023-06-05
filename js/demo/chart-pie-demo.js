@@ -15,8 +15,12 @@ function generarGraficoDona(labels, data, backgroundColor, hoverBackgroundColor,
         hoverBorderColor: hoverBorderColor,
       }],
     },
-    options: {
-      maintainAspectRatio: false,
+    options: { responsive: true, // Hacer el gráfico responsive al tamaño del contenedor
+    maintainAspectRatio: false,
+    animation: {
+      animateRotate: true, // Agregar animación de rotación
+      animateScale: true, // Agregar animación de escala
+    },
       tooltips: {
         backgroundColor: "rgb(255,255,255)",
         bodyFontColor: "#858796",
@@ -36,12 +40,66 @@ function generarGraficoDona(labels, data, backgroundColor, hoverBackgroundColor,
   });
 }
 
-// Ejemplo de uso:
-var labels = ["Directo", "Referencia", "Casa","Directo", "Referencia", "Casa"];
-var data = [10,20,10,10,20,30];
-var backgroundColor = ['#4e73df', '#1cc88a', '#36b9cc','#4e73df', '#1cc88a', '#36b9cc',];
-var hoverBackgroundColor = ['#2e59d9', '#17a673', '#2c9faf','#2e59d9', '#17a673', '#2c9faf'];
+try {
+  function verTableRedonda(){
+    let incidentes = JSON.parse(sessionStorage.getItem("lista"))
+  console.log(incidentes)
+
+  // Crear un objeto para almacenar la cuenta de categorías
+  var categoriasCount = {};
+
+  // Contar la cantidad de incidentes por categoría
+  incidentes.forEach(function (incidente) {
+    var categoria = incidente.categoriaId;
+    if (categoria && categoria.nombre) {
+      if (!categoriasCount[categoria.nombre]) {
+        categoriasCount[categoria.nombre] = 1;
+      } else {
+        categoriasCount[categoria.nombre]++;
+      }
+    }
+  });
+
+  // Crear los arrays de labels y porcentajes
+  var labels = [];
+  var data = [];
+  var totalIncidentes = incidentes.length;
+
+  // Recorrer las categorías y calcular los porcentajes
+  for (var categoriaNombre in categoriasCount) {
+    if (categoriasCount.hasOwnProperty(categoriaNombre)) {
+      var porcentaje = (categoriasCount[categoriaNombre] / totalIncidentes) * 100;
+      labels.push(categoriaNombre);
+      data.push(porcentaje);
+    }
+  }
+
+  // Verificar la suma de porcentajes y ajustar si es necesario
+  var sumaPorcentajes = data.reduce(function (total, porcentaje) {
+    return total + porcentaje;
+  }, 0);
+
+  if (sumaPorcentajes !== 100) {
+    var diferencia = 100 - sumaPorcentajes;
+    var ultimoPorcentaje = data[data.length - 1];
+    data[data.length - 1] += diferencia;
+  }
+
+  console.log(labels);
+  console.log(data);
+  // Ejemplo de uso:
+//var labels = ["Reportado", "Aprobado", "Investiga", "Directo", "Referencia", "Casa"];
+//var data = [10, 20, 10, 10, 20, 30];
+var backgroundColor = ['#4e73df', '#1cc88a', '#36b9cc', '#f6c23e', '#e74a3b', '#858796', '#4e73df', '#1cc88a', '#36b9cc', '#f6c23e'];
+var hoverBackgroundColor = ['#2e59d9', '#17a673', '#2c9faf', '#dda20a', '#b5352b', '#6e7d8e', '#2e59d9', '#17a673', '#2c9faf', '#dda20a'];
+
 var hoverBorderColor = "rgba(234, 236, 244, 1)";
 
 generarGraficoDona(labels, data, backgroundColor, hoverBackgroundColor, hoverBorderColor);
+  }
+} catch (error) {
+ 
+
+}
+
 

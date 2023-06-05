@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    
+
     <link rel="shortcut icon" href="../img/DAFACI_LOGO.svg">
     <title>DAFACI Reporte de Incidentes</title>
 
@@ -24,17 +24,17 @@
     <link href="../css/sb-admin-2.min.css" rel="stylesheet" />
 </head>
 
-<body id="page-top">
+<body id="page-top" onload="cargarDescripcion()">
     <!-- Page Wrapper -->
     <div id="wrapper">
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-danger sidebar sidebar-dark accordion" id="accordionSidebar">
             <!-- Sidebar - Brand -->
             <a class="p-1 align-items-center justify-content-center" href="./index.html">
-               
-                <img class="sidebar-card-illustration mb-2 img-fluid"  src="../img/DAFACI.svg" alt="..." />
+
+                <img class="sidebar-card-illustration mb-2 img-fluid" src="../img/DAFACI.svg" alt="..." />
             </a>
-            
+
             <!-- Divider -->
             <hr class="sidebar-divider" />
 
@@ -44,7 +44,7 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>USUARIO</span></a>
             </li>
-            
+
 
 
 
@@ -86,7 +86,7 @@
             <div class="sidebar-card d-none d-lg-flex">
                 <img class="sidebar-card-illustration mb-2" src="../img/DAFACI.svg" alt="..." />
                 <p class="text-center mb-2">
-                    <strong></strong> 
+                    <strong></strong>
                 </p>
             </div>
         </ul>
@@ -115,16 +115,16 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link text-gray-800 " href="#"  aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link text-gray-800 " href="#" aria-haspopup="true" aria-expanded="false">
                                 Incidentes
                             </a>
                             <!-- Dropdown - Messages -->
-                            
+
                         </li>
 
-                       
 
-                        
+
+
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -146,7 +146,7 @@
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Contiguracion
                                 </a>
-                                
+
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -178,7 +178,7 @@
 
                                         <div class="col mr-2">
                                             <div class=" h5  font-weight-bold text-info text-uppercase mb-1">
-                                           <a class="text-info"  href="crear-reporte.html">Reporte Nuevo</a>
+                                                <a class="text-info" href="./reporte/crear/index.html">Reporte Nuevo</a>
                                             </div>
 
                                         </div>
@@ -197,7 +197,8 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="h5 font-weight-bold text-primary text-uppercase ">
-                                                <a   href="lista-reporte.html">Reportes Aprobados</a> </div>
+                                                <a href="./reporte/lista/index.html">Reportes Aprobados</a>
+                                            </div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fa fa-envelope-open fa-2x text-primary" aria-hidden="true"></i>
@@ -218,7 +219,9 @@
                                         <div class="col mr-2">
 
                                             <div class="h5 mb-0 font-weight-bold text-success text-uppercase mb-1">
-                                                <a class="text-success"  href="lista-reporte.html">Reportes Finalizado</a></div>
+                                                <a class="text-success" href="./reporte/lista/index.html">Reportes
+                                                    Finalizado</a>
+                                            </div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-check fa-2x text-success"></i>
@@ -237,7 +240,8 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="h5 font-weight-bold text-danger text-uppercase mb-1">
-                                                <a class="text-danger"  href="lista-reporte.html">Reportes Rechazados</a></div>
+                                                <a class="text-danger" href="./reporte/lista/index.html">Reportes Rechazados</a>
+                                            </div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fa fa-times fa-2x text-danger" aria-hidden="true"></i>
@@ -256,47 +260,21 @@
                             <!-- Project Card Example -->
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Estados de un indicente</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Categorias de un Indicente</h6>
                                 </div>
                                 <div class="card-body">
-                                   
-                                   
-                                    <h4 class=" font-weight-bold text-center ">
-                                        Aprobado 
-                                    </h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar" role="progressbar" style="width: 100%"
-                                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class=" font-weight-bold text-center">
-                                        Proceso 
-                                    </h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 100%"
-                                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class=" font-weight-bold text-center">
-                                        Finalizados 
-                                    </h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%"
-                                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
+                                    <ol class="list-group list-group-numbered" id="listaCategoriasIncidente">
+                                        <h3 class="text-center">Cargando...</h3>
 
-                                    <h4 class=" font-weight-bold text-center">
-                                        Rechazado 
-                                    </h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 100%"
-                                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
+                                    </ol>
+
                                 </div>
                             </div>
 
                         </div>
 
                         <div class="col-lg-6 mb-4">
-                           
+
 
                             <!-- Approach -->
                             <div class="card shadow mb-4">
@@ -304,41 +282,20 @@
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <h6 class="m-0 font-weight-bold text-primary">
-                                        Categorias de los Incidentes
+                                        Estados de un Incidentes
                                     </h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
+
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                    <div class="chart-pie pt-4 pb-2">
-                                        <canvas id="myPieChart"></canvas>
-                                    </div>
-                                    <div class="mt-4 text-center small">
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> Personal
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> Social
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> Conflicto
-                                        </span>
-                                    </div>
+                                    <ol class="list-group list-group-numbered" id="listaEstadosIncidente">
+
+                                        <h3 class="text-center">Cargando...</h3>
+                                    </ol>
                                 </div>
                             </div>
+
+
                         </div>
                     </div>
                 </div>
@@ -394,7 +351,7 @@
                                 </h6>
                                 <p>
                                     Este Proyecto es un Sotfware Web para Reporte de Incidentes
-                                 
+
 
                                 </p>
                                 <p>
@@ -402,7 +359,7 @@
 
                                 </p>
                                 <p>
-                                   Arquitectura: 2 capas Frontend y Backend
+                                    Arquitectura: 2 capas Frontend y Backend
 
                                 </p>
                             </div>
@@ -499,7 +456,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    Selecione "Cerrar" si quieres salir de manera segura de  esta session.
+                    Selecione "Cerrar" si quieres salir de manera segura de esta session.
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">

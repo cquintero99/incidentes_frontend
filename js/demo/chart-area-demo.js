@@ -49,7 +49,7 @@ async function listaReportesEstado(idEstado) {
 var ctx = document.getElementById("myAreaChart");
 
 // Función para generar el gráfico
-function generarGrafico(meses, ingresos,valMax) {
+function generarGrafico(meses, ingresos, valMax) {
 
   // Crear una instancia de Chart y asignarla a la variable myLineChart
   var myLineChart = new Chart(ctx, {
@@ -103,7 +103,7 @@ function generarGrafico(meses, ingresos,valMax) {
             min: 0,  // Valor mínimo
             max: valMax,  // Valor máximo
             callback: function (value, index, values) {
-              return '$' + number_format(value);
+              return '#' + number_format(value);
             }
           },
           gridLines: {
@@ -143,10 +143,10 @@ function generarGrafico(meses, ingresos,valMax) {
   });
 }
 function listaIncidenteActivosEstadistica() {
+
   listaReportesEstado(1)
     .then(res => res.json())
     .then(data => {
-      console.log(data)
       // Obtener la lista de incidentes
       var incidentes = data;
 
@@ -193,33 +193,35 @@ function listaIncidenteActivosEstadistica() {
           ingresos.push(numeroIncidentes);
         }
       }
-
-      // Imprimir el resultado
-      console.log(meses);
-      console.log(ingresos);
       sessionStorage.setItem("ingresos", JSON.stringify(ingresos))
+
+
+      sessionStorage.setItem("lista", JSON.stringify(data))
     })
     .catch(err => {
       console.log(err)
 
     })
     .finally(final => {
+      try {
+        const meses = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
+
+        const ingresos = JSON.parse(sessionStorage.getItem("ingresos"));
+        const valMax = Math.max(...ingresos);
+
+
+        generarGrafico(meses, ingresos, valMax);
+        verTableRedonda()
+
+      } catch (error) {
+
+      }
 
     })
 
 }
 
-try {
-  const meses = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
-  
-  const ingresos = JSON.parse(sessionStorage.getItem("ingresos"));
-  const valMax = Math.max(...ingresos);
-  
-  
-  generarGrafico(meses, ingresos,valMax);
-} catch (error) {
 
-}
 // var meses = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
 // var ingresos = [10000, 10000, 5000, 15000, 10000, 20000, 15000, 25000, 20000, 30000, 25000, 40000];
 

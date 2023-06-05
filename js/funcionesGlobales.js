@@ -19,7 +19,8 @@ try {
   const btnSalir = document.getElementById("btnSalir");
   btnSalir.addEventListener('click', () => {
       localStorage.clear();
-      window.location.href = "../index.html";
+      sessionStorage.clear();
+     // window.location.href = "../index.html";
   });
 } catch (error) {
   // Manejo de errores (si corresponde)
@@ -33,6 +34,7 @@ try {
 } catch (error) {
   
 }
+
 
 
 /**
@@ -111,3 +113,56 @@ async function descargarPDF(id){
     
 
 }
+
+function cargarDescripcion(){
+    listaCategoria()
+    .then(response=>response.json())
+    .then(data=>{
+      console.log(data)
+      let body=""
+      for (let i = 0; i < data.length; i++) {
+        body+=` <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="ms-2 me-auto">
+          <div class="fw-bold text-center">${data[i].nombre} </div>
+          <hr>
+          ${data[i].descripcion}
+        </div>
+        <span class="badge border border-info rounded-pill">ID :${data[i].id}</span>
+      </li>
+      `
+        
+      }
+      document.getElementById("listaCategoriasIncidente").innerHTML=body;
+    })
+    .catch(err=>{
+      console.log(err)
+    })
+    .finally(final=>{
+
+    })
+    listaEstados()
+    .then(response=>response.json())
+    .then(data=>{
+      console.log(data)
+      let body2=""
+      for (let i = 0; i < data.length; i++) {
+        body2+=` <li class="list-group-item d-flex justify-content-center align-items-start">
+        <div class="ms-2 me-auto">
+          <div class="fw-bold text-center">${data[i].nombre} </div>
+          <hr>
+          ${data[i].descripcion}
+        </div>
+        <span class="badge border border-info rounded-pill">ID :${data[i].id}</span>
+      </li>
+      `
+        
+      }
+      document.getElementById("listaEstadosIncidente").innerHTML=body2;
+    })
+    .catch(err=>{
+      console.log(err)
+    })
+    .finally(final=>{
+
+    })
+  }
