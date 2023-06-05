@@ -136,7 +136,8 @@ function registrarCuenta() {
     }
 
     // Si no hay errores, continuar con el registro
-    if (!errores) {
+    if (!errores && validarContraseña()) {
+
 
         const usuario = {
             nombre,
@@ -145,19 +146,17 @@ function registrarCuenta() {
             fechaNacimiento,
             genero,
             email,
-             pass1
+            pass1
         }
-        console.log(usuario)
         emailRegistrado(usuario)
             .then(response => response.json())
             .then(data => {
-                console.log(data)
                 if (data == false) {
                     localStorage.setItem("newUsuario", JSON.stringify(usuario))
 
                     enviarCodigoEmail(usuario)
                 } else {
-                    document.getElementById("alert") = `<div class="alert alert-danger" role="alert">
+                    document.getElementById("alert").innerHTML = `<div class="alert alert-danger" role="alert">
                     Email ya esta registrado
                  </div>`;
                 }
@@ -173,15 +172,32 @@ function registrarCuenta() {
     //console.log(usuario)
 }
 
+function validarContraseña() {
+    const pass1 = document.getElementById("pass1").value;
+    const pass2 = document.getElementById("pass2").value;
+    const regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.])[A-Za-z\d@$!%*?&.]{8,}$/;
+
+    if (pass1 !== pass2) {
+        // Las contraseñas no son iguales
+        document.getElementById("pass1Error").textContent = "Las contraseñas no coinciden.";
+        return false;
+    }
+
+    if (!regex.test(pass1)) {
+        // La contraseña no cumple con los requisitos
+        document.getElementById("pass1Error").textContent = "La contraseña debe tener al menos 8 caracteres, una letra mayúscula y un carácter especial.";
+        return false;
+    }
+
+    // La contraseña es válida
+    return true;
+}
 const formRegister = document.getElementById("formRegister")
 function enviarCodigoEmail(usuario) {
     mostrarSpinner()
-    
-    console.log(usuario)
     sendEmailCodio(usuario)
         .then(response => response.json())
         .then(data => {
-            console.log(data)
             formCodigo()
         })
         .catch(err => {
@@ -206,7 +222,7 @@ function togglePasswordVisibility(fieldId) {
 }
 
 function formCodigo() {
-    let email=JSON.parse(localStorage.getItem("newUsuario")).email
+    let email = JSON.parse(localStorage.getItem("newUsuario")).email
     formRegister.innerHTML = `
 <div class="form-group row">
     <div class="col-sm-12 mb-3 mb-sm-0">
@@ -239,6 +255,7 @@ function validarCodigo() {
     let codigo = document.getElementById("codigo").value
     let email = JSON.parse(localStorage.getItem("newUsuario")).email
     const codigoIntento = document.getElementById("codigoIntento")
+    if(codigo.length>=5){
     const intento = {
         codigo
         , email
@@ -258,11 +275,11 @@ function validarCodigo() {
              Numero Intento ${n}
            </div>`
             sessionStorage.setItem("num", Number(n) + 1)
-            if(n==3){
+            if (n == 3) {
                 document.getElementById("validarBtn").remove()
-            sessionStorage.clear()
+                sessionStorage.clear()
             }
-        } else if(n>3) {
+        } else if (n > 3) {
             document.getElementById("validarBtn").remove()
             sessionStorage.clear()
         }
@@ -271,6 +288,7 @@ function validarCodigo() {
         alert("err")
 
     }
+    
     saveIntentoRegistro(intento)
         .then(res => res.json())
         .then(data => {
@@ -299,7 +317,9 @@ function validarCodigo() {
 
         })
 
-
+    }else{
+        ocultarSpinner()
+    }
 
 }
 function registrarUsuario() {
@@ -319,12 +339,31 @@ function registrarUsuario() {
     saveUsuario(usuario)
         .then(res => res.json())
         .then(data => {
+            localStorage.clear()
+            sessionStorage.clear()
+            document.getElementById("formRegister").innerHTML = `<h3>CUENTA REGISTRADA</h3>`
+
+            Swal.fire({
+                icon: 'success',
+                title: 'USUARIO REGISTRADO',
+                text: 'Felicidades ya puedes iniciar sesion!',
+                footer: '<a href="">DAFACI.com</a>'
+            })
+            Swal.fire({
+                title: 'USUARIO REGISTRADO',
+                text: "Felicidades ya puedes ingresar!",
+                icon: 'success',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Iniciar Sesion!'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  entrarLogin(usuario)
+                }
+              })
             
-        localStorage.setItem("activarUser","yes")
-        setTimeout(()=>{
-            window.location.href = "index.html"
-        },50)
-           
+            
         })
         .catch(err => {
             ocultarSpinner()

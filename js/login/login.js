@@ -47,30 +47,30 @@ async function iniciarSecion(usuario) {
 
 
 
-//Inicio sesion automatico para los usuarios nuevos
-try {
-  let yes = localStorage.getItem("activarUser")
-  if (yes == "yes") {
-    Swal.fire({
-      icon: 'success',
-      title: 'USUARIO REGISTRADO',
-      text: 'Felicidades ya puedes iniciar sesion!',
-      footer: '<a href="">DAFACI.com</a>'
-    })
+// //Inicio sesion automatico para los usuarios nuevos
+// try {
+//   let yes = localStorage.getItem("activarUser")
+//   if (yes === "yes") {
+//     Swal.fire({
+//       icon: 'success',
+//       title: 'USUARIO REGISTRADO',
+//       text: 'Felicidades ya puedes iniciar sesion!',
+//       footer: '<a href="">DAFACI.com</a>'
+//     })
 
-    let email = JSON.parse(localStorage.getItem("newUsuario")).email
-    document.getElementById("exampleInputEmail").value = email
-    //Obtengo la contraseña
-    let pass = JSON.parse(localStorage.getItem("newUsuario")).pass1
-    document.getElementById("exampleInputPassword").value = pass
-    localStorage.setItem("activarUser", "")
-    localStorage.setItem("newUsuario", "")
-    login()
-  }
+//     let email = JSON.parse(localStorage.getItem("newUsuario")).email
+//     document.getElementById("exampleInputEmail").value = email
+//     //Obtengo la contraseña
+//     let pass = JSON.parse(localStorage.getItem("newUsuario")).pass1
+//     document.getElementById("exampleInputPassword").value = pass
+//     localStorage.setItem("activarUser", "")
+//     localStorage.setItem("newUsuario", "")
+//     login()
+//   }
 
-} catch (error) {
+// } catch (error) {
 
-}
+// }
 //Inicio sesion si presiona enter
 try {
   input = document.getElementById("exampleInputPassword")
@@ -123,44 +123,7 @@ function login() {
               .then(respon => respon.json())
               .then(modulo => {
                 if (modulo == true) {
-                  iniciarSecion(user)
-                    .then(res => res)
-                    .then(JWT => {
-                      if (JWT.status === 200 && JWT.headers.has('Authorization')) {
-                        const bearerToken = JWT.headers.get('Authorization');
-                        const token = bearerToken.replace('Bearer ', '');
-
-
-
-
-                        localStorage.setItem('token', token);
-                        localStorage.setItem("data", JSON.stringify(parseJwt(token)))
-
-                        cargarModuloRol()
-                        //Tiempo real del token
-                        let exp = JSON.parse(localStorage.getItem("data")).exp
-                        //Tiempo prueba 4 horas 14400
-                        borrarLocalStorageYRedirigirDespuesDeTiempo(14400); // 3600 Tiempo de expiración de una hora (3600 segundos)
-
-                      } else {
-                        //ocultarSpinner()
-                        body = `<div class="alert alert-danger" role="alert">
-                               Contraseña  incorrecta
-                            </div>`;
-                        passwordError.textContent = " Contraseña incorrecta";
-                        alertLogin.innerHTML = body;
-
-                        setTimeout(() => {
-                          alertLogin.innerHTML = "";
-                        }, 5000);
-                      }
-                    })
-                    .catch(err => {
-                      ocultarSpinner()
-                    })
-                    .finally(final => {
-                      ocultarSpinner()
-                    })
+                  entrarLogin(user)
                 } else {
                   alertLogin.innerHTML = `<div class="alert alert-warning" role="alert">
                     <a href="#" class="alert-link">Usuario no Autorizado</a>
@@ -203,6 +166,46 @@ function login() {
   }
 
 
+}
+function entrarLogin(user){
+  iniciarSecion(user)
+  .then(res => res)
+  .then(JWT => {
+    if (JWT.status === 200 && JWT.headers.has('Authorization')) {
+      const bearerToken = JWT.headers.get('Authorization');
+      const token = bearerToken.replace('Bearer ', '');
+
+
+
+
+      localStorage.setItem('token', token);
+      localStorage.setItem("data", JSON.stringify(parseJwt(token)))
+
+      cargarModuloRol()
+      //Tiempo real del token
+      let exp = JSON.parse(localStorage.getItem("data")).exp
+      //Tiempo prueba 4 horas 14400
+      borrarLocalStorageYRedirigirDespuesDeTiempo(14400); // 3600 Tiempo de expiración de una hora (3600 segundos)
+
+    } else {
+      //ocultarSpinner()
+      body = `<div class="alert alert-danger" role="alert">
+             Contraseña  incorrecta
+          </div>`;
+      passwordError.textContent = " Contraseña incorrecta";
+      alertLogin.innerHTML = body;
+
+      setTimeout(() => {
+        alertLogin.innerHTML = "";
+      }, 5000);
+    }
+  })
+  .catch(err => {
+    ocultarSpinner()
+  })
+  .finally(final => {
+    ocultarSpinner()
+  })
 }
 
 //validar email
