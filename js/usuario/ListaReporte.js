@@ -229,7 +229,7 @@ function mostrarListadoIncidentes(data) {
         // Obtener la fecha local de Colombia
 
         body += `
-        <div class="card mb-4 py-3 border-left-warning">
+        <div class="card mb-4 py-3 border-info">
     <div class="card-body">
     <div class="card-header  text-center" style="background-color:aliceblue;">
     
@@ -271,7 +271,7 @@ function mostrarListadoIncidentes(data) {
         </div>
         <div class="card-footer  text-center" style="background-color:aliceblue;">
              
-            <h3 class="text-uppercase text-muted fw-bold fs-6"> ${fechaColombia}</h3>
+            <h3 class="text-uppercase  fw-bold fs-6"> ${fechaColombia}</h3>
             
                     
              </div>
