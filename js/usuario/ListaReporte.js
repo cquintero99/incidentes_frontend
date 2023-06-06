@@ -169,28 +169,61 @@ function cargarPrioridades() {
  * Muestra la lista de incidentes del usuario en el documento HTML.
  */
 function verIncidentes() {
-    mostrarSpinner()
-    vaciarSelect()
-    //Busco la lista de incidentes del usuario
-    listaIncidentes()
-        .then(response => response.json())
-        .then(data => {
-            //Guardo la lista de incidentes en la session 
-            sessionStorage.setItem("incidentesU", JSON.stringify(data))
-            mostrarListadoIncidentes(data)
-        })
-        .catch(err => {
-            console.log(err)
-            ocultarSpinner()
-        })
-        .finally(final => {
-            ocultarSpinner()
-        })
-    //Cargo las categorias en el select filtrar categoria
+    try {
+        const urlParams = new URLSearchParams(window.location.search);
+      
 
-    cargarCategorias()
-    cargarPrioridades()
-    cargarEstados()
+
+        // Obtener el valor del parámetro "estado"
+        const textoSeleccionado = urlParams.get('estado');
+
+        mostrarSpinner()
+        vaciarSelect()
+        //Busco la lista de incidentes del usuario
+        listaIncidentes()
+            .then(response => response.json())
+            .then(array => {
+                //Guardo la lista de incidentes en la session 
+                sessionStorage.setItem("incidentesU", JSON.stringify(array))
+                if (textoSeleccionado == null ) {
+
+                    mostrarListadoIncidentes(array)
+                } else {
+                    
+                    const newLista = array.filter(item => item.estados.some(e => e.nombre === textoSeleccionado));
+                    const arrayReturn = []
+                    for (let i = 0; i < array.length; i++) {
+                        if (array[i].estados[array[i].estados.length - 1].nombre == textoSeleccionado) {
+                            arrayReturn.push(array[i])
+                        }
+
+                    }
+                    menuFiltroEstado.textContent = textoSeleccionado
+                    mostrarListadoIncidentes(arrayReturn)
+                    console.log("ESTADOSS " + textoSeleccionado)
+                   
+
+                }
+            })
+            .catch(err => {
+                console.log(err)
+                ocultarSpinner()
+            })
+            .finally(final => {
+                ocultarSpinner()
+
+            })
+        //Cargo las categorias en el select filtrar categoria
+
+        cargarCategorias()
+        cargarPrioridades()
+        cargarEstados()
+
+
+    } catch (error) {
+
+    }
+
 
 
 }
@@ -205,30 +238,30 @@ function mostrarListadoIncidentes(data) {
         <hr>`
 
     }
+    try {
+        let body = ""
+        //Recorro la lista de incidentes y los muestro del mas reciente al mas antiguo
+        for (let i = data.length - 1; i >= 0; i--) {
+            //Muestro los datos de cada incidente que el usuario registro
+            let nEstado = data[i].estados.length
+            let ultimoEstado = data[i].estados[nEstado - 1].nombre
+            let fechaR = data[i].fechaRegistro
+            // Obtener la fecha del registro y ajustarla a la zona horaria de Colombia (UTC-5)
+            let fecha = new Date(fechaR);
+            let diferenciaHoraria = 300; // Diferencia horaria en minutos (5 horas * 60 minutos)
 
-    let body = ""
-    //Recorro la lista de incidentes y los muestro del mas reciente al mas antiguo
-    for (let i = data.length - 1; i >= 0; i--) {
-        //Muestro los datos de cada incidente que el usuario registro
-        let nEstado = data[i].estados.length
-        let ultimoEstado = data[i].estados[nEstado - 1].nombre
-        let fechaR = data[i].fechaRegistro
-        // Obtener la fecha del registro y ajustarla a la zona horaria de Colombia (UTC-5)
-        let fecha = new Date(fechaR);
-        let diferenciaHoraria = 300; // Diferencia horaria en minutos (5 horas * 60 minutos)
+            // Ajustar la fecha sumando la diferencia horaria
+            fecha.setMinutes(fecha.getMinutes() + diferenciaHoraria);
+            // Obtener el día, el mes y el año de la fecha
+            let dia = fecha.getDate();
+            let mes = fecha.toLocaleString('es-CO', { month: 'long' });
+            let anio = fecha.getFullYear();
 
-        // Ajustar la fecha sumando la diferencia horaria
-        fecha.setMinutes(fecha.getMinutes() + diferenciaHoraria);
-        // Obtener el día, el mes y el año de la fecha
-        let dia = fecha.getDate();
-        let mes = fecha.toLocaleString('es-CO', { month: 'long' });
-        let anio = fecha.getFullYear();
+            // Crear la cadena de texto con el formato deseado
+            let fechaColombia = `${dia} de ${mes} del ${anio}`;
+            // Obtener la fecha local de Colombia
 
-        // Crear la cadena de texto con el formato deseado
-        let fechaColombia = `${dia} de ${mes} del ${anio}`;
-        // Obtener la fecha local de Colombia
-
-        body += `
+            body += `
         <div class="card mb-4 py-3 border-info">
     <div class="card-body">
     <div class="card-header  text-center" style="background-color:aliceblue;">
@@ -280,10 +313,15 @@ function mostrarListadoIncidentes(data) {
 
 `
 
-    }
-    //agrego la lista el documento html
+        }
+        //agrego la lista el documento html
 
-    document.getElementById("listaIncidentes").innerHTML = body
+        document.getElementById("listaIncidentes").innerHTML = body
+    } catch (error) {
+
+    }
+
+
 
 }
 /**
