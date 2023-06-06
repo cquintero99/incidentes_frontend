@@ -1,65 +1,80 @@
-# [Start Bootstrap - SB Admin 2](https://startbootstrap.com/theme/sb-admin-2/)
+# incidentes_frontend : Registro de Incidentes laborales 
 
-[SB Admin 2](https://startbootstrap.com/theme/sb-admin-2/) is an open source admin dashboard theme for [Bootstrap](https://getbootstrap.com/) created by [Start Bootstrap](https://startbootstrap.com/).
+## 📚 Descripción del proyecto:
+Este proyecto consiste en el desarrollo de un sistema de gestión de incidentes, diseñado para facilitar el registro, seguimiento y resolución de incidentes en un determinado contexto. El sistema proporciona una interfaz intuitiva y funcionalidades específicas para que los usuarios puedan reportar incidentes, evaluar su impacto, asignarles prioridades, realizar un seguimiento de su estado y generar informes detallados sobre ellos.
 
-For the legacy Bootstrap 3 version of this theme, you can view the [last stable release](https://github.com/StartBootstrap/startbootstrap-sb-admin-2/releases/tag/v3.3.7%2B1) of SB Admin 2 for Bootstrap 3.
+## Características Principales
 
-## Preview
+- Registro de incidentes: Los usuarios pueden registrar incidentes de manera eficiente y precisa, incluyendo información relevante como la fecha, hora, descripción del problema y su impacto.
 
-[![SB Admin 2 Preview](https://assets.startbootstrap.com/img/screenshots/themes/sb-admin-2.png)](https://startbootstrap.github.io/startbootstrap-sb-admin-2/)
+- Evaluación de incidentes: El administrador del sistema puede evaluar cada incidente reportado, verificando la información proporcionada y tomando decisiones sobre su aprobación o rechazo.
 
-**[Launch Live Preview](https://startbootstrap.github.io/startbootstrap-sb-admin-2/)**
+- Asignación de prioridades: Los usuarios tienen la posibilidad de asignar un nivel de prioridad a cada incidente, permitiendo una clasificación según su importancia y urgencia.
 
-## Status
+- Seguimiento de incidentes: Se ofrece a los usuarios la capacidad de realizar un seguimiento del estado de los incidentes reportados. Una vez que un incidente es aprobado, se puede consultar en qué estado se encuentra, lo que facilita su gestión y resolución.
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/StartBootstrap/startbootstrap-sb-admin-2/master/LICENSE)
-[![npm version](https://img.shields.io/npm/v/startbootstrap-sb-admin-2.svg)](https://www.npmjs.com/package/startbootstrap-sb-admin-2)
-[![Build Status](https://travis-ci.org/StartBootstrap/startbootstrap-sb-admin-2.svg?branch=master)](https://travis-ci.org/StartBootstrap/startbootstrap-sb-admin-2)
-[![dependencies Status](https://david-dm.org/StartBootstrap/startbootstrap-sb-admin-2/status.svg)](https://david-dm.org/StartBootstrap/startbootstrap-sb-admin-2)
-[![devDependencies Status](https://david-dm.org/StartBootstrap/startbootstrap-sb-admin-2/dev-status.svg)](https://david-dm.org/StartBootstrap/startbootstrap-sb-admin-2?type=dev)
+- Generación de informes: El sistema permite a los usuarios generar informes detallados sobre los incidentes reportados y su resolución, proporcionando una visión global de la situación.
 
-## Download and Installation
+- Recuperación de contraseña: Se ha implementado un proceso para que los usuarios puedan recuperar su contraseña, validando la propiedad de la cuenta mediante el uso de su número de teléfono celular o correo electrónico.
 
-To begin using this template, choose one of the following options to get started:
 
-* [Download the latest release on Start Bootstrap](https://startbootstrap.com/theme/sb-admin-2/)
-* Install via npm: `npm i startbootstrap-sb-admin-2`
-* Clone the repo: `git clone https://github.com/StartBootstrap/startbootstrap-sb-admin-2.git`
-* [Fork, Clone, or Download on GitHub](https://github.com/StartBootstrap/startbootstrap-sb-admin-2)
 
-## Usage
+El proyecto fue desarrollado con:
+# Frontend del Proyecto
 
-After installation, run `npm install` and then run `npm start` which will open up a preview of the template in your default browser, watch for changes to core template files, and live reload the browser when changes are saved. You can view the `gulpfile.js` to see which tasks are included with the dev environment.
+El frontend del proyecto ha sido desarrollado utilizando las siguientes tecnologías:
 
-### Gulp Tasks
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![CSS](https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![jQuery](https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white)
+![Bootstrap 5](https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
+![SweetAlert](https://img.shields.io/badge/SweetAlert-8B5CF6?style=for-the-badge&logo=sweetalert&logoColor=white)
 
-* `gulp` the default task that builds everything
-* `gulp watch` browserSync opens the project in your default browser and live reloads when changes are made
-* `gulp css` compiles SCSS files into CSS and minifies the compiled CSS
-* `gulp js` minifies the themes JS file
-* `gulp vendor` copies dependencies from node_modules to the vendor directory
+## Características Principales
 
-You must have npm installed globally in order to use this build environment. This theme was built using node v11.6.0 and the Gulp CLI v2.0.1. If Gulp is not running properly after running `npm install`, you may need to update node and/or the Gulp CLI locally.
+- Interfaz de Usuario Atractiva: El frontend utiliza HTML5, CSS y Bootstrap 5 para crear una interfaz de usuario atractiva y responsive, que se adapta a diferentes dispositivos y tamaños de pantalla.
 
-## Bugs and Issues
+- Funcionalidad Interactiva: El frontend utiliza JavaScript y jQuery para agregar funcionalidad interactiva a la interfaz de usuario, permitiendo a los usuarios interactuar con los incidentes, agregar notas y comentarios, y realizar seguimiento de su estado.
 
-Have a bug or an issue with this template? [Open a new issue](https://github.com/StartBootstrap/startbootstrap-sb-admin-2/issues) here on GitHub or leave a comment on the [template overview page at Start Bootstrap](https://startbootstrap.com/theme/sb-admin-2/).
+- Validación de Formularios: Se utiliza JavaScript para validar los formularios de registro de incidentes y recuperación de contraseñas, asegurando que se ingresen los datos requeridos y que cumplan con ciertos criterios.
 
-## About
+- Alertas y Notificaciones: Se utiliza SweetAlert para mostrar alertas y notificaciones de una manera atractiva y amigable para el usuario, como confirmaciones de acciones, mensajes de éxito o error, y avisos importantes.
 
-Start Bootstrap is an open source library of free Bootstrap templates and themes. All of the free templates and themes on Start Bootstrap are released under the MIT license, which means you can use them for any purpose, even for commercial projects.
+## Proceso de Instalación y Ejecución
 
-* <https://startbootstrap.com>
-* <https://twitter.com/SBootstrap>
+Sigue los pasos a continuación para instalar y ejecutar el proyecto frontend:
 
-Start Bootstrap was created by and is maintained by **[David Miller](https://davidmiller.io/)**.
+1. Clona este repositorio en tu máquina local utilizando el siguiente comando:
 
-* <https://davidmiller.io>
-* <https://twitter.com/davidmillerhere>
-* <https://github.com/davidtmiller>
+   ```bash
+   git clone https://github.com/cquintero99/incidentes_frontend.git
+   ```
+2. Abre el proyecto en tu entorno de desarrollo preferido, como Visual Studio Code, Sublime Text o cualquier otro editor de código.
 
-Start Bootstrap is based on the [Bootstrap](https://getbootstrap.com/) framework created by [Mark Otto](https://twitter.com/mdo) and [Jacob Thorton](https://twitter.com/fat).
+3. Abre el archivo index.html en tu navegador web para visualizar el proyecto frontend.
 
-## Copyright and License
+4. Si es necesario, modifica los archivos HTML, CSS o JavaScript según tus necesidades para personalizar el frontend del proyecto.
 
-Copyright 2013-2021 Start Bootstrap LLC. Code released under the [MIT](https://github.com/StartBootstrap/startbootstrap-resume/blob/master/LICENSE) license.
+5. Guarda los cambios y actualiza la página en tu navegador para ver los cambios reflejados.
+
+6. ¡Listo! Ahora puedes interactuar con el proyecto frontend y utilizar sus funcionalidades.
+
+Recuerda que este proyecto frontend depende del backend del sistema de gestión de incidentes para funcionar correctamente. Asegúrate de tener el backend correctamente configurado y en ejecución antes de utilizar el frontend.
+
+## Requisitos del Sistema
+- Navegador web actualizado (Google Chrome, Mozilla Firefox, etc.).
+- Conexión a Internet para cargar las librerías externas y recursos necesarios.
+
+## Dependencias
+
+El frontend utiliza las siguientes dependencias y librerías externas:
+
+- Bootstrap 5: Framework CSS utilizado para estilizar el sitio web y proporcionar un diseño responsive.
+
+- SweetAlert: Librería JavaScript utilizada para mostrar alertas y notificaciones interactivas.
+
+Asegúrate de incluir estas dependencias en tu proyecto y de tener acceso a los archivos CSS y JavaScript correspondientes.
+
+
+
