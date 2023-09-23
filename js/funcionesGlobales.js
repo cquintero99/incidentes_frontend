@@ -1,6 +1,5 @@
 //CONEXION CON EL BACKEND 
-const urlBasic = "https://incidentesbackend-production.up.railway.app"
-
+const urlBasic = "http://localhost:8080"
 /**
  * Actualiza el nombre del usuario en el elemento HTML correspondiente.
  */
@@ -20,20 +19,13 @@ try {
   btnSalir.addEventListener('click', () => {
       localStorage.clear();
       sessionStorage.clear();
-     // window.location.href = "../index.html";
+      window.location.href = "../index.html";
   });
 } catch (error) {
   // Manejo de errores (si corresponde)
 }
-try {
-  const token=localStorage.getItem("token")
-  if(!token){
-    window.location.href = "../index.html";
-  }
-  
-} catch (error) {
-  
-}
+
+
 
 
 

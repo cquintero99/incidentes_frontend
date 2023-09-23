@@ -3,7 +3,7 @@
 const btnRegistrarCuenta = document.getElementById("btnRegistrarCuenta")
 
 async function emailRegistrado(usuario) {
-    const result = await fetch(urlBassic + "/usuario/email/register", {
+    const result = await fetch(urlBasic + "/usuario/email/register", {
         method: 'POST',
         body: JSON.stringify(usuario),
         headers: {
@@ -13,7 +13,7 @@ async function emailRegistrado(usuario) {
     return result;
 }
 async function saveUsuario(usuario) {
-    const result = await fetch(urlBassic + "/usuario/save", {
+    const result = await fetch(urlBasic + "/usuario/save", {
         method: 'POST',
         body: JSON.stringify(usuario),
         headers: {
@@ -26,7 +26,7 @@ async function saveUsuario(usuario) {
     return result
 }
 async function saveIntentoRegistro(intento) {
-    const result = await fetch(urlBassic + "/intento/registro/save", {
+    const result = await fetch(urlBasic + "/intento/registro/save", {
         method: 'POST',
         body: JSON.stringify(intento),
         headers: {
@@ -40,7 +40,7 @@ async function saveIntentoRegistro(intento) {
 }
 async function sendEmailCodio(usuario) {
 
-    const result = await fetch(urlBassic + "/mail/new", {
+    const result = await fetch(urlBasic + "/mail/new", {
         method: 'POST',
         body: JSON.stringify(usuario),
         headers: {

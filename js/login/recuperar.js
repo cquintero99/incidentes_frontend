@@ -1,7 +1,7 @@
 const btnR = document.getElementById("btnR")
 
 async function enviarEmailRecuperarPassword(usuario) {
-    const result = await fetch(urlBassic+"/mail/cambio", {
+    const result = await fetch(urlBasic+"/mail/cambio", {
         method: 'POST',
         body: JSON.stringify(usuario),
         headers: {
@@ -14,7 +14,7 @@ async function enviarEmailRecuperarPassword(usuario) {
     return result;
 }
 async function enviarIntentoRecuperarPassword(usuario) {
-    const result = await fetch(urlBassic+"/intento/password/recuperar", {
+    const result = await fetch(urlBasic+"/intento/password/recuperar", {
         method: 'POST',
         body: JSON.stringify(usuario),
         headers: {
@@ -27,7 +27,7 @@ async function enviarIntentoRecuperarPassword(usuario) {
     return result;
 }
 async function usuarioUpdatePassword(usuario) {
-    const result = await fetch(urlBassic+"/usuario/update/password", {
+    const result = await fetch(urlBasic+"/usuario/update/password", {
         method: 'POST',
         body: JSON.stringify(usuario),
         headers: {
@@ -49,9 +49,11 @@ function btnRE() {
         const usuario = {
             email: email
         }
+        console.log(usuario)
         emailRegistrado(usuario)
             .then(res => res.json())
             .then(data => {
+                console.log(data)
                 if (data == true) {
                     mostrarSpinner()
                     enviarEmailRecuperarPassword(usuario)
@@ -123,16 +125,16 @@ function validarCodigo() {
 
         }
 
-        if (n <= 3) {
+        if (Number(n) <= 3) {
 
             numeroIntentos.innerHTML = `<div class="alert alert-primary" role="alert">
              Numero Intento ${n}
            </div>`
             sessionStorage.setItem("num", Number(n) + 1)
-            if(n==3){
-                document.getElementById("validarBtn").remove()
-            sessionStorage.clear()
-            }
+            // if(n==3){
+            //     document.getElementById("validarBtn").remove()
+            // sessionStorage.clear()
+            // }
         } else if(n>3) {
             document.getElementById("validarBtn").remove()
             sessionStorage.clear()
@@ -195,6 +197,7 @@ function validarCodigo() {
             ocultarSpinner()
         })
     } else {
+        ocultarSpinner()
         // El valor no tiene 6 dígitos
         codigoError.textContent="El codigo no es válido. Debe contener 6 dígitos."
         console.log("El valor no es válido. Debe contener 6 dígitos.");

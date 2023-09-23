@@ -80,12 +80,11 @@ try {
         const textoSeleccionado = selectEstados.options[selectEstados.selectedIndex].text;
         const array = JSON.parse(sessionStorage.getItem("incidentesU"))
         //console.log(textoSeleccionado)
-        const newLista = array.filter(item => item.estados.some(e => e.nombre === textoSeleccionado));
         const arrayReturn = []
         for (let i = 0; i < array.length; i++) {
             
             if (array[i].estados[array[i].estados.length - 1].nombre == textoSeleccionado) {
-                console.log(array[i].estados[array[i].estados.length - 1].nombre)
+                
                 arrayReturn.push(array[i])
             }
 

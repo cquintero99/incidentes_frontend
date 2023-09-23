@@ -1,7 +1,8 @@
 //URL BACKEND
-const urlBassic = "https://incidentesbackend-production.up.railway.app"
+//const urlBassic = "https://incidentesbackend-production.up.railway.app"
 //
 //ALERT LOGIN
+
 const alertLogin = document.getElementById("alertLogin")
 //ALERT INPUT EMAIL
 const emailError = document.getElementById("emailError");
@@ -9,7 +10,7 @@ const emailError = document.getElementById("emailError");
 const passwordError = document.getElementById("passwordError");
 
 async function emailRegistrado(usuario) {
-  const result = await fetch(urlBassic + "/usuario/email/register", {
+  const result = await fetch(urlBasic + "/usuario/email/register", {
     method: 'POST',
     body: JSON.stringify(usuario),
     headers: {
@@ -20,7 +21,7 @@ async function emailRegistrado(usuario) {
 }
 async function usuarioModuloRegistrado(usuario) {
   let modulo = localStorage.getItem("modulo")
-  const result = await fetch(urlBassic + "/rol/usuario/" + modulo, {
+  const result = await fetch(urlBasic + "/rol/usuario/" + modulo, {
     method: 'POST',
     body: JSON.stringify(usuario),
     headers: {
@@ -32,7 +33,7 @@ async function usuarioModuloRegistrado(usuario) {
 
 
 async function iniciarSecion(usuario) {
-  const result = await fetch(urlBassic + "/user/login", {
+  const result = await fetch(urlBasic + "/user/login", {
     method: 'POST',
     body: JSON.stringify(usuario),
     headers: {
