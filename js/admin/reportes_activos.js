@@ -117,30 +117,37 @@ function actualizarEstado() {
             cancelButtonColor: '#d33',
             confirmButtonText: 'Actualizar'
         }).then((result) => {
-            const incidenteEstado = {
-                incidenteId,
-                estadoId: selectedOption
-            };
-            saveNewEstadoActivo(incidenteEstado)
-                .then(response => response.json())
-                .then(data => {
-                    let modalElement = document.getElementById('staticBackdrop3');
-                    let modalInstance = bootstrap.Modal.getInstance(modalElement);
-                    modalInstance.hide();
-                    if (result.isConfirmed) {
+            
+            if (result.isConfirmed) {
+                mostrarSpinner()
+                const incidenteEstado = {
+                    incidenteId,
+                    estadoId: selectedOption
+                };
+                saveNewEstadoActivo(incidenteEstado)
+                    .then(response => response.json())
+                    .then(data => {
                         Swal.fire(
                             '¡Actualizado!',
                             'El estado del incidente se ha actualizado.',
                             'success'
                         );
-                    }
-                })
-                .catch(err => {
-                    console.log(err);
-                })
-                .finally(final => {
-                    verListaIncidentesActivos();
-                });
+                        ocultarSpinner()
+                        let modalElement = document.getElementById('staticBackdrop3');
+                        let modalInstance = bootstrap.Modal.getInstance(modalElement);
+                        modalInstance.hide();
+                        
+                        
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
+                    .finally(final => {
+                        verListaIncidentesActivos();
+                    });
+                
+            }
+            
 
         });
     } else {
@@ -158,7 +165,6 @@ try {
     modal.addEventListener('show.bs.modal', function () {
         // Mostrar el mensaje deseado
         estadosIncidentesActivos()
-        // Puedes reemplazar "console.log" con cualquier otra función o código para mostrar el mensaje en la forma deseada
     });
 
     // Obtener el botón de cierre del modal por su clase
@@ -178,6 +184,7 @@ try {
  * estadosIncidentesActivos - Función que obtiene los estados de incidentes activos y los agrega a un elemento select en el DOM.
  */
 function estadosIncidentesActivos() {
+    mostrarSpinner()
     // Vaciar el contenido del elemento select
     let selectEstados = document.getElementById("estadosActivos")
     selectEstados.innerHTML = "";
@@ -230,9 +237,11 @@ function estadosIncidentesActivos() {
                 });
         })
         .catch(err => {
+            ocultarSpinner()
             console.log(err);
         })
         .finally(final => {
+            ocultarSpinner()
             // Realizar acciones finales después de completar la obtención de datos de los estados
             // auxEstadosFecha();
         });

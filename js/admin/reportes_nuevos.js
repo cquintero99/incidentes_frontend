@@ -53,11 +53,12 @@ async function listaIncidentesEstadoReportado() {
  * Carga las opciones de prioridad en un elemento select del formulario.
  */
 function cargarPrioridadesEvaluar() {
+    const selectPrioridad = document.getElementById('selectPrioridad');
     listaPrioridad()
         .then(response => response.json())
         .then(prioridades => {
             // Elemento select
-            const selectPrioridad = document.getElementById('selectPrioridad');
+            
 
             // Agregar opciones al select
             prioridades.forEach(prioridad => {
@@ -112,6 +113,7 @@ function verIncidentesActivos() {
 
 
 function evaluarIncidente(estado) {
+    mostrarSpinner()
     let selectElement = document.getElementById("selectPrioridad");
     let selectedOption = selectElement.value;
     let errorElement = document.getElementById("errorMensaje");
@@ -134,6 +136,7 @@ function evaluarIncidente(estado) {
             .then(res => res.json())
             .then(data => {
                 if (data == true) {
+                    ocultarSpinner()
                     verIncidentesActivos()
                     //Cerrar modal
                     let modalElement = document.getElementById('staticBackdrop3');
@@ -150,6 +153,7 @@ function evaluarIncidente(estado) {
                 }
             })
             .catch(err => {
+                ocultarSpinner()
                 console.log(err)
             })
             .finally(final => {
@@ -158,6 +162,7 @@ function evaluarIncidente(estado) {
 
         // Realizar las acciones correspondientes al aceptar o rechazar el incidente
     } else {
+        ocultarSpinner()
         // No se ha seleccionado ninguna opción
         errorElement.textContent = "Por favor, seleccione una prioridad antes de continuar.";
 
