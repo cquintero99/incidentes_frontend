@@ -80,6 +80,21 @@ async function descargarPDF(id){
     return result;
   
 }
+async function descargarInformePDF(informe){
+  
+  let token=localStorage.getItem("token")
+    const result=await fetch(urlBasic+"/generar/listado/pdf",{
+      method:'POST',
+      body:JSON.stringify(informe),
+      headers:{
+        'Content-Type': 'application/json', // Asegúrate de que coincida con el tipo de medio esperado en el servidor
+ 
+        "Authorization":"Bearer "+token
+      }
+    })
+    return result;
+  
+}
  function generarPDF(){
     mostrarSpinner()
     let id=sessionStorage.getItem("incidenteId")
@@ -93,7 +108,6 @@ async function descargarPDF(id){
       a.download = 'incidente'+id+'.pdf';
       document.body.appendChild(a);
       a.click();
-      
     })
     .catch(err=>{
       console.log(err)
@@ -103,6 +117,39 @@ async function descargarPDF(id){
       ocultarSpinner()
     })
     
+
+}
+
+function generarInforme(){
+  mostrarSpinner()
+  let fechaInicio=document.getElementById("fechaInicio").value;
+  let fechaFin=document.getElementById("fechaFin").value;
+  console.log(fechaInicio+"  "+fechaFin)
+
+  const informe={
+    fechaInicio,
+    fechaFin
+  }
+  descargarInformePDF(informe)
+  .then(res=>res.blob())
+    .then(blob=>{
+      console.log(blob)
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'informe.pdf';
+      document.body.appendChild(a);
+      a.click();
+      
+      $('#staticBackdropInforme').modal('hide'); // Cierra el modal
+    })
+    .catch(err=>{
+      console.log(err)
+      ocultarSpinner()
+    })
+    .finally(final=>{
+      ocultarSpinner()
+    })
 
 }
 

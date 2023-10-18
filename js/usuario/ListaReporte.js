@@ -400,7 +400,7 @@ function fechaDeLosEstado() {
 
             // Procesar los datos de los estados del incidente
             for (let i = 0; i < data.length; i++) {
-                console.log("Id Estado: " + data[i].estadoId);
+                //console.log("Id Estado: " + data[i].estadoId);
 
                 // Obtener la fecha del registro y ajustarla a la zona horaria de Colombia (UTC-5)
                 let fecha = new Date(data[i].fechaRegistro);

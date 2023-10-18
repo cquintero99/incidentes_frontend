@@ -21,6 +21,18 @@ async function saveIncidente(incidente) {
 
 
 
+document.getElementById('evidencia').addEventListener('change', function() {
+    const fileInput = this;
+    const fileNames = document.getElementById('fileNames');
+    fileNames.innerHTML = ''; // Limpia cualquier contenido previo
+
+    for (let i = 0; i < fileInput.files.length; i++) {
+        const fileName = fileInput.files[i].name;
+        const fileNameElement = document.createElement('p');
+        fileNameElement.textContent = fileName;
+        fileNames.appendChild(fileNameElement);
+    }
+});
 
 
 /**
