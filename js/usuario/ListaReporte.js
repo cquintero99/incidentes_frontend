@@ -171,7 +171,7 @@ function cargarPrioridades() {
 function verIncidentes() {
     try {
         const urlParams = new URLSearchParams(window.location.search);
-      
+
 
 
         // Obtener el valor del parámetro "estado"
@@ -185,11 +185,11 @@ function verIncidentes() {
             .then(array => {
                 //Guardo la lista de incidentes en la session 
                 sessionStorage.setItem("incidentesU", JSON.stringify(array))
-                if (textoSeleccionado == null ) {
+                if (textoSeleccionado == null) {
 
                     mostrarListadoIncidentes(array)
                 } else {
-                    
+
                     const newLista = array.filter(item => item.estados.some(e => e.nombre === textoSeleccionado));
                     const arrayReturn = []
                     for (let i = 0; i < array.length; i++) {
@@ -201,7 +201,7 @@ function verIncidentes() {
                     menuFiltroEstado.textContent = textoSeleccionado
                     mostrarListadoIncidentes(arrayReturn)
                     console.log("ESTADOSS " + textoSeleccionado)
-                   
+
 
                 }
             })
@@ -329,6 +329,117 @@ function mostrarListadoIncidentes(data) {
  * @param {string} id - ID del incidente seleccionado.
  */
 
+async function downloadEvidencia(id, key) {
+    let token = localStorage.getItem("token")
+    const result = await fetch(urlBasic + "/evidencia/download/" + id + "?key=" + key, {
+        headers: {
+            "Authorization": "Bearer " + token
+        }
+    })
+    return result;
+}
+
+async function listadoEvidencia(id) {
+    let token = localStorage.getItem("token")
+
+    const result = await fetch(urlBasic + "/evidencia/" + id, {
+
+        headers: {
+            "Authorization": "Bearer " + token
+        }
+    })
+    return result;
+
+}
+
+function listaEvidencias(id) {
+    let evidenciaIncidenteI = document.getElementById("evidenciaIncidenteI")
+    let body = ""
+    listadoEvidencia(id)
+        .then(res => res.json())
+        .then(data => {
+
+
+            data.forEach(evidencia => {
+                body += `
+        <div class="col-6"><p  >
+            <span class="icon text-white-50" onclick="downloadEvidencias(${evidencia.id},'${evidencia.nombre}')">
+                <i class="fas fa-download fa-sm text-danger"></i>
+            </span>
+            <span class="text">${evidencia.nombre.split("_")[1]}</span> 
+            <span class="icon text-white-50" onclick="verEvidencias(${evidencia.id},'${evidencia.nombre}')">
+            <i class="fa fa-eye fa-sm text-primary" ></i>
+            </span>
+            
+            </p></div>`
+            });
+            evidenciaIncidenteI.innerHTML = body;
+        })
+}
+
+function verEvidencias(id,key){
+    const ext = key.split('.').pop().toLowerCase();
+    if (ext === 'jpg' || ext === 'jpeg' || ext === 'png' || ext === 'gif') {
+        mostrarSpinner()
+    downloadEvidencia(id, key)
+        .then(response => response.blob())
+        .then(blob => {
+            ocultarSpinner()
+                 // Para imágenes, abre una nueva ventana y muestra la imagen
+                 const nuevaVentana = window.open('', '_blank');
+ 
+                 if (nuevaVentana) {
+                     const urlImagen = URL.createObjectURL(blob);
+                     nuevaVentana.document.write(`<img src="${urlImagen}" alt="Evidencia" />`);
+                 } else {
+                     console.log('El bloqueo de ventanas emergentes puede estar activado en el navegador.');
+                 }
+             
+           
+        })
+        .catch(err=>{
+            console.log()
+        })
+        .finally(final=>{
+            ocultarSpinner()
+        })
+    }else{
+        Swal.fire(
+            'Upss',
+            'Solo se pueden visualizar imagenes!',
+            'info'
+        );
+    }
+    
+
+   
+
+}
+function downloadEvidencias(id, key) {
+    mostrarSpinner()
+    downloadEvidencia(id, key)
+        .then(response => response.blob())
+        .then(blob => {
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.href = url;
+            link.setAttribute("download", key.split("_")[1]);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+            ocultarSpinner()
+        })
+        .catch(err=>{
+            console.log()
+        })
+        .finally(final=>{
+            ocultarSpinner()
+        })
+
+    
+}
+
 function datosIncidente(id) {
 
     // Obtengo la lista de incidentes del usuario
@@ -382,7 +493,9 @@ function datosIncidente(id) {
 
             }
             estadosIncidente.innerHTML = body;
+            listaEvidencias(id)
             fechaDeLosEstado()
+
         }
     }
 

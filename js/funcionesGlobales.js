@@ -17,9 +17,9 @@ try {
 try {
   const btnSalir = document.getElementById("btnSalir");
   btnSalir.addEventListener('click', () => {
-      localStorage.clear();
-      sessionStorage.clear();
-      window.location.href = "../index.html";
+    localStorage.clear();
+    sessionStorage.clear();
+    window.location.href = "../index.html";
   });
 } catch (error) {
   // Manejo de errores (si corresponde)
@@ -54,112 +54,139 @@ function salir() {
   alert("salir");
 }
 
-function cargarDatosPerfil(){
-  const persona=JSON.parse(localStorage.getItem("data"))
-  
+function cargarDatosPerfil() {
+  const persona = JSON.parse(localStorage.getItem("data"))
+
   let fechaR = persona.fechaNacimiento
-        const fecha = new Date(fechaR);
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        const fechaFormateada = fecha.toLocaleDateString('es-ES', options);
-  document.getElementById("nombres").textContent=persona.nombre+" "+persona.apellido
-  document.getElementById("cedula").textContent=persona.cedula
-  document.getElementById("email").textContent=persona.sub
-  document.getElementById("genero").textContent=persona.genero
-  document.getElementById("fechaNacimiento").textContent=fechaFormateada
+  const fecha = new Date(fechaR);
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  const fechaFormateada = fecha.toLocaleDateString('es-ES', options);
+  document.getElementById("nombres").textContent = persona.nombre + " " + persona.apellido
+  document.getElementById("cedula").textContent = persona.cedula
+  document.getElementById("email").textContent = persona.sub
+  document.getElementById("genero").textContent = persona.genero
+  document.getElementById("fechaNacimiento").textContent = fechaFormateada
 }
 
 
-async function descargarPDF(id){
-  
-  let token=localStorage.getItem("token")
-    const result=await fetch(urlBasic+"/generar/pdf/"+id,{
-      headers:{
-        "Authorization":"Bearer "+token
-      }
-    })
-    return result;
-  
-}
-async function descargarInformePDF(informe){
-  
-  let token=localStorage.getItem("token")
-    const result=await fetch(urlBasic+"/generar/listado/pdf",{
-      method:'POST',
-      body:JSON.stringify(informe),
-      headers:{
-        'Content-Type': 'application/json', // Asegúrate de que coincida con el tipo de medio esperado en el servidor
- 
-        "Authorization":"Bearer "+token
-      }
-    })
-    return result;
-  
-}
- function generarPDF(){
-    mostrarSpinner()
-    let id=sessionStorage.getItem("incidenteId")
-    descargarPDF(id)
-    .then(res=>res.blob())
-    .then(blob=>{
-      console.log("descarga"+blob)
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'incidente'+id+'.pdf';
-      document.body.appendChild(a);
-      a.click();
-    })
-    .catch(err=>{
-      console.log(err)
-      ocultarSpinner()
-    })
-    .finally(final=>{
-      ocultarSpinner()
-    })
-    
+async function descargarPDF(id) {
+
+  let token = localStorage.getItem("token")
+  const result = await fetch(urlBasic + "/generar/pdf/" + id, {
+    headers: {
+      "Authorization": "Bearer " + token
+    }
+  })
+  return result;
 
 }
+async function descargarInformePDF(informe) {
 
-function generarInforme(){
+  let token = localStorage.getItem("token")
+  const result = await fetch(urlBasic + "/generar/listado/pdf", {
+    method: 'POST',
+    body: JSON.stringify(informe),
+    headers: {
+      'Content-Type': 'application/json', // Asegúrate de que coincida con el tipo de medio esperado en el servidor
+
+      "Authorization": "Bearer " + token
+    }
+  })
+  return result;
+
+}
+function generarPDF() {
   mostrarSpinner()
-  let fechaInicio=document.getElementById("fechaInicio").value;
-  let fechaFin=document.getElementById("fechaFin").value;
-  console.log(fechaInicio+"  "+fechaFin)
-
-  const informe={
-    fechaInicio,
-    fechaFin
-  }
-  descargarInformePDF(informe)
-  .then(res=>res.blob())
-    .then(blob=>{
-      console.log(blob)
+  let id = sessionStorage.getItem("incidenteId")
+  descargarPDF(id)
+    .then(res => res.blob())
+    .then(blob => {
+      console.log("descarga" + blob)
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = 'informe.pdf';
+      a.download = 'incidente' + id + '.pdf';
       document.body.appendChild(a);
       a.click();
-      
-      $('#staticBackdropInforme').modal('hide'); // Cierra el modal
     })
-    .catch(err=>{
+    .catch(err => {
       console.log(err)
       ocultarSpinner()
     })
-    .finally(final=>{
+    .finally(final => {
       ocultarSpinner()
     })
 
+
 }
 
-function cargarDescripcion(){
-    listaCategoria()
-    .then(response=>response.json())
-    .then(data=>{
-      let body=""
+function validarFecha() {
+  const fechaInicio = document.getElementById("fechaInicio").value;
+  const fechaFin = document.getElementById("fechaFin").value;
+  const fechaInicioError = document.getElementById("fechaInicioError")
+  const fechaFinError = document.getElementById("fechaFinError")
+  let valido = true;
+  if (fechaInicio === "") {
+    valido = false
+    fechaInicioError.innerHTML = "Seleccione una fecha Inicio"
+  } else {
+    fechaInicioError.innerHTML = ""
+  }
+
+  if (fechaFin === "") {
+    valido = false
+    fechaFinError.innerHTML = "Seleccione una fecha Fin"
+  } else {
+    fechaFinError.innerHTML = ""
+  }
+  return valido;
+}
+
+function generarInforme() {
+
+
+  if (validarFecha()) {
+    mostrarSpinner()
+    let fechaInicio = document.getElementById("fechaInicio").value;
+    let fechaFin = document.getElementById("fechaFin").value;
+    console.log(fechaInicio + "  " + fechaFin)
+
+    const informe = {
+      fechaInicio,
+      fechaFin
+    }
+
+    descargarInformePDF(informe)
+      .then(res => res.blob())
+      .then(blob => {
+        console.log(blob)
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'informe.pdf';
+        document.body.appendChild(a);
+        a.click();
+
+        $('#staticBackdropInforme').modal('hide'); // Cierra el modal
+      })
+      .catch(err => {
+        console.log(err)
+        ocultarSpinner()
+      })
+      .finally(final => {
+        ocultarSpinner()
+      })
+  }
+
+}
+
+function cargarDescripcion() {
+  listaCategoria()
+    .then(response => response.json())
+    .then(data => {
+      let body = ""
       for (let i = 0; i < data.length; i++) {
-        body+=` <li class="list-group-item d-flex justify-content-between align-items-start">
+        body += ` <li class="list-group-item d-flex justify-content-between align-items-start">
         <div class="ms-2 me-auto">
           <div class="fw-bold  text-primary">${data[i].nombre} </div>
           
@@ -168,22 +195,22 @@ function cargarDescripcion(){
         <span class="badge border border-info rounded-pill text-primary">ID :${data[i].id}</span>
       </li>
       `
-        
+
       }
-      document.getElementById("listaCategoriasIncidente").innerHTML=body;
+      document.getElementById("listaCategoriasIncidente").innerHTML = body;
     })
-    .catch(err=>{
+    .catch(err => {
       console.log(err)
     })
-    .finally(final=>{
+    .finally(final => {
 
     })
-    listaEstados()
-    .then(response=>response.json())
-    .then(data=>{
-      let body2=""
+  listaEstados()
+    .then(response => response.json())
+    .then(data => {
+      let body2 = ""
       for (let i = 0; i < data.length; i++) {
-        body2+=` <li class="list-group-item d-flex justify-content-center align-items-start">
+        body2 += ` <li class="list-group-item d-flex justify-content-center align-items-start">
         <div class="ms-2 me-auto">
           <div class="fw-bold  text-primary">${data[i].nombre} 
           </div>
@@ -193,14 +220,14 @@ function cargarDescripcion(){
         <span class="badge border border-info rounded-pill text-primary">ID :${data[i].id}</span>
       </li>
       `
-        
+
       }
-      document.getElementById("listaEstadosIncidente").innerHTML=body2;
+      document.getElementById("listaEstadosIncidente").innerHTML = body2;
     })
-    .catch(err=>{
+    .catch(err => {
       console.log(err)
     })
-    .finally(final=>{
+    .finally(final => {
 
     })
-  }
+}

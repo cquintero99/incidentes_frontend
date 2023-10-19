@@ -19,9 +19,62 @@ async function saveIncidente(incidente) {
     return result;
 }
 
+async function saveEvidencia(id, evidencia) {
+    let token = localStorage.getItem("token");
+    const result = await fetch(urlBasic + "/evidencia/upload/" + id, {
+        method: 'POST',
+        body: evidencia,
+        headers: {
+            "Authorization": "Bearer " + token
+        }
+    })
+    return result;
+}
 
 
-document.getElementById('evidencia').addEventListener('change', function() {
+async function uploadEvidencia(id) {
+    // Obtener una referencia al elemento input de tipo file
+    const inputElement = document.getElementById('evidencia'); // Asegúrate de que 'evidencia' sea el ID correcto
+
+    // Obtener los archivos seleccionados
+    const files = Array.from(inputElement.files);
+
+
+
+
+    const savePromises = files.map((file) => {
+        const formDataFile = new FormData();
+        formDataFile.append("file", file);
+        return saveEvidencia(id, formDataFile);
+    });
+
+    Promise.all(savePromises)
+        .then((responses) => {
+            // Verificar si todas las respuestas son exitosas (200)
+            const allResponsesOk = responses.every((response) => response.ok);
+
+            if (allResponsesOk) {
+                document.getElementById("fileNames").innerHTML=""
+                ocultarSpinner()
+                 Swal.fire(
+                        'Reporte Creado!',
+                        'El reporte se envió con éxito!',
+                        'success'
+                    );
+            } else {
+                alert("No guardo evidencia")
+            }
+        })
+        .catch(err => {
+            ocultarSpinner()
+            console.log(err)
+        })
+
+}
+
+
+
+document.getElementById('evidencia').addEventListener('change', function () {
     const fileInput = this;
     const fileNames = document.getElementById('fileNames');
     fileNames.innerHTML = ''; // Limpia cualquier contenido previo
@@ -41,18 +94,19 @@ document.getElementById('evidencia').addEventListener('change', function() {
 function newReporte() {
     // Obtener los valores de los 
     if (validarDatos()) {
-    Swal.fire({
-        title: 'Enviar Reporte?',
-        text: "Verifica que toda la informacion este correcta, ya  no podras hacer ninguna modificacion ! ",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Enviar'
-      }).then((result) => {
-        mostrarSpinner();
+        Swal.fire({
+            title: 'Enviar Reporte?',
+            text: "Verifica que toda la informacion este correcta, ya  no podras hacer ninguna modificacion ! ",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Enviar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+            mostrarSpinner();
 
-        
+
             let categoria = document.getElementById('categoria').value;
             let titulo = document.getElementById('titulo').value;
             let descripcion = document.getElementById('descripcion').value;
@@ -60,7 +114,7 @@ function newReporte() {
             let lugar = document.getElementById('lugar').value;
             let evidencia = document.getElementById('evidencia').value;
             let usuarioId = JSON.parse(localStorage.getItem("data")).id;
-    
+
             const reporte = {
                 categoriaId: {
                     id: categoria
@@ -72,19 +126,16 @@ function newReporte() {
                 lugar,
                 evidencia: ""
             };
-    
+
             console.log(reporte);
-    
+
             saveIncidente(reporte)
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);
-                    Swal.fire(
-                        'Reporte Creado!',
-                        'El reporte se envió con éxito!',
-                        'success'
-                    );
-    
+                    uploadEvidencia(data.id)
+                   
+
                     // Limpiar los campos después de enviar el reporte
                     document.getElementById('categoria').value = "";
                     document.getElementById('titulo').value = "";
@@ -98,14 +149,14 @@ function newReporte() {
                     ocultarSpinner();
                 })
                 .finally(final => {
-                    ocultarSpinner();
+                    //  ocultarSpinner();
                 });
-        
-      })
+            }
+        })
     } else {
         ocultarSpinner();
     }
-   
+
 }
 
 /**
