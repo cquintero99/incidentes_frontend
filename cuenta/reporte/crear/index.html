@@ -182,7 +182,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Categoria</label>
-                                <select class="form-select" id="categoria" style="max-width: 500px;"
+                                <select class="form-select" id="categoria" style="max-width: 100%;"
                                     aria-label="Default select example" required>
                                     <option selected disabled>Seleccione una Categoria</option>
 
@@ -203,24 +203,32 @@
                                     required></textarea>
                                 <span id="descripcionError" class="text-danger"></span>
                             </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Fecha y Hora exacta:</label>
-                                <input type="datetime-local" style="max-width:500px" class="form-control" id="fecha"
-                                    required>
-                                <span id="fechaError" class="text-danger"></span>
-                            </div>
+                            
                             <div class="mb-3">
                                 <label for="formGroupExampleInput2" class="form-label">Lugar del Incidente</label>
                                 <input type="text" class="form-control" id="lugar"
                                     placeholder="Universidad en la biblioteca" required>
                                 <span id="lugarError" class="text-danger"></span>
                             </div>
-                            <div class="mb-3">
-                                <label for="formGroupExampleInput" class="form-label">Evidencia</label>
-                                <input type="file" class="form-control" style="max-width:500px" id="evidencia" required multiple>
-                                <span id="evidenciaError" class="text-danger"></span>
-                                <div id="fileNames"></div>
-                            </div>
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <div class="mb-3">
+                                        <label for="formGroupExampleInput" class="form-label"> </label>
+                                        <input type="file" class="form-control" style="max-width:500px" id="evidencia" required multiple>
+                                        <span id="evidenciaError" class="text-danger"></span>
+                                        <div id="fileNames"></div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Fecha y Hora exacta:</label>
+                                        <input type="datetime-local" style="max-width:500px" class="form-control" id="fecha"
+                                            required>
+                                        <span id="fechaError" class="text-danger"></span>
+                                    </div>
+                                </div>
+                              </div>
+                           
 
                             <div class="text-center">
                                 <div class="my-2"></div>

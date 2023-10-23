@@ -262,54 +262,61 @@ function mostrarListadoIncidentes(data) {
             // Obtener la fecha local de Colombia
 
             body += `
-        <div class="card mb-4 py-3 border-info">
-    <div class="card-body">
-    <div class="card-header  text-center" style="background-color:aliceblue;">
-    
-    <h3 class="text-uppercase fw-bold fs-6 ">Título : ${data[i].titulo} </h3>
-    </div>
-        <div class="card-body">
-            <div class="container text-center">
-            <div class="row align-items-center">
-                    
-                    <div class="col-xl-6 ">
-                        <h3 class="text-uppercase fw-bold fs-6">Categoría</h3>
-                        <p class="fs-6 border">${data[i].categoriaId.nombre}</p>
-                    </div>
-                    
-                    <div class="col-xl-2 ">
-                       
-                        <h3 class="text-uppercase fw-bold fs-6 ">Estado </h3>
-                        
-                        <p class="fs-6 fw-bold border  text-uppercase">${ultimoEstado}</p>
-                    </div>
-                   
-                    <div class="col-xl-2 ">
-                        <h3 class="text-uppercase fw-bold fs-6 ">Prioridad</h3>
-                        <p class="fs-6 border">${data[i].prioridadId.nombre}</p>
-                    </div>
-                    <div class="col-xl-2">
-                        <div class="my-2"></div>
-                        <a href="#" class="btn btn-info btn-icon-split" onclick="datosIncidente('${data[i].id}')">
-                            <span class="icon text-white-50">
-                                <i class="fas fa-info-circle"></i>
-                            </span>
-                            <span class="text" data-bs-toggle="modal" data-bs-target="#staticBackdrop3">Informacion</span>
-                        </a>
-                    </div>
-                </div>
-               
-            </div>
-            
-        </div>
-        <div class="card-footer  text-center" style="background-color:aliceblue;">
-             
-            <h3 class="text-uppercase  fw-bold fs-6"> ${fechaColombia}</h3>
-            
-                    
-             </div>
-    </div>
-</div>
+            <div class="col-xl-12 col-md-6 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                
+                                <div class="card-header  text-center" style="background-color:aliceblue;">
+                                
+                                <h3 class=" font-weight-bold text-black text-uppercase mb-1 fs-6 ">Título : ${data[i].titulo} </h3>
+                                </div>
+                                    <div class="card-body">
+                                        <div class="container text-center">
+                                        <div class="row align-items-center">
+                                                
+                                                <div class="col-xl-6 ">
+                                                    <h3 class="text-uppercase fw-bold fs-6">Categoría</h3>
+                                                    <p class="fs-6 border">${data[i].categoriaId.nombre}</p>
+                                                </div>
+                                                
+                                                <div class="col-xl-2 ">
+                                                   
+                                                    <h3 class="text-uppercase fw-bold fs-6 ">Estado </h3>
+                                                    
+                                                    <p class="fs-6 fw-bold border  text-uppercase">${ultimoEstado}</p>
+                                                </div>
+                                               
+                                                <div class="col-xl-2 ">
+                                                    <h3 class="text-uppercase fw-bold fs-6 ">Prioridad</h3>
+                                                    <p class="fs-6 border">${data[i].prioridadId.nombre}</p>
+                                                </div>
+                                                <div class="col-xl-2">
+                                                    <div class="my-2"></div>
+                                                    <a href="#" class="btn btn-info btn-icon-split" onclick="datosIncidente('${data[i].id}')">
+                                                        <span class="icon text-white-50">
+                                                            <i class="fas fa-info-circle"></i>
+                                                        </span>
+                                                        <span class="text" data-bs-toggle="modal" data-bs-target="#staticBackdrop3">Informacion</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                           
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="card-footer  text-center" style="background-color:aliceblue;">
+                                         
+                                        <h3 class="text-uppercase  fw-bold fs-6"> ${fechaColombia}</h3>
+                                        
+                                                
+                                         </div>
+                                         
+                                </div>
+                            </div>
+                        </div>
+
+
+       
 
 `
 
@@ -361,58 +368,78 @@ function listaEvidencias(id) {
 
 
             data.forEach(evidencia => {
-                body += `
-        <div class="col-6"><p  >
-            <span class="icon text-white-50" onclick="downloadEvidencias(${evidencia.id},'${evidencia.nombre}')">
-                <i class="fas fa-download fa-sm text-danger"></i>
-            </span>
-            <span class="text">${evidencia.nombre.split("_")[1]}</span> 
-            <span class="icon text-white-50" onclick="verEvidencias(${evidencia.id},'${evidencia.nombre}')">
-            <i class="fa fa-eye fa-sm text-primary" ></i>
-            </span>
-            
-            </p></div>`
+                const ext = evidencia.nombre.split('.').pop().toLowerCase();
+                if (ext === 'jpg' || ext === 'jpeg' || ext === 'png' || ext === 'gif') {
+                    body += `
+                    <div class="col-6">
+                        <p>
+                        <span class="icon text-white-50" onclick="downloadEvidencias(${evidencia.id},'${evidencia.nombre}')">
+                            <i class="fas fa-download fa-sm text-danger"></i>
+                        </span>
+                        <span class="text">${evidencia.nombre.split("_")[1]}</span> 
+                        <span class="icon text-white-50" onclick="verEvidencias(${evidencia.id},'${evidencia.nombre}')">
+                        <i class="fa fa-eye fa-sm text-primary" ></i>
+                        </span>
+                        
+                        </p>
+                    </div>`
+                }
+                else {
+                    body += `
+                    <div class="col-6">
+                        <p>
+                        <span class="icon text-white-50" onclick="downloadEvidencias(${evidencia.id},'${evidencia.nombre}')">
+                            <i class="fas fa-download fa-sm text-danger"></i>
+                        </span>
+                        <span class="text">${evidencia.nombre.split("_")[1]}</span> 
+                        
+                        
+                        </p>
+                    </div>`
+                }
+
             });
+
             evidenciaIncidenteI.innerHTML = body;
         })
 }
 
-function verEvidencias(id,key){
+function verEvidencias(id, key) {
     const ext = key.split('.').pop().toLowerCase();
     if (ext === 'jpg' || ext === 'jpeg' || ext === 'png' || ext === 'gif') {
         mostrarSpinner()
-    downloadEvidencia(id, key)
-        .then(response => response.blob())
-        .then(blob => {
-            ocultarSpinner()
-                 // Para imágenes, abre una nueva ventana y muestra la imagen
-                 const nuevaVentana = window.open('', '_blank');
- 
-                 if (nuevaVentana) {
-                     const urlImagen = URL.createObjectURL(blob);
-                     nuevaVentana.document.write(`<img src="${urlImagen}" alt="Evidencia" />`);
-                 } else {
-                     console.log('El bloqueo de ventanas emergentes puede estar activado en el navegador.');
-                 }
-             
-           
-        })
-        .catch(err=>{
-            console.log()
-        })
-        .finally(final=>{
-            ocultarSpinner()
-        })
-    }else{
+        downloadEvidencia(id, key)
+            .then(response => response.blob())
+            .then(blob => {
+                ocultarSpinner()
+                // Para imágenes, abre una nueva ventana y muestra la imagen
+                const nuevaVentana = window.open('', '_blank');
+
+                if (nuevaVentana) {
+                    const urlImagen = URL.createObjectURL(blob);
+                    nuevaVentana.document.write(`<img src="${urlImagen}" alt="Evidencia" />`);
+                } else {
+                    console.log('El bloqueo de ventanas emergentes puede estar activado en el navegador.');
+                }
+
+
+            })
+            .catch(err => {
+                console.log()
+            })
+            .finally(final => {
+                ocultarSpinner()
+            })
+    } else {
         Swal.fire(
             'Upss',
             'Solo se pueden visualizar imagenes!',
             'info'
         );
     }
-    
 
-   
+
+
 
 }
 function downloadEvidencias(id, key) {
@@ -430,14 +457,14 @@ function downloadEvidencias(id, key) {
             URL.revokeObjectURL(url);
             ocultarSpinner()
         })
-        .catch(err=>{
+        .catch(err => {
             console.log()
         })
-        .finally(final=>{
+        .finally(final => {
             ocultarSpinner()
         })
 
-    
+
 }
 
 function datosIncidente(id) {

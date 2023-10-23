@@ -248,6 +248,8 @@ function formCodigo() {
 
 }
 
+var n = 0;
+
 function validarCodigo() {
     mostrarSpinner()
     //alert("validar codigo")
@@ -255,69 +257,55 @@ function validarCodigo() {
     let codigo = document.getElementById("codigo").value
     let email = JSON.parse(localStorage.getItem("newUsuario")).email
     const codigoIntento = document.getElementById("codigoIntento")
-    if(codigo.length>=5){
-    const intento = {
-        codigo
-        , email
-    }
-    try {
-        let n = sessionStorage.getItem("num")
-        console.log(n)
-        if (n == null) {
-            sessionStorage.setItem("num", 1)
-            n = 1
-
+    if (codigo.length >= 5) {
+        n++;
+        const intento = {
+            codigo
+            , email
         }
+        try {
 
-        if (n <= 3) {
 
-            numeroIntentos.innerHTML = `<div class="alert alert-primary" role="alert">
+            if (n <= 3) {
+
+                numeroIntentos.innerHTML = `<div class="alert alert-primary" role="alert">
              Numero Intento ${n}
            </div>`
-            sessionStorage.setItem("num", Number(n) + 1)
+           saveIntentoRegistro(intento)
+           .then(res => res.json())
+           .then(data => {
+               console.log(data)
+               if (data == true) {
+                   registrarUsuario()
+
+               } else {
+                   codigoIntento.textContent = "Codigo Incorrecto"
+               }
+           })
+           .catch(err => {
+               ocultarSpinner()
+               alert(err)
+           })
+           .finally(final => {
+               ocultarSpinner()
+
+           })
+
+            }
+
             if (n == 3) {
                 document.getElementById("validarBtn").remove()
                 sessionStorage.clear()
             }
-        } else if (n > 3) {
-            document.getElementById("validarBtn").remove()
-            sessionStorage.clear()
+
+        } catch (error) {
+            alert("err")
+
         }
 
-    } catch (error) {
-        alert("err")
+        
 
-    }
-    
-    saveIntentoRegistro(intento)
-        .then(res => res.json())
-        .then(data => {
-
-
-
-            console.log(data)
-
-
-
-
-
-            if (data == true) {
-                registrarUsuario()
-
-            } else {
-                codigoIntento.textContent = "Codigo Incorrecto"
-            }
-        })
-        .catch(err => {
-            ocultarSpinner()
-            alert(err)
-        })
-        .finally(final => {
-            ocultarSpinner()
-
-        })
-
-    }else{
+    } else {
         ocultarSpinner()
     }
 
@@ -357,13 +345,13 @@ function registrarUsuario() {
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Iniciar Sesion!'
-              }).then((result) => {
+            }).then((result) => {
                 if (result.isConfirmed) {
-                  entrarLogin(usuario)
+                    entrarLogin(usuario)
                 }
-              })
-            
-            
+            })
+
+
         })
         .catch(err => {
             ocultarSpinner()
