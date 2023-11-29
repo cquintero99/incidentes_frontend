@@ -1,5 +1,6 @@
 //CONEXION CON EL BACKEND 
-const urlBasic = "https://incidentesbackend-production.up.railway.app"
+const urlBasic = "http://localhost:8080"
+//"https://incidentesbackend-production.up.railway.app"
 /**
  * Actualiza el nombre del usuario en el elemento HTML correspondiente.
  */
@@ -25,7 +26,45 @@ try {
   // Manejo de errores (si corresponde)
 }
 
+async function usuarioModuloRegistrado(usuario) {
+  let modulo = localStorage.getItem("modulo")
+  const result = await fetch(urlBasic + "/rol/usuario/" + modulo, {
+    method: 'POST',
+    body: JSON.stringify(usuario),
+    headers: {
+      "Content-type": "application/json"
+    }
+  })
+  return result;
+}
 
+verificarRutaYToken()
+function verificarRutaYToken() {
+  // Obtener la URL actual
+  var rutaActual = window.location.href;
+  console.log(rutaActual)
+  let modulo = localStorage.getItem("modulo")
+
+  // Verificar si la URL contiene la palabra "cuenta"
+  if (rutaActual.includes("cuenta") || rutaActual.includes("admin")) {
+    // Obtener el token (puedes modificar esta parte según cómo almacenes el token)
+    var token = localStorage.getItem("token"); // Debes implementar la función obtenerToken().
+
+    // Verificar si el token es nulo
+    if (token === null) {
+      // Mostrar una alerta
+      //alert("El token es nulo. Por favor, inicia sesión.");
+      window.location.href = "/index.html"
+    } else {
+      if (rutaActual.includes("admin") && modulo !== "admin") {
+        
+        window.location.href = "/cuenta/index.html"
+      } else if (rutaActual.includes("cuenta") && modulo !== "usuario") {
+        window.location.href = "/"+modulo+"/index.html"
+      }
+    }
+  }
+}
 
 
 
