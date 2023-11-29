@@ -68,9 +68,6 @@ function verificarRutaYToken() {
       } else if (rutaActual.includes("cuenta") && modulo !== "usuario") {
         window.location.href = "/incidentes_frontend/"+modulo+"/index.html"
         console.log(rutaActual)
-      }else{
-        window.location.href = "/incidentes_frontend/index.html"
-        console.log(false)
       }
     }
   }else{
