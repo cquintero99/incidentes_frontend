@@ -55,13 +55,13 @@ function verificarRutaYToken() {
     if (token === null) {
       // Mostrar una alerta
       //alert("El token es nulo. Por favor, inicia sesión.");
-      window.location.href = "/index.html"
+      window.location.href = "/incidentes_frontend/index.html"
     } else {
       if (rutaActual.includes("admin") && modulo !== "admin") {
         
-        window.location.href = "/cuenta/index.html"
+        window.location.href = "/incidentes_frontend/cuenta/index.html"
       } else if (rutaActual.includes("cuenta") && modulo !== "usuario") {
-        window.location.href = "/"+modulo+"/index.html"
+        window.location.href = "/incidentes_frontend/"+modulo+"/index.html"
       }
     }
   }
