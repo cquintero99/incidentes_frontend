@@ -1,7 +1,9 @@
 //CONEXION CON EL BACKEND 
 const urlBasic = "https://incidentesbackend-production.up.railway.app"
+
 //"http://localhost:8080"
 //"https://incidentesbackend-production.up.railway.app"
+
 /**
  * Actualiza el nombre del usuario en el elemento HTML correspondiente.
  */
