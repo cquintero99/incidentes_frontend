@@ -40,7 +40,10 @@ async function usuarioModuloRegistrado(usuario) {
   })
   return result;
 }
-
+if (window.location.href.includes("404")) {
+  // Redirigir al usuario a la página de inicio (index.html)
+  window.location.href = "index.html";
+}
 verificarRutaYToken()
 function verificarRutaYToken() {
   // Obtener la URL actual
@@ -60,12 +63,18 @@ function verificarRutaYToken() {
       window.location.href = "/incidentes_frontend/index.html"
     } else {
       if (rutaActual.includes("admin") && modulo !== "admin") {
-        
+        console.log(rutaActual)
         window.location.href = "/incidentes_frontend/cuenta/index.html"
       } else if (rutaActual.includes("cuenta") && modulo !== "usuario") {
         window.location.href = "/incidentes_frontend/"+modulo+"/index.html"
+        console.log(rutaActual)
+      }else{
+        window.location.href = "/incidentes_frontend/index.html"
+        console.log(false)
       }
     }
+  }else{
+    console.log("noo")
   }
 }
 
